@@ -1,0 +1,250 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateRoom {
+  onCreateRoom {
+    id
+    name
+    temperaturemin
+    temperaturemax
+    humiditymi
+    humiditymax
+    currenttemp
+    currenthumidity
+    sectionname
+    sensors
+    sensorsasstring
+    sectionID
+    companyID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateRoom {
+  onUpdateRoom {
+    id
+    name
+    temperaturemin
+    temperaturemax
+    humiditymi
+    humiditymax
+    currenttemp
+    currenthumidity
+    sectionname
+    sensors
+    sensorsasstring
+    sectionID
+    companyID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteRoom {
+  onDeleteRoom {
+    id
+    name
+    temperaturemin
+    temperaturemax
+    humiditymi
+    humiditymax
+    currenttemp
+    currenthumidity
+    sectionname
+    sensors
+    sensorsasstring
+    sectionID
+    companyID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnCreateSection {
+  onCreateSection {
+    id
+    name
+    SectionRooms {
+      nextToken
+      startedAt
+    }
+    companyID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateSection {
+  onUpdateSection {
+    id
+    name
+    SectionRooms {
+      nextToken
+      startedAt
+    }
+    companyID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteSection {
+  onDeleteSection {
+    id
+    name
+    SectionRooms {
+      nextToken
+      startedAt
+    }
+    companyID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnCreateCompany {
+  onCreateCompany {
+    id
+    name
+    registeredemail
+    adminpass
+    contactname
+    contactnumber
+    domainname
+    highsecpin
+    CompanySensors {
+      nextToken
+      startedAt
+    }
+    CompanySection {
+      nextToken
+      startedAt
+    }
+    Rooms {
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateCompany {
+  onUpdateCompany {
+    id
+    name
+    registeredemail
+    adminpass
+    contactname
+    contactnumber
+    domainname
+    highsecpin
+    CompanySensors {
+      nextToken
+      startedAt
+    }
+    CompanySection {
+      nextToken
+      startedAt
+    }
+    Rooms {
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteCompany {
+  onDeleteCompany {
+    id
+    name
+    registeredemail
+    adminpass
+    contactname
+    contactnumber
+    domainname
+    highsecpin
+    CompanySensors {
+      nextToken
+      startedAt
+    }
+    CompanySection {
+      nextToken
+      startedAt
+    }
+    Rooms {
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnCreateSensor {
+  onCreateSensor {
+    id
+    serialnumber
+    remarks
+    lastreadtemp
+    lastreadhumidity
+    lastreceivedon
+    companyID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateSensor {
+  onUpdateSensor {
+    id
+    serialnumber
+    remarks
+    lastreadtemp
+    lastreadhumidity
+    lastreceivedon
+    companyID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteSensor {
+  onDeleteSensor {
+    id
+    serialnumber
+    remarks
+    lastreadtemp
+    lastreadhumidity
+    lastreceivedon
+    companyID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
