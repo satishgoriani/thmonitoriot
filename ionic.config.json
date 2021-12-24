@@ -1,0 +1,7 @@
+{
+  "name": "thmonitoriot",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
