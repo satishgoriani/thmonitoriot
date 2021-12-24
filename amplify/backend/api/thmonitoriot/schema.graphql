@@ -1,0 +1,46 @@
+type Room @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  temperaturemin: Float
+  temperaturemax: Float
+  humiditymi: Float
+  humiditymax: Float
+  currenttemp: Float
+  currenthumidity: Float
+  sectionname: String
+  sensors: [String]
+  sensorsasstring: String
+  sectionID: ID @index(name: "bySection")
+  companyID: ID @index(name: "byCompany")
+}
+
+type Section @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  SectionRooms: [Room] @hasMany(indexName: "bySection", fields: ["id"])
+  companyID: ID @index(name: "byCompany")
+}
+
+type Company @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  registeredemail: String
+  adminpass: String
+  contactname: String
+  contactnumber: String
+  domainname: String
+  highsecpin: String
+  CompanySensors: [Sensor] @hasMany(indexName: "byCompany", fields: ["id"])
+  CompanySection: [Section] @hasMany(indexName: "byCompany", fields: ["id"])
+  Rooms: [Room] @hasMany(indexName: "byCompany", fields: ["id"])
+}
+
+type Sensor @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  serialnumber: String
+  remarks: String
+  lastreadtemp: Float
+  lastreadhumidity: Float
+  lastreceivedon: AWSTimestamp
+  companyID: ID @index(name: "byCompany")
+}
