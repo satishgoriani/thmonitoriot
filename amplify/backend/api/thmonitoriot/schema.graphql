@@ -1,4 +1,4 @@
-type Room @model @auth(rules: [{allow: public}]) {
+type Location @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
   temperaturemin: Float
@@ -7,17 +7,17 @@ type Room @model @auth(rules: [{allow: public}]) {
   humiditymax: Float
   currenttemp: Float
   currenthumidity: Float
-  sectionname: String
+  locationtypename: String
   sensors: [String]
   sensorsasstring: String
-  sectionID: ID @index(name: "bySection")
+  locationtypeID: ID @index(name: "byLocationtype")
   companyID: ID @index(name: "byCompany")
 }
 
-type Section @model @auth(rules: [{allow: public}]) {
+type Locationtype @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
-  SectionRooms: [Room] @hasMany(indexName: "bySection", fields: ["id"])
+  LocationtypeLocations: [Location] @hasMany(indexName: "byLocationtype", fields: ["id"])
   companyID: ID @index(name: "byCompany")
 }
 
@@ -31,8 +31,8 @@ type Company @model @auth(rules: [{allow: public}]) {
   domainname: String
   highsecpin: String
   CompanySensors: [Sensor] @hasMany(indexName: "byCompany", fields: ["id"])
-  CompanySection: [Section] @hasMany(indexName: "byCompany", fields: ["id"])
-  Rooms: [Room] @hasMany(indexName: "byCompany", fields: ["id"])
+  CompanyLocationtype: [Locationtype] @hasMany(indexName: "byCompany", fields: ["id"])
+  Locations: [Location] @hasMany(indexName: "byCompany", fields: ["id"])
 }
 
 type Sensor @model @auth(rules: [{allow: public}]) {
