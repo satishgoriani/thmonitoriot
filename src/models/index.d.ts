@@ -4,11 +4,11 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-type RoomMetaData = {
+type LocationMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type SectionMetaData = {
+type LocationtypeMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -20,7 +20,7 @@ type SensorMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-export declare class Room {
+export declare class Location {
   readonly id: string;
   readonly name?: string;
   readonly temperaturemin?: number;
@@ -29,26 +29,26 @@ export declare class Room {
   readonly humiditymax?: number;
   readonly currenttemp?: number;
   readonly currenthumidity?: number;
-  readonly sectionname?: string;
+  readonly locationtypename?: string;
   readonly sensors?: (string | null)[];
   readonly sensorsasstring?: string;
-  readonly sectionID?: string;
+  readonly locationtypeID?: string;
   readonly companyID?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  constructor(init: ModelInit<Room, RoomMetaData>);
-  static copyOf(source: Room, mutator: (draft: MutableModel<Room, RoomMetaData>) => MutableModel<Room, RoomMetaData> | void): Room;
+  constructor(init: ModelInit<Location, LocationMetaData>);
+  static copyOf(source: Location, mutator: (draft: MutableModel<Location, LocationMetaData>) => MutableModel<Location, LocationMetaData> | void): Location;
 }
 
-export declare class Section {
+export declare class Locationtype {
   readonly id: string;
   readonly name?: string;
-  readonly SectionRooms?: (Room | null)[];
+  readonly LocationtypeLocations?: (Location | null)[];
   readonly companyID?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  constructor(init: ModelInit<Section, SectionMetaData>);
-  static copyOf(source: Section, mutator: (draft: MutableModel<Section, SectionMetaData>) => MutableModel<Section, SectionMetaData> | void): Section;
+  constructor(init: ModelInit<Locationtype, LocationtypeMetaData>);
+  static copyOf(source: Locationtype, mutator: (draft: MutableModel<Locationtype, LocationtypeMetaData>) => MutableModel<Locationtype, LocationtypeMetaData> | void): Locationtype;
 }
 
 export declare class Company {
@@ -61,8 +61,8 @@ export declare class Company {
   readonly domainname?: string;
   readonly highsecpin?: string;
   readonly CompanySensors?: (Sensor | null)[];
-  readonly CompanySection?: (Section | null)[];
-  readonly Rooms?: (Room | null)[];
+  readonly CompanyLocationtype?: (Locationtype | null)[];
+  readonly Locations?: (Location | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Company, CompanyMetaData>);

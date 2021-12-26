@@ -1,9 +1,9 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateRoom(
-  $input: CreateRoomInput!
-  $condition: ModelRoomConditionInput
+mutation CreateLocation(
+  $input: CreateLocationInput!
+  $condition: ModelLocationConditionInput
 ) {
-  createRoom(input: $input, condition: $condition) {
+  createLocation(input: $input, condition: $condition) {
     id
     name
     temperaturemin
@@ -12,10 +12,10 @@ mutation CreateRoom(
     humiditymax
     currenttemp
     currenthumidity
-    sectionname
+    locationtypename
     sensors
     sensorsasstring
-    sectionID
+    locationtypeID
     companyID
     createdAt
     updatedAt
@@ -24,11 +24,11 @@ mutation CreateRoom(
     _lastChangedAt
   }
 }
-mutation UpdateRoom(
-  $input: UpdateRoomInput!
-  $condition: ModelRoomConditionInput
+mutation UpdateLocation(
+  $input: UpdateLocationInput!
+  $condition: ModelLocationConditionInput
 ) {
-  updateRoom(input: $input, condition: $condition) {
+  updateLocation(input: $input, condition: $condition) {
     id
     name
     temperaturemin
@@ -37,10 +37,10 @@ mutation UpdateRoom(
     humiditymax
     currenttemp
     currenthumidity
-    sectionname
+    locationtypename
     sensors
     sensorsasstring
-    sectionID
+    locationtypeID
     companyID
     createdAt
     updatedAt
@@ -49,11 +49,11 @@ mutation UpdateRoom(
     _lastChangedAt
   }
 }
-mutation DeleteRoom(
-  $input: DeleteRoomInput!
-  $condition: ModelRoomConditionInput
+mutation DeleteLocation(
+  $input: DeleteLocationInput!
+  $condition: ModelLocationConditionInput
 ) {
-  deleteRoom(input: $input, condition: $condition) {
+  deleteLocation(input: $input, condition: $condition) {
     id
     name
     temperaturemin
@@ -62,10 +62,10 @@ mutation DeleteRoom(
     humiditymax
     currenttemp
     currenthumidity
-    sectionname
+    locationtypename
     sensors
     sensorsasstring
-    sectionID
+    locationtypeID
     companyID
     createdAt
     updatedAt
@@ -74,14 +74,14 @@ mutation DeleteRoom(
     _lastChangedAt
   }
 }
-mutation CreateSection(
-  $input: CreateSectionInput!
-  $condition: ModelSectionConditionInput
+mutation CreateLocationtype(
+  $input: CreateLocationtypeInput!
+  $condition: ModelLocationtypeConditionInput
 ) {
-  createSection(input: $input, condition: $condition) {
+  createLocationtype(input: $input, condition: $condition) {
     id
     name
-    SectionRooms {
+    LocationtypeLocations {
       nextToken
       startedAt
     }
@@ -93,14 +93,14 @@ mutation CreateSection(
     _lastChangedAt
   }
 }
-mutation UpdateSection(
-  $input: UpdateSectionInput!
-  $condition: ModelSectionConditionInput
+mutation UpdateLocationtype(
+  $input: UpdateLocationtypeInput!
+  $condition: ModelLocationtypeConditionInput
 ) {
-  updateSection(input: $input, condition: $condition) {
+  updateLocationtype(input: $input, condition: $condition) {
     id
     name
-    SectionRooms {
+    LocationtypeLocations {
       nextToken
       startedAt
     }
@@ -112,14 +112,14 @@ mutation UpdateSection(
     _lastChangedAt
   }
 }
-mutation DeleteSection(
-  $input: DeleteSectionInput!
-  $condition: ModelSectionConditionInput
+mutation DeleteLocationtype(
+  $input: DeleteLocationtypeInput!
+  $condition: ModelLocationtypeConditionInput
 ) {
-  deleteSection(input: $input, condition: $condition) {
+  deleteLocationtype(input: $input, condition: $condition) {
     id
     name
-    SectionRooms {
+    LocationtypeLocations {
       nextToken
       startedAt
     }
@@ -148,11 +148,11 @@ mutation CreateCompany(
       nextToken
       startedAt
     }
-    CompanySection {
+    CompanyLocationtype {
       nextToken
       startedAt
     }
-    Rooms {
+    Locations {
       nextToken
       startedAt
     }
@@ -180,11 +180,11 @@ mutation UpdateCompany(
       nextToken
       startedAt
     }
-    CompanySection {
+    CompanyLocationtype {
       nextToken
       startedAt
     }
-    Rooms {
+    Locations {
       nextToken
       startedAt
     }
@@ -212,11 +212,11 @@ mutation DeleteCompany(
       nextToken
       startedAt
     }
-    CompanySection {
+    CompanyLocationtype {
       nextToken
       startedAt
     }
-    Rooms {
+    Locations {
       nextToken
       startedAt
     }

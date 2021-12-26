@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-query GetRoom($id: ID!) {
-  getRoom(id: $id) {
+query GetLocation($id: ID!) {
+  getLocation(id: $id) {
     id
     name
     temperaturemin
@@ -9,10 +9,10 @@ query GetRoom($id: ID!) {
     humiditymax
     currenttemp
     currenthumidity
-    sectionname
+    locationtypename
     sensors
     sensorsasstring
-    sectionID
+    locationtypeID
     companyID
     createdAt
     updatedAt
@@ -21,12 +21,12 @@ query GetRoom($id: ID!) {
     _lastChangedAt
   }
 }
-query ListRooms(
-  $filter: ModelRoomFilterInput
+query ListLocations(
+  $filter: ModelLocationFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listLocations(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       name
@@ -36,10 +36,10 @@ query ListRooms(
       humiditymax
       currenttemp
       currenthumidity
-      sectionname
+      locationtypename
       sensors
       sensorsasstring
-      sectionID
+      locationtypeID
       companyID
       createdAt
       updatedAt
@@ -51,13 +51,13 @@ query ListRooms(
     startedAt
   }
 }
-query SyncRooms(
-  $filter: ModelRoomFilterInput
+query SyncLocations(
+  $filter: ModelLocationFilterInput
   $limit: Int
   $nextToken: String
   $lastSync: AWSTimestamp
 ) {
-  syncRooms(
+  syncLocations(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -72,10 +72,10 @@ query SyncRooms(
       humiditymax
       currenttemp
       currenthumidity
-      sectionname
+      locationtypename
       sensors
       sensorsasstring
-      sectionID
+      locationtypeID
       companyID
       createdAt
       updatedAt
@@ -87,11 +87,11 @@ query SyncRooms(
     startedAt
   }
 }
-query GetSection($id: ID!) {
-  getSection(id: $id) {
+query GetLocationtype($id: ID!) {
+  getLocationtype(id: $id) {
     id
     name
-    SectionRooms {
+    LocationtypeLocations {
       nextToken
       startedAt
     }
@@ -103,12 +103,12 @@ query GetSection($id: ID!) {
     _lastChangedAt
   }
 }
-query ListSections(
-  $filter: ModelSectionFilterInput
+query ListLocationtypes(
+  $filter: ModelLocationtypeFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listSections(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listLocationtypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       name
@@ -123,13 +123,13 @@ query ListSections(
     startedAt
   }
 }
-query SyncSections(
-  $filter: ModelSectionFilterInput
+query SyncLocationtypes(
+  $filter: ModelLocationtypeFilterInput
   $limit: Int
   $nextToken: String
   $lastSync: AWSTimestamp
 ) {
-  syncSections(
+  syncLocationtypes(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -163,11 +163,11 @@ query GetCompany($id: ID!) {
       nextToken
       startedAt
     }
-    CompanySection {
+    CompanyLocationtype {
       nextToken
       startedAt
     }
-    Rooms {
+    Locations {
       nextToken
       startedAt
     }

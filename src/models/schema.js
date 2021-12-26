@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Room": {
-            "name": "Room",
+        "Location": {
+            "name": "Location",
             "fields": {
                 "id": {
                     "name": "id",
@@ -59,8 +59,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "sectionname": {
-                    "name": "sectionname",
+                "locationtypename": {
+                    "name": "locationtypename",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -81,8 +81,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "sectionID": {
-                    "name": "sectionID",
+                "locationtypeID": {
+                    "name": "locationtypeID",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": false,
@@ -113,7 +113,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Rooms",
+            "pluralName": "Locations",
             "attributes": [
                 {
                     "type": "model",
@@ -122,9 +122,9 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "bySection",
+                        "name": "byLocationtype",
                         "fields": [
-                            "sectionID"
+                            "locationtypeID"
                         ]
                     }
                 },
@@ -155,8 +155,8 @@ export const schema = {
                 }
             ]
         },
-        "Section": {
-            "name": "Section",
+        "Locationtype": {
+            "name": "Locationtype",
             "fields": {
                 "id": {
                     "name": "id",
@@ -172,18 +172,18 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "SectionRooms": {
-                    "name": "SectionRooms",
+                "LocationtypeLocations": {
+                    "name": "LocationtypeLocations",
                     "isArray": true,
                     "type": {
-                        "model": "Room"
+                        "model": "Location"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "sectionID"
+                        "associatedWith": "locationtypeID"
                     }
                 },
                 "companyID": {
@@ -211,7 +211,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Sections",
+            "pluralName": "Locationtypes",
             "attributes": [
                 {
                     "type": "model",
@@ -317,11 +317,11 @@ export const schema = {
                         "associatedWith": "companyID"
                     }
                 },
-                "CompanySection": {
-                    "name": "CompanySection",
+                "CompanyLocationtype": {
+                    "name": "CompanyLocationtype",
                     "isArray": true,
                     "type": {
-                        "model": "Section"
+                        "model": "Locationtype"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -331,11 +331,11 @@ export const schema = {
                         "associatedWith": "companyID"
                     }
                 },
-                "Rooms": {
-                    "name": "Rooms",
+                "Locations": {
+                    "name": "Locations",
                     "isArray": true,
                     "type": {
-                        "model": "Room"
+                        "model": "Location"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -493,5 +493,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "d89c99437c19529e29bdbf0fcd358512"
+    "version": "1a5d2ebc92dc0377075b709016a0d122"
 };

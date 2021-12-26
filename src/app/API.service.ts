@@ -10,12 +10,12 @@ export interface SubscriptionResponse<T> {
 }
 
 export type __SubscriptionContainer = {
-  onCreateRoom: OnCreateRoomSubscription;
-  onUpdateRoom: OnUpdateRoomSubscription;
-  onDeleteRoom: OnDeleteRoomSubscription;
-  onCreateSection: OnCreateSectionSubscription;
-  onUpdateSection: OnUpdateSectionSubscription;
-  onDeleteSection: OnDeleteSectionSubscription;
+  onCreateLocation: OnCreateLocationSubscription;
+  onUpdateLocation: OnUpdateLocationSubscription;
+  onDeleteLocation: OnDeleteLocationSubscription;
+  onCreateLocationtype: OnCreateLocationtypeSubscription;
+  onUpdateLocationtype: OnUpdateLocationtypeSubscription;
+  onDeleteLocationtype: OnDeleteLocationtypeSubscription;
   onCreateCompany: OnCreateCompanySubscription;
   onUpdateCompany: OnUpdateCompanySubscription;
   onDeleteCompany: OnDeleteCompanySubscription;
@@ -24,7 +24,7 @@ export type __SubscriptionContainer = {
   onDeleteSensor: OnDeleteSensorSubscription;
 };
 
-export type CreateRoomInput = {
+export type CreateLocationInput = {
   id?: string | null;
   name?: string | null;
   temperaturemin?: number | null;
@@ -33,15 +33,15 @@ export type CreateRoomInput = {
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
-  sectionname?: string | null;
+  locationtypename?: string | null;
   sensors?: Array<string | null> | null;
   sensorsasstring?: string | null;
-  sectionID?: string | null;
+  locationtypeID?: string | null;
   companyID?: string | null;
   _version?: number | null;
 };
 
-export type ModelRoomConditionInput = {
+export type ModelLocationConditionInput = {
   name?: ModelStringInput | null;
   temperaturemin?: ModelFloatInput | null;
   temperaturemax?: ModelFloatInput | null;
@@ -49,14 +49,14 @@ export type ModelRoomConditionInput = {
   humiditymax?: ModelFloatInput | null;
   currenttemp?: ModelFloatInput | null;
   currenthumidity?: ModelFloatInput | null;
-  sectionname?: ModelStringInput | null;
+  locationtypename?: ModelStringInput | null;
   sensors?: ModelStringInput | null;
   sensorsasstring?: ModelStringInput | null;
-  sectionID?: ModelIDInput | null;
+  locationtypeID?: ModelIDInput | null;
   companyID?: ModelIDInput | null;
-  and?: Array<ModelRoomConditionInput | null> | null;
-  or?: Array<ModelRoomConditionInput | null> | null;
-  not?: ModelRoomConditionInput | null;
+  and?: Array<ModelLocationConditionInput | null> | null;
+  or?: Array<ModelLocationConditionInput | null> | null;
+  not?: ModelLocationConditionInput | null;
 };
 
 export type ModelStringInput = {
@@ -126,8 +126,8 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
-export type Room = {
-  __typename: "Room";
+export type Location = {
+  __typename: "Location";
   id: string;
   name?: string | null;
   temperaturemin?: number | null;
@@ -136,10 +136,10 @@ export type Room = {
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
-  sectionname?: string | null;
+  locationtypename?: string | null;
   sensors?: Array<string | null> | null;
   sensorsasstring?: string | null;
-  sectionID?: string | null;
+  locationtypeID?: string | null;
   companyID?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -148,7 +148,7 @@ export type Room = {
   _lastChangedAt: number;
 };
 
-export type UpdateRoomInput = {
+export type UpdateLocationInput = {
   id: string;
   name?: string | null;
   temperaturemin?: number | null;
@@ -157,39 +157,39 @@ export type UpdateRoomInput = {
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
-  sectionname?: string | null;
+  locationtypename?: string | null;
   sensors?: Array<string | null> | null;
   sensorsasstring?: string | null;
-  sectionID?: string | null;
+  locationtypeID?: string | null;
   companyID?: string | null;
   _version?: number | null;
 };
 
-export type DeleteRoomInput = {
+export type DeleteLocationInput = {
   id: string;
   _version?: number | null;
 };
 
-export type CreateSectionInput = {
+export type CreateLocationtypeInput = {
   id?: string | null;
   name?: string | null;
   companyID?: string | null;
   _version?: number | null;
 };
 
-export type ModelSectionConditionInput = {
+export type ModelLocationtypeConditionInput = {
   name?: ModelStringInput | null;
   companyID?: ModelIDInput | null;
-  and?: Array<ModelSectionConditionInput | null> | null;
-  or?: Array<ModelSectionConditionInput | null> | null;
-  not?: ModelSectionConditionInput | null;
+  and?: Array<ModelLocationtypeConditionInput | null> | null;
+  or?: Array<ModelLocationtypeConditionInput | null> | null;
+  not?: ModelLocationtypeConditionInput | null;
 };
 
-export type Section = {
-  __typename: "Section";
+export type Locationtype = {
+  __typename: "Locationtype";
   id: string;
   name?: string | null;
-  SectionRooms?: ModelRoomConnection | null;
+  LocationtypeLocations?: ModelLocationConnection | null;
   companyID?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -198,21 +198,21 @@ export type Section = {
   _lastChangedAt: number;
 };
 
-export type ModelRoomConnection = {
-  __typename: "ModelRoomConnection";
-  items: Array<Room | null>;
+export type ModelLocationConnection = {
+  __typename: "ModelLocationConnection";
+  items: Array<Location | null>;
   nextToken?: string | null;
   startedAt?: number | null;
 };
 
-export type UpdateSectionInput = {
+export type UpdateLocationtypeInput = {
   id: string;
   name?: string | null;
   companyID?: string | null;
   _version?: number | null;
 };
 
-export type DeleteSectionInput = {
+export type DeleteLocationtypeInput = {
   id: string;
   _version?: number | null;
 };
@@ -253,8 +253,8 @@ export type Company = {
   domainname?: string | null;
   highsecpin?: string | null;
   CompanySensors?: ModelSensorConnection | null;
-  CompanySection?: ModelSectionConnection | null;
-  Rooms?: ModelRoomConnection | null;
+  CompanyLocationtype?: ModelLocationtypeConnection | null;
+  Locations?: ModelLocationConnection | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -285,9 +285,9 @@ export type Sensor = {
   _lastChangedAt: number;
 };
 
-export type ModelSectionConnection = {
-  __typename: "ModelSectionConnection";
-  items: Array<Section | null>;
+export type ModelLocationtypeConnection = {
+  __typename: "ModelLocationtypeConnection";
+  items: Array<Locationtype | null>;
   nextToken?: string | null;
   startedAt?: number | null;
 };
@@ -360,7 +360,7 @@ export type DeleteSensorInput = {
   _version?: number | null;
 };
 
-export type ModelRoomFilterInput = {
+export type ModelLocationFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
   temperaturemin?: ModelFloatInput | null;
@@ -369,23 +369,23 @@ export type ModelRoomFilterInput = {
   humiditymax?: ModelFloatInput | null;
   currenttemp?: ModelFloatInput | null;
   currenthumidity?: ModelFloatInput | null;
-  sectionname?: ModelStringInput | null;
+  locationtypename?: ModelStringInput | null;
   sensors?: ModelStringInput | null;
   sensorsasstring?: ModelStringInput | null;
-  sectionID?: ModelIDInput | null;
+  locationtypeID?: ModelIDInput | null;
   companyID?: ModelIDInput | null;
-  and?: Array<ModelRoomFilterInput | null> | null;
-  or?: Array<ModelRoomFilterInput | null> | null;
-  not?: ModelRoomFilterInput | null;
+  and?: Array<ModelLocationFilterInput | null> | null;
+  or?: Array<ModelLocationFilterInput | null> | null;
+  not?: ModelLocationFilterInput | null;
 };
 
-export type ModelSectionFilterInput = {
+export type ModelLocationtypeFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
   companyID?: ModelIDInput | null;
-  and?: Array<ModelSectionFilterInput | null> | null;
-  or?: Array<ModelSectionFilterInput | null> | null;
-  not?: ModelSectionFilterInput | null;
+  and?: Array<ModelLocationtypeFilterInput | null> | null;
+  or?: Array<ModelLocationtypeFilterInput | null> | null;
+  not?: ModelLocationtypeFilterInput | null;
 };
 
 export type ModelCompanyFilterInput = {
@@ -422,8 +422,8 @@ export type ModelSensorFilterInput = {
   not?: ModelSensorFilterInput | null;
 };
 
-export type CreateRoomMutation = {
-  __typename: "Room";
+export type CreateLocationMutation = {
+  __typename: "Location";
   id: string;
   name?: string | null;
   temperaturemin?: number | null;
@@ -432,10 +432,10 @@ export type CreateRoomMutation = {
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
-  sectionname?: string | null;
+  locationtypename?: string | null;
   sensors?: Array<string | null> | null;
   sensorsasstring?: string | null;
-  sectionID?: string | null;
+  locationtypeID?: string | null;
   companyID?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -444,8 +444,8 @@ export type CreateRoomMutation = {
   _lastChangedAt: number;
 };
 
-export type UpdateRoomMutation = {
-  __typename: "Room";
+export type UpdateLocationMutation = {
+  __typename: "Location";
   id: string;
   name?: string | null;
   temperaturemin?: number | null;
@@ -454,10 +454,10 @@ export type UpdateRoomMutation = {
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
-  sectionname?: string | null;
+  locationtypename?: string | null;
   sensors?: Array<string | null> | null;
   sensorsasstring?: string | null;
-  sectionID?: string | null;
+  locationtypeID?: string | null;
   companyID?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -466,8 +466,8 @@ export type UpdateRoomMutation = {
   _lastChangedAt: number;
 };
 
-export type DeleteRoomMutation = {
-  __typename: "Room";
+export type DeleteLocationMutation = {
+  __typename: "Location";
   id: string;
   name?: string | null;
   temperaturemin?: number | null;
@@ -476,10 +476,10 @@ export type DeleteRoomMutation = {
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
-  sectionname?: string | null;
+  locationtypename?: string | null;
   sensors?: Array<string | null> | null;
   sensorsasstring?: string | null;
-  sectionID?: string | null;
+  locationtypeID?: string | null;
   companyID?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -488,12 +488,12 @@ export type DeleteRoomMutation = {
   _lastChangedAt: number;
 };
 
-export type CreateSectionMutation = {
-  __typename: "Section";
+export type CreateLocationtypeMutation = {
+  __typename: "Locationtype";
   id: string;
   name?: string | null;
-  SectionRooms?: {
-    __typename: "ModelRoomConnection";
+  LocationtypeLocations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -505,12 +505,12 @@ export type CreateSectionMutation = {
   _lastChangedAt: number;
 };
 
-export type UpdateSectionMutation = {
-  __typename: "Section";
+export type UpdateLocationtypeMutation = {
+  __typename: "Locationtype";
   id: string;
   name?: string | null;
-  SectionRooms?: {
-    __typename: "ModelRoomConnection";
+  LocationtypeLocations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -522,12 +522,12 @@ export type UpdateSectionMutation = {
   _lastChangedAt: number;
 };
 
-export type DeleteSectionMutation = {
-  __typename: "Section";
+export type DeleteLocationtypeMutation = {
+  __typename: "Locationtype";
   id: string;
   name?: string | null;
-  SectionRooms?: {
-    __typename: "ModelRoomConnection";
+  LocationtypeLocations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -554,13 +554,13 @@ export type CreateCompanyMutation = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  CompanySection?: {
-    __typename: "ModelSectionConnection";
+  CompanyLocationtype?: {
+    __typename: "ModelLocationtypeConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  Rooms?: {
-    __typename: "ModelRoomConnection";
+  Locations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -586,13 +586,13 @@ export type UpdateCompanyMutation = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  CompanySection?: {
-    __typename: "ModelSectionConnection";
+  CompanyLocationtype?: {
+    __typename: "ModelLocationtypeConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  Rooms?: {
-    __typename: "ModelRoomConnection";
+  Locations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -618,13 +618,13 @@ export type DeleteCompanyMutation = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  CompanySection?: {
-    __typename: "ModelSectionConnection";
+  CompanyLocationtype?: {
+    __typename: "ModelLocationtypeConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  Rooms?: {
-    __typename: "ModelRoomConnection";
+  Locations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -683,8 +683,8 @@ export type DeleteSensorMutation = {
   _lastChangedAt: number;
 };
 
-export type GetRoomQuery = {
-  __typename: "Room";
+export type GetLocationQuery = {
+  __typename: "Location";
   id: string;
   name?: string | null;
   temperaturemin?: number | null;
@@ -693,10 +693,10 @@ export type GetRoomQuery = {
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
-  sectionname?: string | null;
+  locationtypename?: string | null;
   sensors?: Array<string | null> | null;
   sensorsasstring?: string | null;
-  sectionID?: string | null;
+  locationtypeID?: string | null;
   companyID?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -705,10 +705,10 @@ export type GetRoomQuery = {
   _lastChangedAt: number;
 };
 
-export type ListRoomsQuery = {
-  __typename: "ModelRoomConnection";
+export type ListLocationsQuery = {
+  __typename: "ModelLocationConnection";
   items: Array<{
-    __typename: "Room";
+    __typename: "Location";
     id: string;
     name?: string | null;
     temperaturemin?: number | null;
@@ -717,10 +717,10 @@ export type ListRoomsQuery = {
     humiditymax?: number | null;
     currenttemp?: number | null;
     currenthumidity?: number | null;
-    sectionname?: string | null;
+    locationtypename?: string | null;
     sensors?: Array<string | null> | null;
     sensorsasstring?: string | null;
-    sectionID?: string | null;
+    locationtypeID?: string | null;
     companyID?: string | null;
     createdAt: string;
     updatedAt: string;
@@ -732,10 +732,10 @@ export type ListRoomsQuery = {
   startedAt?: number | null;
 };
 
-export type SyncRoomsQuery = {
-  __typename: "ModelRoomConnection";
+export type SyncLocationsQuery = {
+  __typename: "ModelLocationConnection";
   items: Array<{
-    __typename: "Room";
+    __typename: "Location";
     id: string;
     name?: string | null;
     temperaturemin?: number | null;
@@ -744,10 +744,10 @@ export type SyncRoomsQuery = {
     humiditymax?: number | null;
     currenttemp?: number | null;
     currenthumidity?: number | null;
-    sectionname?: string | null;
+    locationtypename?: string | null;
     sensors?: Array<string | null> | null;
     sensorsasstring?: string | null;
-    sectionID?: string | null;
+    locationtypeID?: string | null;
     companyID?: string | null;
     createdAt: string;
     updatedAt: string;
@@ -759,12 +759,12 @@ export type SyncRoomsQuery = {
   startedAt?: number | null;
 };
 
-export type GetSectionQuery = {
-  __typename: "Section";
+export type GetLocationtypeQuery = {
+  __typename: "Locationtype";
   id: string;
   name?: string | null;
-  SectionRooms?: {
-    __typename: "ModelRoomConnection";
+  LocationtypeLocations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -776,10 +776,10 @@ export type GetSectionQuery = {
   _lastChangedAt: number;
 };
 
-export type ListSectionsQuery = {
-  __typename: "ModelSectionConnection";
+export type ListLocationtypesQuery = {
+  __typename: "ModelLocationtypeConnection";
   items: Array<{
-    __typename: "Section";
+    __typename: "Locationtype";
     id: string;
     name?: string | null;
     companyID?: string | null;
@@ -793,10 +793,10 @@ export type ListSectionsQuery = {
   startedAt?: number | null;
 };
 
-export type SyncSectionsQuery = {
-  __typename: "ModelSectionConnection";
+export type SyncLocationtypesQuery = {
+  __typename: "ModelLocationtypeConnection";
   items: Array<{
-    __typename: "Section";
+    __typename: "Locationtype";
     id: string;
     name?: string | null;
     companyID?: string | null;
@@ -825,13 +825,13 @@ export type GetCompanyQuery = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  CompanySection?: {
-    __typename: "ModelSectionConnection";
+  CompanyLocationtype?: {
+    __typename: "ModelLocationtypeConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  Rooms?: {
-    __typename: "ModelRoomConnection";
+  Locations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -944,8 +944,8 @@ export type SyncSensorsQuery = {
   startedAt?: number | null;
 };
 
-export type OnCreateRoomSubscription = {
-  __typename: "Room";
+export type OnCreateLocationSubscription = {
+  __typename: "Location";
   id: string;
   name?: string | null;
   temperaturemin?: number | null;
@@ -954,10 +954,10 @@ export type OnCreateRoomSubscription = {
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
-  sectionname?: string | null;
+  locationtypename?: string | null;
   sensors?: Array<string | null> | null;
   sensorsasstring?: string | null;
-  sectionID?: string | null;
+  locationtypeID?: string | null;
   companyID?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -966,8 +966,8 @@ export type OnCreateRoomSubscription = {
   _lastChangedAt: number;
 };
 
-export type OnUpdateRoomSubscription = {
-  __typename: "Room";
+export type OnUpdateLocationSubscription = {
+  __typename: "Location";
   id: string;
   name?: string | null;
   temperaturemin?: number | null;
@@ -976,10 +976,10 @@ export type OnUpdateRoomSubscription = {
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
-  sectionname?: string | null;
+  locationtypename?: string | null;
   sensors?: Array<string | null> | null;
   sensorsasstring?: string | null;
-  sectionID?: string | null;
+  locationtypeID?: string | null;
   companyID?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -988,8 +988,8 @@ export type OnUpdateRoomSubscription = {
   _lastChangedAt: number;
 };
 
-export type OnDeleteRoomSubscription = {
-  __typename: "Room";
+export type OnDeleteLocationSubscription = {
+  __typename: "Location";
   id: string;
   name?: string | null;
   temperaturemin?: number | null;
@@ -998,10 +998,10 @@ export type OnDeleteRoomSubscription = {
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
-  sectionname?: string | null;
+  locationtypename?: string | null;
   sensors?: Array<string | null> | null;
   sensorsasstring?: string | null;
-  sectionID?: string | null;
+  locationtypeID?: string | null;
   companyID?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -1010,12 +1010,12 @@ export type OnDeleteRoomSubscription = {
   _lastChangedAt: number;
 };
 
-export type OnCreateSectionSubscription = {
-  __typename: "Section";
+export type OnCreateLocationtypeSubscription = {
+  __typename: "Locationtype";
   id: string;
   name?: string | null;
-  SectionRooms?: {
-    __typename: "ModelRoomConnection";
+  LocationtypeLocations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -1027,12 +1027,12 @@ export type OnCreateSectionSubscription = {
   _lastChangedAt: number;
 };
 
-export type OnUpdateSectionSubscription = {
-  __typename: "Section";
+export type OnUpdateLocationtypeSubscription = {
+  __typename: "Locationtype";
   id: string;
   name?: string | null;
-  SectionRooms?: {
-    __typename: "ModelRoomConnection";
+  LocationtypeLocations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -1044,12 +1044,12 @@ export type OnUpdateSectionSubscription = {
   _lastChangedAt: number;
 };
 
-export type OnDeleteSectionSubscription = {
-  __typename: "Section";
+export type OnDeleteLocationtypeSubscription = {
+  __typename: "Locationtype";
   id: string;
   name?: string | null;
-  SectionRooms?: {
-    __typename: "ModelRoomConnection";
+  LocationtypeLocations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -1076,13 +1076,13 @@ export type OnCreateCompanySubscription = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  CompanySection?: {
-    __typename: "ModelSectionConnection";
+  CompanyLocationtype?: {
+    __typename: "ModelLocationtypeConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  Rooms?: {
-    __typename: "ModelRoomConnection";
+  Locations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -1108,13 +1108,13 @@ export type OnUpdateCompanySubscription = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  CompanySection?: {
-    __typename: "ModelSectionConnection";
+  CompanyLocationtype?: {
+    __typename: "ModelLocationtypeConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  Rooms?: {
-    __typename: "ModelRoomConnection";
+  Locations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -1140,13 +1140,13 @@ export type OnDeleteCompanySubscription = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  CompanySection?: {
-    __typename: "ModelSectionConnection";
+  CompanyLocationtype?: {
+    __typename: "ModelLocationtypeConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
-  Rooms?: {
-    __typename: "ModelRoomConnection";
+  Locations?: {
+    __typename: "ModelLocationConnection";
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -1209,12 +1209,12 @@ export type OnDeleteSensorSubscription = {
   providedIn: "root"
 })
 export class APIService {
-  async CreateRoom(
-    input: CreateRoomInput,
-    condition?: ModelRoomConditionInput
-  ): Promise<CreateRoomMutation> {
-    const statement = `mutation CreateRoom($input: CreateRoomInput!, $condition: ModelRoomConditionInput) {
-        createRoom(input: $input, condition: $condition) {
+  async CreateLocation(
+    input: CreateLocationInput,
+    condition?: ModelLocationConditionInput
+  ): Promise<CreateLocationMutation> {
+    const statement = `mutation CreateLocation($input: CreateLocationInput!, $condition: ModelLocationConditionInput) {
+        createLocation(input: $input, condition: $condition) {
           __typename
           id
           name
@@ -1224,10 +1224,10 @@ export class APIService {
           humiditymax
           currenttemp
           currenthumidity
-          sectionname
+          locationtypename
           sensors
           sensorsasstring
-          sectionID
+          locationtypeID
           companyID
           createdAt
           updatedAt
@@ -1245,14 +1245,14 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <CreateRoomMutation>response.data.createRoom;
+    return <CreateLocationMutation>response.data.createLocation;
   }
-  async UpdateRoom(
-    input: UpdateRoomInput,
-    condition?: ModelRoomConditionInput
-  ): Promise<UpdateRoomMutation> {
-    const statement = `mutation UpdateRoom($input: UpdateRoomInput!, $condition: ModelRoomConditionInput) {
-        updateRoom(input: $input, condition: $condition) {
+  async UpdateLocation(
+    input: UpdateLocationInput,
+    condition?: ModelLocationConditionInput
+  ): Promise<UpdateLocationMutation> {
+    const statement = `mutation UpdateLocation($input: UpdateLocationInput!, $condition: ModelLocationConditionInput) {
+        updateLocation(input: $input, condition: $condition) {
           __typename
           id
           name
@@ -1262,10 +1262,10 @@ export class APIService {
           humiditymax
           currenttemp
           currenthumidity
-          sectionname
+          locationtypename
           sensors
           sensorsasstring
-          sectionID
+          locationtypeID
           companyID
           createdAt
           updatedAt
@@ -1283,14 +1283,14 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <UpdateRoomMutation>response.data.updateRoom;
+    return <UpdateLocationMutation>response.data.updateLocation;
   }
-  async DeleteRoom(
-    input: DeleteRoomInput,
-    condition?: ModelRoomConditionInput
-  ): Promise<DeleteRoomMutation> {
-    const statement = `mutation DeleteRoom($input: DeleteRoomInput!, $condition: ModelRoomConditionInput) {
-        deleteRoom(input: $input, condition: $condition) {
+  async DeleteLocation(
+    input: DeleteLocationInput,
+    condition?: ModelLocationConditionInput
+  ): Promise<DeleteLocationMutation> {
+    const statement = `mutation DeleteLocation($input: DeleteLocationInput!, $condition: ModelLocationConditionInput) {
+        deleteLocation(input: $input, condition: $condition) {
           __typename
           id
           name
@@ -1300,10 +1300,10 @@ export class APIService {
           humiditymax
           currenttemp
           currenthumidity
-          sectionname
+          locationtypename
           sensors
           sensorsasstring
-          sectionID
+          locationtypeID
           companyID
           createdAt
           updatedAt
@@ -1321,18 +1321,18 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteRoomMutation>response.data.deleteRoom;
+    return <DeleteLocationMutation>response.data.deleteLocation;
   }
-  async CreateSection(
-    input: CreateSectionInput,
-    condition?: ModelSectionConditionInput
-  ): Promise<CreateSectionMutation> {
-    const statement = `mutation CreateSection($input: CreateSectionInput!, $condition: ModelSectionConditionInput) {
-        createSection(input: $input, condition: $condition) {
+  async CreateLocationtype(
+    input: CreateLocationtypeInput,
+    condition?: ModelLocationtypeConditionInput
+  ): Promise<CreateLocationtypeMutation> {
+    const statement = `mutation CreateLocationtype($input: CreateLocationtypeInput!, $condition: ModelLocationtypeConditionInput) {
+        createLocationtype(input: $input, condition: $condition) {
           __typename
           id
           name
-          SectionRooms {
+          LocationtypeLocations {
             __typename
             nextToken
             startedAt
@@ -1354,18 +1354,18 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <CreateSectionMutation>response.data.createSection;
+    return <CreateLocationtypeMutation>response.data.createLocationtype;
   }
-  async UpdateSection(
-    input: UpdateSectionInput,
-    condition?: ModelSectionConditionInput
-  ): Promise<UpdateSectionMutation> {
-    const statement = `mutation UpdateSection($input: UpdateSectionInput!, $condition: ModelSectionConditionInput) {
-        updateSection(input: $input, condition: $condition) {
+  async UpdateLocationtype(
+    input: UpdateLocationtypeInput,
+    condition?: ModelLocationtypeConditionInput
+  ): Promise<UpdateLocationtypeMutation> {
+    const statement = `mutation UpdateLocationtype($input: UpdateLocationtypeInput!, $condition: ModelLocationtypeConditionInput) {
+        updateLocationtype(input: $input, condition: $condition) {
           __typename
           id
           name
-          SectionRooms {
+          LocationtypeLocations {
             __typename
             nextToken
             startedAt
@@ -1387,18 +1387,18 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <UpdateSectionMutation>response.data.updateSection;
+    return <UpdateLocationtypeMutation>response.data.updateLocationtype;
   }
-  async DeleteSection(
-    input: DeleteSectionInput,
-    condition?: ModelSectionConditionInput
-  ): Promise<DeleteSectionMutation> {
-    const statement = `mutation DeleteSection($input: DeleteSectionInput!, $condition: ModelSectionConditionInput) {
-        deleteSection(input: $input, condition: $condition) {
+  async DeleteLocationtype(
+    input: DeleteLocationtypeInput,
+    condition?: ModelLocationtypeConditionInput
+  ): Promise<DeleteLocationtypeMutation> {
+    const statement = `mutation DeleteLocationtype($input: DeleteLocationtypeInput!, $condition: ModelLocationtypeConditionInput) {
+        deleteLocationtype(input: $input, condition: $condition) {
           __typename
           id
           name
-          SectionRooms {
+          LocationtypeLocations {
             __typename
             nextToken
             startedAt
@@ -1420,7 +1420,7 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteSectionMutation>response.data.deleteSection;
+    return <DeleteLocationtypeMutation>response.data.deleteLocationtype;
   }
   async CreateCompany(
     input: CreateCompanyInput,
@@ -1442,12 +1442,12 @@ export class APIService {
             nextToken
             startedAt
           }
-          CompanySection {
+          CompanyLocationtype {
             __typename
             nextToken
             startedAt
           }
-          Rooms {
+          Locations {
             __typename
             nextToken
             startedAt
@@ -1490,12 +1490,12 @@ export class APIService {
             nextToken
             startedAt
           }
-          CompanySection {
+          CompanyLocationtype {
             __typename
             nextToken
             startedAt
           }
-          Rooms {
+          Locations {
             __typename
             nextToken
             startedAt
@@ -1538,12 +1538,12 @@ export class APIService {
             nextToken
             startedAt
           }
-          CompanySection {
+          CompanyLocationtype {
             __typename
             nextToken
             startedAt
           }
-          Rooms {
+          Locations {
             __typename
             nextToken
             startedAt
@@ -1662,9 +1662,9 @@ export class APIService {
     )) as any;
     return <DeleteSensorMutation>response.data.deleteSensor;
   }
-  async GetRoom(id: string): Promise<GetRoomQuery> {
-    const statement = `query GetRoom($id: ID!) {
-        getRoom(id: $id) {
+  async GetLocation(id: string): Promise<GetLocationQuery> {
+    const statement = `query GetLocation($id: ID!) {
+        getLocation(id: $id) {
           __typename
           id
           name
@@ -1674,10 +1674,10 @@ export class APIService {
           humiditymax
           currenttemp
           currenthumidity
-          sectionname
+          locationtypename
           sensors
           sensorsasstring
-          sectionID
+          locationtypeID
           companyID
           createdAt
           updatedAt
@@ -1692,15 +1692,15 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetRoomQuery>response.data.getRoom;
+    return <GetLocationQuery>response.data.getLocation;
   }
-  async ListRooms(
-    filter?: ModelRoomFilterInput,
+  async ListLocations(
+    filter?: ModelLocationFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListRoomsQuery> {
-    const statement = `query ListRooms($filter: ModelRoomFilterInput, $limit: Int, $nextToken: String) {
-        listRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListLocationsQuery> {
+    const statement = `query ListLocations($filter: ModelLocationFilterInput, $limit: Int, $nextToken: String) {
+        listLocations(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
@@ -1712,10 +1712,10 @@ export class APIService {
             humiditymax
             currenttemp
             currenthumidity
-            sectionname
+            locationtypename
             sensors
             sensorsasstring
-            sectionID
+            locationtypeID
             companyID
             createdAt
             updatedAt
@@ -1740,16 +1740,16 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListRoomsQuery>response.data.listRooms;
+    return <ListLocationsQuery>response.data.listLocations;
   }
-  async SyncRooms(
-    filter?: ModelRoomFilterInput,
+  async SyncLocations(
+    filter?: ModelLocationFilterInput,
     limit?: number,
     nextToken?: string,
     lastSync?: number
-  ): Promise<SyncRoomsQuery> {
-    const statement = `query SyncRooms($filter: ModelRoomFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
-        syncRooms(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+  ): Promise<SyncLocationsQuery> {
+    const statement = `query SyncLocations($filter: ModelLocationFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncLocations(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
           __typename
           items {
             __typename
@@ -1761,10 +1761,10 @@ export class APIService {
             humiditymax
             currenttemp
             currenthumidity
-            sectionname
+            locationtypename
             sensors
             sensorsasstring
-            sectionID
+            locationtypeID
             companyID
             createdAt
             updatedAt
@@ -1792,15 +1792,15 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <SyncRoomsQuery>response.data.syncRooms;
+    return <SyncLocationsQuery>response.data.syncLocations;
   }
-  async GetSection(id: string): Promise<GetSectionQuery> {
-    const statement = `query GetSection($id: ID!) {
-        getSection(id: $id) {
+  async GetLocationtype(id: string): Promise<GetLocationtypeQuery> {
+    const statement = `query GetLocationtype($id: ID!) {
+        getLocationtype(id: $id) {
           __typename
           id
           name
-          SectionRooms {
+          LocationtypeLocations {
             __typename
             nextToken
             startedAt
@@ -1819,15 +1819,15 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetSectionQuery>response.data.getSection;
+    return <GetLocationtypeQuery>response.data.getLocationtype;
   }
-  async ListSections(
-    filter?: ModelSectionFilterInput,
+  async ListLocationtypes(
+    filter?: ModelLocationtypeFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListSectionsQuery> {
-    const statement = `query ListSections($filter: ModelSectionFilterInput, $limit: Int, $nextToken: String) {
-        listSections(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListLocationtypesQuery> {
+    const statement = `query ListLocationtypes($filter: ModelLocationtypeFilterInput, $limit: Int, $nextToken: String) {
+        listLocationtypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
@@ -1857,16 +1857,16 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListSectionsQuery>response.data.listSections;
+    return <ListLocationtypesQuery>response.data.listLocationtypes;
   }
-  async SyncSections(
-    filter?: ModelSectionFilterInput,
+  async SyncLocationtypes(
+    filter?: ModelLocationtypeFilterInput,
     limit?: number,
     nextToken?: string,
     lastSync?: number
-  ): Promise<SyncSectionsQuery> {
-    const statement = `query SyncSections($filter: ModelSectionFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
-        syncSections(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+  ): Promise<SyncLocationtypesQuery> {
+    const statement = `query SyncLocationtypes($filter: ModelLocationtypeFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncLocationtypes(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
           __typename
           items {
             __typename
@@ -1899,7 +1899,7 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <SyncSectionsQuery>response.data.syncSections;
+    return <SyncLocationtypesQuery>response.data.syncLocationtypes;
   }
   async GetCompany(id: string): Promise<GetCompanyQuery> {
     const statement = `query GetCompany($id: ID!) {
@@ -1918,12 +1918,12 @@ export class APIService {
             nextToken
             startedAt
           }
-          CompanySection {
+          CompanyLocationtype {
             __typename
             nextToken
             startedAt
           }
-          Rooms {
+          Locations {
             __typename
             nextToken
             startedAt
@@ -2147,12 +2147,12 @@ export class APIService {
     )) as any;
     return <SyncSensorsQuery>response.data.syncSensors;
   }
-  OnCreateRoomListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateRoom">>
+  OnCreateLocationListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateLocation">>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateRoom {
-        onCreateRoom {
+      `subscription OnCreateLocation {
+        onCreateLocation {
           __typename
           id
           name
@@ -2162,10 +2162,10 @@ export class APIService {
           humiditymax
           currenttemp
           currenthumidity
-          sectionname
+          locationtypename
           sensors
           sensorsasstring
-          sectionID
+          locationtypeID
           companyID
           createdAt
           updatedAt
@@ -2176,15 +2176,15 @@ export class APIService {
       }`
     )
   ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateRoom">>
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateLocation">>
   >;
 
-  OnUpdateRoomListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateRoom">>
+  OnUpdateLocationListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateLocation">>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateRoom {
-        onUpdateRoom {
+      `subscription OnUpdateLocation {
+        onUpdateLocation {
           __typename
           id
           name
@@ -2194,10 +2194,10 @@ export class APIService {
           humiditymax
           currenttemp
           currenthumidity
-          sectionname
+          locationtypename
           sensors
           sensorsasstring
-          sectionID
+          locationtypeID
           companyID
           createdAt
           updatedAt
@@ -2208,15 +2208,15 @@ export class APIService {
       }`
     )
   ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateRoom">>
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateLocation">>
   >;
 
-  OnDeleteRoomListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteRoom">>
+  OnDeleteLocationListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteLocation">>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteRoom {
-        onDeleteRoom {
+      `subscription OnDeleteLocation {
+        onDeleteLocation {
           __typename
           id
           name
@@ -2226,10 +2226,10 @@ export class APIService {
           humiditymax
           currenttemp
           currenthumidity
-          sectionname
+          locationtypename
           sensors
           sensorsasstring
-          sectionID
+          locationtypeID
           companyID
           createdAt
           updatedAt
@@ -2240,19 +2240,19 @@ export class APIService {
       }`
     )
   ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteRoom">>
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteLocation">>
   >;
 
-  OnCreateSectionListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateSection">>
+  OnCreateLocationtypeListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateLocationtype">>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateSection {
-        onCreateSection {
+      `subscription OnCreateLocationtype {
+        onCreateLocationtype {
           __typename
           id
           name
-          SectionRooms {
+          LocationtypeLocations {
             __typename
             nextToken
             startedAt
@@ -2267,19 +2267,19 @@ export class APIService {
       }`
     )
   ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateSection">>
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateLocationtype">>
   >;
 
-  OnUpdateSectionListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateSection">>
+  OnUpdateLocationtypeListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateLocationtype">>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateSection {
-        onUpdateSection {
+      `subscription OnUpdateLocationtype {
+        onUpdateLocationtype {
           __typename
           id
           name
-          SectionRooms {
+          LocationtypeLocations {
             __typename
             nextToken
             startedAt
@@ -2294,19 +2294,19 @@ export class APIService {
       }`
     )
   ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateSection">>
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateLocationtype">>
   >;
 
-  OnDeleteSectionListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteSection">>
+  OnDeleteLocationtypeListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteLocationtype">>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteSection {
-        onDeleteSection {
+      `subscription OnDeleteLocationtype {
+        onDeleteLocationtype {
           __typename
           id
           name
-          SectionRooms {
+          LocationtypeLocations {
             __typename
             nextToken
             startedAt
@@ -2321,7 +2321,7 @@ export class APIService {
       }`
     )
   ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteSection">>
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteLocationtype">>
   >;
 
   OnCreateCompanyListener: Observable<
@@ -2344,12 +2344,12 @@ export class APIService {
             nextToken
             startedAt
           }
-          CompanySection {
+          CompanyLocationtype {
             __typename
             nextToken
             startedAt
           }
-          Rooms {
+          Locations {
             __typename
             nextToken
             startedAt
@@ -2386,12 +2386,12 @@ export class APIService {
             nextToken
             startedAt
           }
-          CompanySection {
+          CompanyLocationtype {
             __typename
             nextToken
             startedAt
           }
-          Rooms {
+          Locations {
             __typename
             nextToken
             startedAt
@@ -2428,12 +2428,12 @@ export class APIService {
             nextToken
             startedAt
           }
-          CompanySection {
+          CompanyLocationtype {
             __typename
             nextToken
             startedAt
           }
-          Rooms {
+          Locations {
             __typename
             nextToken
             startedAt

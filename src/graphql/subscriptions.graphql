@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateRoom {
-  onCreateRoom {
+subscription OnCreateLocation {
+  onCreateLocation {
     id
     name
     temperaturemin
@@ -9,10 +9,10 @@ subscription OnCreateRoom {
     humiditymax
     currenttemp
     currenthumidity
-    sectionname
+    locationtypename
     sensors
     sensorsasstring
-    sectionID
+    locationtypeID
     companyID
     createdAt
     updatedAt
@@ -21,8 +21,8 @@ subscription OnCreateRoom {
     _lastChangedAt
   }
 }
-subscription OnUpdateRoom {
-  onUpdateRoom {
+subscription OnUpdateLocation {
+  onUpdateLocation {
     id
     name
     temperaturemin
@@ -31,10 +31,10 @@ subscription OnUpdateRoom {
     humiditymax
     currenttemp
     currenthumidity
-    sectionname
+    locationtypename
     sensors
     sensorsasstring
-    sectionID
+    locationtypeID
     companyID
     createdAt
     updatedAt
@@ -43,8 +43,8 @@ subscription OnUpdateRoom {
     _lastChangedAt
   }
 }
-subscription OnDeleteRoom {
-  onDeleteRoom {
+subscription OnDeleteLocation {
+  onDeleteLocation {
     id
     name
     temperaturemin
@@ -53,10 +53,10 @@ subscription OnDeleteRoom {
     humiditymax
     currenttemp
     currenthumidity
-    sectionname
+    locationtypename
     sensors
     sensorsasstring
-    sectionID
+    locationtypeID
     companyID
     createdAt
     updatedAt
@@ -65,11 +65,11 @@ subscription OnDeleteRoom {
     _lastChangedAt
   }
 }
-subscription OnCreateSection {
-  onCreateSection {
+subscription OnCreateLocationtype {
+  onCreateLocationtype {
     id
     name
-    SectionRooms {
+    LocationtypeLocations {
       nextToken
       startedAt
     }
@@ -81,11 +81,11 @@ subscription OnCreateSection {
     _lastChangedAt
   }
 }
-subscription OnUpdateSection {
-  onUpdateSection {
+subscription OnUpdateLocationtype {
+  onUpdateLocationtype {
     id
     name
-    SectionRooms {
+    LocationtypeLocations {
       nextToken
       startedAt
     }
@@ -97,11 +97,11 @@ subscription OnUpdateSection {
     _lastChangedAt
   }
 }
-subscription OnDeleteSection {
-  onDeleteSection {
+subscription OnDeleteLocationtype {
+  onDeleteLocationtype {
     id
     name
-    SectionRooms {
+    LocationtypeLocations {
       nextToken
       startedAt
     }
@@ -127,11 +127,11 @@ subscription OnCreateCompany {
       nextToken
       startedAt
     }
-    CompanySection {
+    CompanyLocationtype {
       nextToken
       startedAt
     }
-    Rooms {
+    Locations {
       nextToken
       startedAt
     }
@@ -156,11 +156,11 @@ subscription OnUpdateCompany {
       nextToken
       startedAt
     }
-    CompanySection {
+    CompanyLocationtype {
       nextToken
       startedAt
     }
-    Rooms {
+    Locations {
       nextToken
       startedAt
     }
@@ -185,11 +185,11 @@ subscription OnDeleteCompany {
       nextToken
       startedAt
     }
-    CompanySection {
+    CompanyLocationtype {
       nextToken
       startedAt
     }
-    Rooms {
+    Locations {
       nextToken
       startedAt
     }
