@@ -72,6 +72,8 @@ export class LocationtypedetailsPage implements OnInit {
 
       try{
         const ret = await this.apiService.UpdateLocationtype(locationtypeData);
+        
+        
         this.dataService.updateLocationtypeList(ret,Constants.EDIT);
         this.alertService.displayToast('Locationtype updated successfully',Constants.SUCCESS);
       }catch(err){

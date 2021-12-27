@@ -409,6 +409,11 @@ export type ModelCompanyConnection = {
   startedAt?: number | null;
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC"
+}
+
 export type ModelSensorFilterInput = {
   id?: ModelIDInput | null;
   serialnumber?: ModelStringInput | null;
@@ -495,6 +500,7 @@ export type CreateLocationtypeMutation = {
   LocationtypeLocations?: {
     __typename: "ModelLocationConnection";
     nextToken?: string | null;
+    items: Array<Location | null>;
     startedAt?: number | null;
   } | null;
   companyID?: string | null;
@@ -511,6 +517,7 @@ export type UpdateLocationtypeMutation = {
   name?: string | null;
   LocationtypeLocations?: {
     __typename: "ModelLocationConnection";
+    items: Array<Location | null>;
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
@@ -529,6 +536,7 @@ export type DeleteLocationtypeMutation = {
   LocationtypeLocations?: {
     __typename: "ModelLocationConnection";
     nextToken?: string | null;
+    items: Array<Location | null>;
     startedAt?: number | null;
   } | null;
   companyID?: string | null;
@@ -864,32 +872,29 @@ export type ListCompaniesQuery = {
   startedAt?: number | null;
 };
 
-export type CompanyByEmailQuery = {
+export type SyncCompaniesQuery = {
   __typename: "ModelCompanyConnection";
-  items?: Array<{
+  items: Array<{
     __typename: "Company";
     id: string;
-    name: string;
+    name?: string | null;
     registeredemail?: string | null;
     adminpass?: string | null;
+    contactname?: string | null;
+    contactnumber?: string | null;
     domainname?: string | null;
     highsecpin?: string | null;
+    createdAt: string;
+    updatedAt: string;
     _version: number;
     _deleted?: boolean | null;
     _lastChangedAt: number;
-    createdAt: string;
-    updatedAt: string;
-    CompanyLocationtypes?: {
-      __typename: "ModelLocationtypeConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-  } | null> | null;
+  } | null>;
   nextToken?: string | null;
   startedAt?: number | null;
 };
 
-export type SyncCompaniesQuery = {
+export type CompanyByEmailQuery = {
   __typename: "ModelCompanyConnection";
   items: Array<{
     __typename: "Company";
@@ -2057,6 +2062,57 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <SyncCompaniesQuery>response.data.syncCompanies;
+  }
+  async CompanyByEmail(
+    registeredemail?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelCompanyFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<CompanyByEmailQuery> {
+    const statement = `query CompanyByEmail($registeredemail: String, $sortDirection: ModelSortDirection, $filter: ModelCompanyFilterInput, $limit: Int, $nextToken: String) {
+        companyByEmail(registeredemail: $registeredemail, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            name
+            registeredemail
+            adminpass
+            contactname
+            contactnumber
+            domainname
+            highsecpin
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (registeredemail) {
+      gqlAPIServiceArguments.registeredemail = registeredemail;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CompanyByEmailQuery>response.data.companyByEmail;
   }
   async GetSensor(id: string): Promise<GetSensorQuery> {
     const statement = `query GetSensor($id: ID!) {

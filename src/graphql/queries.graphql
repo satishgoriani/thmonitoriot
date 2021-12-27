@@ -234,6 +234,39 @@ query SyncCompanies(
     startedAt
   }
 }
+query CompanyByEmail(
+  $registeredemail: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelCompanyFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  companyByEmail(
+    registeredemail: $registeredemail
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      name
+      registeredemail
+      adminpass
+      contactname
+      contactnumber
+      domainname
+      highsecpin
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
 query GetSensor($id: ID!) {
   getSensor(id: $id) {
     id

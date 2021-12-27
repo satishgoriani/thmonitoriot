@@ -370,6 +370,16 @@ export const schema = {
                     "properties": {}
                 },
                 {
+                    "type": "key",
+                    "properties": {
+                        "name": "byEmail",
+                        "queryField": "companyByEmail",
+                        "fields": [
+                            "registeredemail"
+                        ]
+                    }
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [

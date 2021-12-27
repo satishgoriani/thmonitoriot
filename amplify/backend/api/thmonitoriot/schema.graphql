@@ -21,10 +21,10 @@ type Locationtype @model @auth(rules: [{allow: public}]) {
   companyID: ID @index(name: "byCompany")
 }
 
-type Company @model @auth(rules: [{allow: public}]) {
+type Company @model @auth(rules: [{allow: public}] ) {
   id: ID!
   name: String
-  registeredemail: String
+  registeredemail: String @index(name: "byEmail", queryField: "companyByEmail")
   adminpass: String
   contactname: String
   contactnumber: String
