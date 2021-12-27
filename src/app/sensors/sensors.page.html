@@ -1,0 +1,44 @@
+<ion-header class="ion-no-border" >
+  <app-holatoolbar title="Sensors"></app-holatoolbar>
+</ion-header>
+
+<ion-content class="ion-content-grey">
+  <ion-searchbar class="crudsearchbar" [(ngModel)]="strsearch"></ion-searchbar>
+
+  <ion-item lines="none" class="data-list" *ngFor="let item of dataService.sensorlist | filter:strsearch">
+
+      <ion-row class="Wid100">
+        <ion-col size="1" >
+            <ion-icon class="listiconstyle" name="thermometer-outline" (click)="editSensor(item)"></ion-icon>
+        </ion-col>
+        <ion-col  size="10" (click)="editSensor(item)">
+          <ion-row class="field-2">{{item.serialnumber}}</ion-row>
+          <ion-row class="field-2"><span class="fieldlabel-2">Details: </span>{{item.remarks}}</ion-row>
+        </ion-col>
+        
+        <ion-col  size="1">
+          <ion-icon class="trashIcon" name="trash-outline" (click)="confirmDelete(item)"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+
+  </ion-item>
+
+  <!-- Empty div to provide some additional scroll-->
+  <div style="min-height: 80px !important;">&nbsp;</div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button  (click)="addSensor()"  >
+      <ion-icon name="add">
+      </ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<!--<ion-footer>
+  <ion-row>
+    <ion-col><ion-button class="back-btn" type="submit" expand="block" (click)="back()">Back</ion-button></ion-col>
+    <ion-col><ion-button class="next-btn" type="submit" expand="block"  (click)="next()">Next
+      </ion-button></ion-col>
+</ion-row>
+</ion-footer>-->

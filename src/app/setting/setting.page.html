@@ -1,0 +1,60 @@
+<ion-header class="ion-no-border">
+  <app-holatoolbar flat="true" title="Settings"></app-holatoolbar>
+</ion-header>
+
+<ion-content>
+<!--
+  <ion-item>
+    <ion-label >Select Theme</ion-label>
+    <ion-select mode="md"  interface="popover" [(ngModel)]="selectedTheme">
+      <ion-select-option *ngFor="let item of themeList;" value="{{item.id}}">{{item.name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+-->
+<ion-item><ion-label>Select Theme</ion-label></ion-item>
+<ion-list style="height: 175px;overflow:scroll">
+  <ion-radio-group *ngFor="let item of themeList;" [(ngModel)]="selectedTheme">
+   <ion-item>
+      <ion-label>{{item.name}}</ion-label>
+      <ion-radio slot="start" value="{{item.id}}"></ion-radio>
+      <ion-label style="max-width:10px;background-color:{{item.colors[0]}}">&nbsp;</ion-label>
+      <ion-label style="max-width:10px;background-color:{{item.colors[1]}}">&nbsp;</ion-label>
+    </ion-item>
+  </ion-radio-group>
+</ion-list>
+
+  <!--<ion-item>
+    <ion-label position="floating">Select Theme</ion-label>
+    <ion-select class="selectTheme" [(ngModel)]="selectTheme" >
+      <ion-select-option [value]="theme.class" *ngFor="let theme of themeColor;let i = index">
+        {{theme.name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>-->
+
+
+  <ion-item>
+    <ion-label position="floating">High Security PIN</ion-label>
+    <ion-input required=true type="number" placeholder="*****"></ion-input>
+  </ion-item>
+
+
+
+</ion-content>
+
+
+<ion-footer>
+
+  <div class="buttonrow">
+    <ion-row>
+      <ion-col no-padding>
+        <ion-button class="back-modal-btn" type="submit" expand="block" (click)="close()">Cancel</ion-button>
+      </ion-col>
+      <ion-col no-padding>
+        <ion-button class="next-modal-btn" type="submit" expand="block" (click)="save()">Save</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</ion-footer>

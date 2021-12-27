@@ -1,0 +1,39 @@
+<ion-row class="toolbar" *ngIf="flat != 'true'">
+  <ion-col  size="2"  >
+    <ion-back-button  *ngIf="showMenu != 'true'" class="toolbarBackButton" mode="md" defaultHref="/"></ion-back-button>
+    <ion-menu-button class="toolbarMenuButton" *ngIf="showMenu == 'true'"></ion-menu-button>
+  </ion-col>
+
+  <ion-col class="toolBarTitle" size="10">
+    <ion-label *ngIf="showMenu != 'true'" class="MediumNormal">{{title}}</ion-label>
+    <ion-label *ngIf="showMenu == 'true'" class="LargeNormal">{{title}}</ion-label>
+  </ion-col>
+  
+  <ion-row class="bottomRadius">
+    &nbsp;
+  </ion-row>
+  <ion-row class="bottomRadius">
+    &nbsp;
+  </ion-row>
+
+</ion-row>
+
+
+<ion-row class="toolbarflat" *ngIf="flat == 'true'">
+  <ion-col  size="2"  >
+    <ion-back-button  *ngIf="showMenu != 'true'" class="toolbarBackButton" mode="md" defaultHref="/"></ion-back-button>
+    <ion-menu-button class="toolbarMenuButton" *ngIf="showMenu == 'true'"></ion-menu-button>
+  </ion-col>
+
+  <ion-col class="toolBarTitle" size="8">
+    <ion-label *ngIf="showMenu != 'true'" class="MediumNormal">{{title}}</ion-label>
+    <ion-label *ngIf="showMenu == 'true'" class="LargeNormal">{{title}}</ion-label>
+  </ion-col>
+
+  <ion-col *ngIf="iconName && iconName.length > 0" size="2" >
+    <ion-icon class="toolbarIcon" [name]="iconName"></ion-icon>
+  </ion-col>
+
+</ion-row>
+
+

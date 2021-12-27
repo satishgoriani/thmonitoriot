@@ -1,0 +1,121 @@
+* {
+    font-family: "bahnschrift" !important;
+  }
+/* check if used
+  ion-content {
+    background: var(--ion-color-featured);
+  }
+*/
+  .slides {
+    padding: 4px 10px 20px 10px;
+    --background: none;
+    height: 40%;
+    background-image: url("../../assets/FRIGO-Coldstore-10.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .container {
+    background: var(--ion-color-primary);
+    height: 68%;
+    border-radius: 28px 28px 0 0;
+    margin-top: -8%;
+    padding: 6px 20px;
+    color: var(--ion-color-primary-contrast);
+
+    ion-checkbox {
+
+      --background: var(--ion-color-primary);
+      --border-color:var(--ion-color-primary-contrast);
+      padding-top: 2px;
+    }
+
+
+    ion-item {
+      --background: var(--ion-color-primary);
+      color: var(--ion-color-primary-contrast);
+      border-bottom: var(--ion-color-primary-contrast);
+      --border-color: none;
+      padding: 0;
+      margin-top: -2px;
+      margin-bottom: -10px;
+    }
+
+    ion-label {
+      padding-left: 8px;
+    }
+    .divcont {
+      font-size: 0.9rem !important;
+      padding-top: 25px;
+      ion-input {
+        margin-bottom: -40px;
+        margin-top: -50px;
+
+      }
+    }
+
+    .stay-sign {
+      padding: 2px 2px;
+      font-size: 0.7em !important;
+      vertical-align: middle;
+    }
+
+    .login {
+      text-align: center;
+      --background: var(--ion-color-secondary);
+      width: auto;
+      height: 40px;
+      text-transform: none;
+      font-size: 1.2em;
+    }
+
+    .forget-pass {
+      color: var(--ion-color-primary-contrast);
+      --border-color: none;
+      --border-width: 0px !important;
+      float: right;
+      font-size: 0.7em !important;
+      margin-top: -2px;
+      text-transform: none;
+      margin-right: -12px;
+    }
+
+    h2 {
+      padding-left: 4px;
+      height: 50%;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      height: 15px;
+    }
+
+    pre {
+      text-align: center;
+      padding: auto;
+      margin-top: 35px;
+      font-size: 0.8em;
+    }
+    .signin {
+      margin-top: -10px;
+
+    }
+
+
+  }
+  .passwordIcon{
+    color: var(--ion-color-secondary);
+    font-size:1.5rem !important;
+    position: relative !important;
+    top: -8px !important;
+    margin: 0 auto !important;
+  }
+
+  /* shalaka - check if used
+  ion-toast {
+    --background: var(--ion-color-orange);
+    padding-top: 2px;
+  }*/
+
+  ion-spinner{
+   color: var(--ion-color-primary-contrast);
+  }
+

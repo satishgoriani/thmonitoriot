@@ -1,0 +1,50 @@
+.toolbarBackButton {
+    --icon-font-size: 35px;
+    --icon-font-weight: bold;
+}
+
+.toolbarMenuButton {
+    --icon-font-size: 35px;
+    --icon-font-weight: bold;
+    --color: var(--ion-color-primary-contrast);
+    /*--padding-bottom: 8px !important;*/
+}
+
+.toolBarTitle {
+    //font-size: 20px !important;
+    margin-top: 15px !important;
+}
+
+.toolbar {
+    height: 70px;
+    --background: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+}
+
+.toolbarflat {
+    height: 60px;
+    --background: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+}
+
+.toolbarIcon{
+    color: var(--ion-color-primary-contrast);
+    height: 25px !important;
+    width: 25px !important;
+    margin-top: 15px;
+    margin-left: 15px;
+
+}
+
+.bottomRadius {
+    position: absolute;
+    bottom: 0px;
+    height: 10px;
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+
+    border: none !important;
+    box-shadow: none;
+    background: var(--ion-color-contentbg);
+}

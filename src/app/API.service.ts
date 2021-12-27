@@ -864,6 +864,31 @@ export type ListCompaniesQuery = {
   startedAt?: number | null;
 };
 
+export type CompanyByEmailQuery = {
+  __typename: "ModelCompanyConnection";
+  items?: Array<{
+    __typename: "Company";
+    id: string;
+    name: string;
+    registeredemail?: string | null;
+    adminpass?: string | null;
+    domainname?: string | null;
+    highsecpin?: string | null;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    createdAt: string;
+    updatedAt: string;
+    CompanyLocationtypes?: {
+      __typename: "ModelLocationtypeConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+  } | null> | null;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
 export type SyncCompaniesQuery = {
   __typename: "ModelCompanyConnection";
   items: Array<{

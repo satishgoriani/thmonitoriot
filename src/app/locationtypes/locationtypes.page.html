@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border">
+  <!--<ion-row class="welcomeRow">Welcome,</ion-row>
+  <ion-row class="companyName"><label>{{dataService.company.name}}</label></ion-row>-->
+  <app-holatoolbar title="Locationtypes"></app-holatoolbar>
+</ion-header>
+
+<ion-content class="ion-content-grey">
+  <ion-searchbar class="crudsearchbar" [(ngModel)]="strsearch"></ion-searchbar>
+  <ion-item lines="none" class="data-list" *ngFor="let item of dataService.locationtypelist | filter:strsearch">
+        <ion-row class="Wid100">
+          <ion-col size="1">
+              <ion-icon class="listiconstyle" name="business-outline" (click)="editLocationtype(item)"></ion-icon>
+          </ion-col>
+          <ion-col  (click)="editLocationtype(item)" size="10">
+            <ion-label class="field-1">{{item.name}}</ion-label>
+          </ion-col>
+          <!--
+          <ion-col size="1">
+            <ion-icon class="editIcon" name="create-outline" (click)="editLocationtype(item)"></ion-icon>
+          </ion-col>-->
+          <ion-col  size="1">
+            <ion-icon class="trashIcon" name="trash-outline"  (click)="confirmDelete(item)"></ion-icon>
+          </ion-col>
+        </ion-row>
+    </ion-item>
+
+    <!-- Empty div to provide some additional scroll-->
+    <div style="min-height: 80px !important;">&nbsp;</div>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="addLocationtype()" >
+        <ion-icon name="add">
+        </ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>
+
+
+<!--<ion-footer>
+  <ion-row>
+      <ion-col><ion-button class="back-btn" type="submit" expand="block" (click)="back()">Back</ion-button></ion-col>
+      <ion-col><ion-button class="next-btn" type="submit" expand="block"  (click)="next()">Next
+        </ion-button></ion-col>
+  </ion-row>
+</ion-footer>-->

@@ -1,0 +1,21 @@
+.menu-itm {
+    --background: var(--ion-color-primary);
+    border: none !important;
+    color: var(--ion-color-primay-contrast);
+    height: 50px;
+}
+
+ion-icon {
+    width: 30px;
+    height: 30px;
+    float: left;
+    color: var(--ion-color-primay-contrast);
+}
+
+.menu-title {
+    float: left;
+}
+
+.submenu ion-item {
+    margin-left: 8%;
+}

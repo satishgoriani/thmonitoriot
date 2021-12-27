@@ -1,0 +1,31 @@
+<ion-header>
+  <app-holamodalbar title="{{operation}} Sensor"></app-holamodalbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="item-div">
+    <ion-label>Serial Number</ion-label>
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="sensorobj.serialnumber" type="text" placeholder="S001"></ion-input>
+    </ion-item>
+
+    <ion-label>Details/Remarks</ion-label>
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="sensorobj.remarks" type="text" placeholder="Fixed at the door"></ion-input>
+    </ion-item>
+
+  </div>
+
+  <div class="buttonrow">
+    <ion-row>
+      <ion-col no-padding>
+            <ion-button class="back-modal-btn" type="submit" expand="block" (click)="closeDialog()">Cancel</ion-button>
+      </ion-col>
+      <ion-col no-padding>
+        <ion-button class="next-modal-btn" type="submit" expand="block" (click)="save()">Save</ion-button>
+      </ion-col>
+  </ion-row>
+  </div>
+
+</ion-content>

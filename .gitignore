@@ -30,7 +30,7 @@ npm-debug.log*
 /platforms
 /plugins
 /www
-/.angular 
+/.angular
 .angular/
 
 #amplify-do-not-edit-begin
