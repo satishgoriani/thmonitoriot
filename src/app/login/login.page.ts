@@ -27,17 +27,18 @@ export class LoginPage implements OnInit {
     private _router : Router
   ) {
 
-  }
+}
 
 
 
   ngOnInit(){
-    this.email = 'rishi@gmail.com';
-    this.userpass = 'rishi$123##';
+    this.email = 'max@gmail.com';
+    this.userpass = 'Max1234$';
     Apptheme.initializeTheme();
     console.log('SEtting language to french');
     I18n.setLanguage('fr');
     console.log ('Let me see ' + I18n.get("HELLO "));
+
   }
 
   ionViewDidEnter(){
