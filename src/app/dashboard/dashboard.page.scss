@@ -1,249 +1,72 @@
-* {
-    font-family: "bahnschrift" !important;
-}
-
-
-.top {
-    font-size: 1.3rem;
-    font-weight: 600;
-}
-.dropdown {
-    float: right;
-}
-
 .selectfilter{
   border: none !important;;
   padding: 0px !important;
   margin: 0px !important;
 }
 
-.sensorstatus{
-  font-size:x-small;
-  margin-top: 5px !important;
+.myphoto {
+  margin-top: 30px;
+  height: 30vh !important;
+  width: auto !important;
+  align-items: center;
+  opacity: 0.25;
 }
 
-ion-card {
-    color: var(--ion-color-medium);
-    box-shadow: none;
-    border-radius: 10px;
-    margin: 5px !important;
-    ion-icon {
-        height: 25px;
-        width: 25px;
-    }
 
-    /* check if used
-    .listtitle {
-        display: flex;
-    }
-
-    .listlabel {
-        text-align: left;
-        font-size: 1rem;
-        padding-top: 1px;
-        margin-left: 15px;
-    }
-    .num {
-        font-weight: 800;
-    }
-
-    ion-item {
-        --background: none;
-        background: var(--ion-color-light-shade);
-
-        ion-icon {
-            height: 10px;
-            width: 10px;
-            color: var(--ion-color-danger);
-            margin-top: -20px;
-        }
-        h4 {
-            padding-left: 2px;
-            margin-top: -11px;
-            color: #474747;
-            font-size: 0.7rem;
-        }
-    }*/
-    /*
-    ion-card-subtitle {
-        text-align: center;
-        margin-top: 0px !important;
-        margin-bottom: 0px !important;
-        background: var(--ion-color-success);
-        font-weight: 600;
-        color: var(--ion-color-primary-contrast);
-        font-size: 1.2rem;
-        padding: 5px;
-        margin-left: 20px;
-        margin-right: 20px;
-        border-radius: 22px;
-    }*/
-
-    .tempbadge{
-      font-size:medium;
-      padding: 5px 20px 5px 20px;
-      border-radius: 20px;
-      margin-top: 5px !important;
-      margin-bottom: 5px !important;
-    }
-
-    .normaltemp{
-        background:#89BA65;
-    }
-
-    .lowtemp{
-        background:#659FC7;
-    }
-
-    .hightemp{
-        background:#F0888B;
-    }
-
-
-
-
-   /* check if used
-    .listcontent {
-        margin-top: -30px;
-        h4 {
-            font-size: 0.8rem;
-            padding: 3px;
-            color: var(--ion-color-medium);
-        }
-        h5 {
-            font-size: 0.8rem;
-            color: var(--ion-color-dark-tint);
-            padding-bottom: 5px;
-            padding-left: 3.5px;
-            font-weight: 200px;
-        }
-        h6 {
-            font-size: 0.8rem;
-            color: var(--ion-color-primary-contrast);
-            --background: none;
-        }
-    }*/
-
-    ion-progress-bar {
-        height: 18px;
-        margin-left: 10px;
-        width: 90%;
-        margin-bottom: 5px;
-    }
-
-    /* check if used
-    #cart-btn {
-        position: relative;
-        top: 1px;
-        right: 1px;
-        overflow: visible !important;
-    }
-
-    #cart-badge {
-        position: absolute;
-        top: 12%;
-        right: 12%;
-    }*/
-
-    ion-grid {
-        margin: 0 auto;
-    }
+.tempbadge {
+  font-size: small;
+  padding: 8px 12px 8px 12px;
+  border-radius: 15px;
 }
 
-/*
-.temp-field {
-    text-align: center;
-    background: var(--ion-color-danger);
-    font-weight: 600;
-    color: var(--ion-color-primary-contrast);
-    font-size: 1.5rem;
-    border-radius: 20px;
-}*/
-
-.store-label{
-    display: block;
-    align-content: center;
-    text-align: center  ;
-
+.humiditybadge {
+  font-size: small;
+  padding: 8px 12px 8px 12px;
+  border-radius: 15px;
 }
 
-/* check if used
-.Wid100 {
-    ion-icon {
-        color: var(--ion-color-featured);
-        min-height: 55px !important;
-        min-width: 55px !important;
-        vertical-align: middle;
-        text-align: center;
-        margin-top: 20px;
-    }
-}*/
+.normal {
+  background: #89ba65;
+}
 
-.readingLabel {
-    font-size: 0.9rem;
-    font-weight: lighter;
-    margin: 0 auto;
-    margin-top: 10px !important;
+.low {
+  background: #659fc7;
+}
+
+.high {
+  background: #f0888b;
 }
 
 .greenDot {
-    color: green;
-    height: 12px !important;
-    width: 12px !important;
-    margin-top: 0px !important;
-    margin-left: 0px !important;
-    vertical-align: text-bottom;
+color: green;
+height: 12px !important;
+width: 12px !important;
+margin-top: 0px !important;
+margin-left: 0px !important;
+vertical-align: text-bottom;
 }
 
-.material {
-    height: 22px !important;
-    width: 22px !important;
-    margin-bottom: -5px !important;
-
+.card-det {
+  border-radius: 10px;
+  box-shadow: none;
+  margin: 8px;
+  ion-card-content {
+      padding: 8px 0px;
+  }
+  .temp-item{
+      font-size: .6rem;
+      margin: 0px;
+  }
+  .sensorstatus{
+      font-size: .7rem;
+      margin-top:8px;
+  }
 }
-
-.myphoto {
-    display: block;
-    margin-left: 100px;
-    margin-top: 150px;
-
-    img {
-        height: 30vh !important;
-        width: auto !important;
-        align-items: center;
-        opacity: 0.5;
-    }
-    ion-label {
-        margin-left: -20px;
-    }
+.temp-col {
+  border-right: 1px solid var(--ion-text-color);
+  //height: 100%;
+  padding-right:5px ;
 }
-
-.listcard {
-    margin: 0px auto !important;
-    padding: 0px auto !important;
-
-    ion-card {
-        margin: 0px auto !important;
-    }
+.humidity-col{
+  padding-left:5px ;
 }
-/*
-.upperdiv {
-    .dropdwn {
-        border-radius: 25px;
-        --background: var(--ion-color-primary-contrast);
-        height: 35px;
-        width: 90%;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-
-    ion-label {
-        padding-left: 15px;
-    }
-
-    ion-select {
-        width: 100%;
-        padding-top: 0px;
-        padding-bottom: 10px;
-    }
-}*/

@@ -66,6 +66,8 @@ export class LocationdetailsPage implements OnInit {
       locationData.name = this.locationobj.name;
       locationData.temperaturemin = this.locationobj.temperaturemin;
       locationData.temperaturemax = this.locationobj.temperaturemax;
+      locationData.humiditymi = this.locationobj.humiditymi;
+      locationData.humiditymax = this.locationobj.humiditymax;
       locationData.sensors = this.locationobj.sensors;
       locationData._version = this.locationobj._version;
 
@@ -80,20 +82,11 @@ export class LocationdetailsPage implements OnInit {
 
       this.closeDialog();
     }
-
   }
 
-
   validateLocation() {
-
-
     if (!this.locationobj.name || this.locationobj.name.trim().length == 0) {
       this.alertService.displayToast('Please enter location number', Constants.WARNING);
-      return false;
-    }
-
-    if (!this.locationobj.locationtypeID || this.locationobj.locationtypeID.trim().length == 0) {
-      this.alertService.displayToast('Please enter material category', Constants.WARNING);
       return false;
     }
 
@@ -104,6 +97,16 @@ export class LocationdetailsPage implements OnInit {
 
     if (!this.locationobj.temperaturemax || this.locationobj.temperaturemax.toString().length == 0) {
       this.alertService.displayToast('Please enter max temperature', Constants.WARNING);
+      return false;
+    }
+
+    if (!this.locationobj.humiditymi || this.locationobj.humiditymi.toString().length == 0) {
+      this.alertService.displayToast('Please enter min humidity', Constants.WARNING);
+      return false;
+    }
+
+    if (!this.locationobj.humiditymax || this.locationobj.humiditymax.toString().length == 0) {
+      this.alertService.displayToast('Please enter max humidity', Constants.WARNING);
       return false;
     }
 
@@ -118,6 +121,8 @@ export class LocationdetailsPage implements OnInit {
       locationData.name = this.locationobj.name;
       locationData.temperaturemin = this.locationobj.temperaturemin;
       locationData.temperaturemax = this.locationobj.temperaturemax;
+      locationData.humiditymi = this.locationobj.humiditymi;
+      locationData.humiditymax = this.locationobj.humiditymax;
       locationData.sensors = this.locationobj.sensors;
 
       try {
@@ -131,9 +136,7 @@ export class LocationdetailsPage implements OnInit {
       }
 
       this.closeDialog();
-
     }
-
   }
 
   public save() {

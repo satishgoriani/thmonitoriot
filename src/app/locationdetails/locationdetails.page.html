@@ -1,27 +1,20 @@
 <ion-header class="ion-no-border">
-  <app-holatoolbar flat="true" title="{{operation}} Location"></app-holatoolbar>
+  <app-holatoolbar title="{{operation}} Location"></app-holatoolbar>
 </ion-header>
 <ion-content>
-  <div>
+  <ion-row>
+    <ion-col size="0" sizeMd="3"></ion-col>
+    <ion-col size="12" sizeMd="6">
 
     <ion-item>
-      <ion-label position="floating">Location No</ion-label>
+      <ion-label position="floating">Location</ion-label>
       <ion-input required=true placeholder="001" [(ngModel)]="locationobj.name"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Locationtype</ion-label>
+      <ion-label>Location Type</ion-label>
       <ion-select mode="md" [(ngModel)]="locationobj.locationtypeID">
         <ion-select-option *ngFor="let item of dataService.locationtypelist;" value="{{item.id}}">{{item.name}}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label >Material Category</ion-label>
-      <ion-select mode="md" [(ngModel)]="locationobj.materialcategoryID">
-        <ion-select-option *ngFor="let item of dataService.materialcategorylist;" value="{{item.id}}">{{item.name}}
         </ion-select-option>
       </ion-select>
     </ion-item>
@@ -37,48 +30,33 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Storage Capacity (Metric Tons)</ion-label>
-      <ion-input required=true type="number" placeholder="40" [(ngModel)]="locationobj.storagecapacity"></ion-input>
+      <ion-label position="floating">Min Humidity (%)</ion-label>
+      <ion-input required=true type="number" [(ngModel)]="locationobj.humiditymi"></ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-label position="floating">Max Humidity (%)</ion-label>
+      <ion-input required=true type="number" [(ngModel)]="locationobj.humiditymax"></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label>Sensors</ion-label>
        <ion-select mode="md" multiple="true" [(ngModel)]="locationobj.sensors" [value]="locationobj.sensors">
         <ion-select-option *ngFor="let sensor of dataService.sensorlist" value="{{sensor.id}}">{{sensor.serialnumber}}</ion-select-option>
       </ion-select>
     </ion-item>
-
-    <!--
-    <ion-item>
-      <ion-label position="floating">Number of Floors</ion-label>
-      <ion-input required=true type="number" placeholder="2" [(ngModel)]="locationobj.numfloors"></ion-input>
-    </ion-item>-->
-
-
-    <!--<ion-item>
-        <ion-label position="stacked">Temerature Range (Celsius)</ion-label>
-        <ion-input type="num" [(ngModel)]="locationobj.temperaturemin" placeholder="Min Temperature"></ion-input>
-        <ion-input type="num" [(ngModel)]="locationobj.temperaturemax" placeholder="Max Temperature"></ion-input>
-      </ion-item>-->
-
-  </div>
-
-
-
+  </ion-col>
+  <ion-col size="0" sizeMd="3"></ion-col>
+ </ion-row>
 </ion-content>
-
 <ion-footer>
-
-  <div class="buttonrow">
     <ion-row>
-      <ion-col no-padding>
-        <ion-button class="back-modal-btn" type="submit" expand="block" (click)="closeDialog()">Cancel</ion-button>
+      <ion-col size="1" sizeMd="4"></ion-col>
+      <ion-col size="5" sizeMd="2">
+        <ion-button color="cancel" type="submit" expand="block" (click)="closeDialog()">Cancel</ion-button>
       </ion-col>
-      <ion-col no-padding>
-        <ion-button class="next-modal-btn" type="submit" expand="block" (click)="save()">Save</ion-button>
+      <ion-col size="5" sizeMd="2">
+        <ion-button color="primary" type="submit" expand="block" (click)="save()">Save</ion-button>
       </ion-col>
+      <ion-col size="1" sizeMd="4"></ion-col>
     </ion-row>
-  </div>
-
 </ion-footer>
-

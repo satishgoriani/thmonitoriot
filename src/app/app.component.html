@@ -1,19 +1,11 @@
 <ion-app>
-
   <ion-menu side="start" menuId="first" contentId="content1">
     <ion-header>
       <ion-toolbar color="primary">
-        <!-- <ion-row class="menu-head" lines="none">
-          <ion-col class="ion-text-center" >
-            <ion-icon name="snow-sharp"></ion-icon>
-            <ion-title class="menu-title SmallBold ">Cold Storage</ion-title>
-          </ion-col>
-        </ion-row> -->
-        <ion-item class=" menu-itm ion-text-center" lines="none">
-          <ion-icon name="snow-sharp"></ion-icon>
-          <ion-title class="menu-title SmallBold ">Cold Storage</ion-title>
+      <ion-item class=" menu-itm" lines="none">
+          <ion-icon name="snow-sharp" slot="start"></ion-icon>
+          <ion-title class="menu-title SmallNormal">Temperature & Humidity<br>Monitoring System</ion-title>
         </ion-item>
-        <!-- <ion-title style="text-align: center;">Menu</ion-title> -->
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -31,23 +23,17 @@
           <ion-icon slot="end" name="arrow-down" *ngIf="pages.open"></ion-icon>
           <ion-label>{{ pages.title}}</ion-label>
         </ion-item>
-
         <ion-list *ngIf="pages.open">
           <ion-menu-toggle class="submenu">
             <ion-item *ngFor="let sub of pages.children" [routerLink]="sub.url" routerDirection="forward"
               routerLinkActive="active">
               <ion-icon [name]="sub.icon" slot="start"></ion-icon>
               <ion-label>{{ sub.title}}</ion-label>
-
             </ion-item>
           </ion-menu-toggle>
-
-
         </ion-list>
-
       </div>
     </ion-content>
   </ion-menu>
-
   <ion-router-outlet [animated]="false" id="content1"></ion-router-outlet>
 </ion-app>

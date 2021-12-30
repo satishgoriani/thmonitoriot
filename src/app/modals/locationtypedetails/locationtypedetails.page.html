@@ -1,29 +1,12 @@
 <ion-header>
-  <app-holamodalbar title="{{operation}} Locationtype"></app-holamodalbar>
+  <app-holamodalbar title="{{operation}} Location Type"></app-holamodalbar>
 </ion-header>
-
 <ion-content>
-  <div class="item-div">
-    <ion-label>Locationtype Name</ion-label>
-    <ion-item lines="none">
-      <ion-input type="num" [(ngModel)]="locationtypeobj.name" placeholder="Locationtype Name"></ion-input>
-    </ion-item>
-  </div>
-  <div>
-    <ion-row>
-      <ion-col no-padding>
-        <ion-button class="back-modal-btn" type="submit" expand="block" (click)="closeDialog()">
-          Cancel
-        </ion-button>
-
-      </ion-col>
-      <ion-col no-padding>
-        <ion-button class="next-modal-btn" type="submit" expand="block" (click)="save()">
-         Save
-        </ion-button>
-
-      </ion-col>
-  </ion-row>
-  </div>
-
+  <ion-item>
+    <!--<ion-label position="stacked" class="SmallNormal">Location Type</ion-label>-->
+    <ion-input [(ngModel)]="locationtypeobj.name" placeholder="ex: Building A"></ion-input>
+  </ion-item>
+<ion-item lines="none">
+ <ion-label color="primary" class="ion-text-right" (click)="save()">SAVE</ion-label>
+</ion-item>
 </ion-content>

@@ -1,92 +1,62 @@
 <ion-header class="ion-no-border">
-  <app-holatoolbar flat="true"  showMenu="true" title="{{dataService.company.name}}"></app-holatoolbar>
-
-  <ion-row class="selectfilter">
-    <ion-col  size="6" class="noPad">
-        <ion-item lines="none">
-          <ion-label position="floating">Select Locationtype</ion-label>
-          <ion-select mode="md" interface="popover" [(ngModel)]="dataService.dashboardlocationtypeid" value="dataService.dashboardlocationtypeid" (ionChange)="segmentChanged()">
-            <ion-select-option *ngFor="let item of dataService.locationtypelist;" value="{{item.id}}">{{item.name}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-    </ion-col>
-
-    <ion-col size="6" class="noPad">
-        <ion-item lines="none">
-          <ion-label position="floating" >Filter</ion-label>
-          <ion-select interface="popover" [(ngModel)]="defaultfilter">
-            <ion-select-option *ngFor="let item of filterlist;" value="{{item.type}}">{{item.type}}
-            </ion-select-option>
-           </ion-select>
-       </ion-item>
-    </ion-col>
-
-    </ion-row>
-
+  <app-holatoolbar showMenu="true" title="{{dataService.company.name}}"></app-holatoolbar>
 </ion-header>
-
+<ion-row class="selectfilter">
+  <ion-col size="0"  sizeSm="6" sizeLg="8" class="ion-no-padding"></ion-col>
+  <ion-col size="6" sizeSm="3" sizeLg="2" class="ion-no-padding">
+    <ion-item lines="none">
+      <ion-label position="floating">Location type</ion-label>
+      <ion-select mode="md" interface="popover" [(ngModel)]="dataService.dashboardlocationtypeid"
+        value="dataService.dashboardsectionid" (ionChange)="segmentChanged()">
+        <ion-select-option *ngFor="let item of dataService.locationtypelist;" value="{{item.id}}">{{item.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-col>
+  <ion-col size="6" sizeSm="3" sizeLg="2" class="ion-no-padding">
+    <ion-item lines="none">
+      <ion-label position="floating">Filter</ion-label>
+      <ion-select interface="popover" [(ngModel)]="defaultfilter">
+        <ion-select-option *ngFor="let item of filterlist;" value="{{item.type}}">{{item.type}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-col>
+</ion-row>
 <ion-content class="ion-content-grey">
-
-  <div class="myphoto" *ngIf="dataService.locationlist.length == 0">
-    <img src="../../assets/warehouse.png" id="imgPlacement">
-    <h4>No Locations Added yet</h4>
-    <ion-label>click (+) button to add new Location</ion-label>
+  <div *ngIf="dataService.locationlist.length == 0">
+    <ion-img src="../../assets/images/warehouse.png" id="imgPlacement" class="myphoto"></ion-img>
+    <h5 class="ion-text-center">No Locations added yet</h5>
+    <h6 class="ion-text-center">Click (+) button to add new Location</h6>
   </div>
 
   <div *ngIf="dataService.locationlist && dataService.locationlist.length > 0">
-
-
-    <!--<div class="upperdiv">
+    <ion-grid class="ion-no-padding">
       <ion-row>
-
-        <ion-col size="6" class="selectcol">
-          <ion-label class="VSmallNormal">Select Locationtype</ion-label>
-          <ion-item class="dropdwn">
-            <ion-select interface="popover" [(ngModel)]="dataService.dashboardlocationtypeid" value="dataService.dashboardlocationtypeid" (ionChange)="segmentChanged()">
-              <ion-select-option *ngFor="let item of dataService?.locationtypelist;" value="{{item.id}}">{{item.name}}
-              </ion-select-option>
-                </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col size="6" class="selectcol">
-          <ion-label class="VSmallNormal">Filter</ion-label>
-          <ion-item class="dropdwn">
-            <ion-select interface="popover" [(ngModel)]="defaultfilter">
-              <ion-select-option *ngFor="let item of filterlist;" value="{{item.type}}">{{item.type}}
-              </ion-select-option>
-
-            </ion-select>
-          </ion-item>
-        </ion-col>
-
-      </ion-row>
-    </div> -->
-
-
-
-    <!-- ** dashboard grid view ** -->
-    <ion-grid class="listcard">
-      <ion-row>
-        <ion-col size="6" class="smallPad" *ngFor="let item of dataService.dashboardlocationlist">
-          <ion-card (click)="viewLocation(item)">
-            <ion-row style="color: var(ion-text-color);">
-              <ion-col>
-                <ion-icon name="home-outline" style="vertical-align:text-bottom;"></ion-icon><ion-label style="font-size: large;"> No: {{item.name}}</ion-label>
-              </ion-col>
-            </ion-row>
-
-              <div  class="ion-text-center">
-                  <ion-badge *ngIf="item.currenttemp && item.currenttemp >=  item.temperaturemin &&  item.currenttemp <=  item.temperaturemax " class="tempbadge normaltemp">{{item.currenttemp ? item.currenttemp : 5}}°C</ion-badge>
-                  <ion-badge *ngIf="item.currenttemp && item.currenttemp <  item.temperaturemin" class="tempbadge lowtemp">{{item.currenttemp ? item.currenttemp : 5}}°C</ion-badge>
-                  <ion-badge *ngIf="item.currenttemp && item.currenttemp >  item.temperaturemax" class="tempbadge hightemp">{{item.currenttemp ? item.currenttemp : 5}}°C</ion-badge>
-
+        <ion-col size="6" sizeSm="4" sizeMd="3" sizeLg="2" class="ion-no-padding" *ngFor="let item of dataService.dashboardlocationlist">
+          <ion-card class="card-det" (click)="viewLocation(item)">
+            <ion-card-content class="ion-text-center">
+              <ion-label class="head-lbl SmallBold"><span>{{item.name}}</span></ion-label>
+              <ion-item lines="none">
+                <ion-row class="Wid100">
+                  <ion-col size=6 class="temp-col  ion-text-center">
+                    <ion-badge *ngIf="item.currenttemp && item.currenttemp >= item.temperaturemin &&  item.currenttemp <=  item.temperaturemax " class="tempbadge normal">{{item.currenttemp ? item.currenttemp : 5}}°C</ion-badge>
+                    <ion-badge *ngIf="item.currenttemp && item.currenttemp < item.temperaturemin" class="tempbadge low">{{item.currenttemp ? item.currenttemp : 5}}°C</ion-badge>
+                    <ion-badge *ngIf="item.currenttemp && item.currenttemp > item.temperaturemax" class="tempbadge high">{{item.currenttemp ? item.currenttemp : 5}}°C</ion-badge>
+                   <ion-label class="temp-item ion-text-center">Temperature</ion-label>
+                  </ion-col>
+                  <ion-col size="6" class="humidity-col  ion-text-center">
+                    <ion-badge *ngIf="item.currenthumidity && item.currenthumidity >= item.humiditymi &&  item.currenthumidity <=  item.humiditymax " class="humiditybadge normal">{{item.currenthumidity}} %</ion-badge>
+                    <ion-badge *ngIf="item.currenthumidity && item.currenthumidity < item.humiditymi" class="humiditybadge low">{{item.currenthumidity}} %</ion-badge>
+                    <ion-badge *ngIf="item.currenthumidity && item.currenthumidity > item.humiditymax" class="humiditybadge high">{{item.currenthumidity}} %</ion-badge>
+                    <ion-label class="temp-item ion-text-center">Humidity</ion-label>
+                  </ion-col>
+                </ion-row>
+              </ion-item>
+              <div class="ion-text-center sensorstatus">  {{item._lastChangedAt | date : 'd MMM, HH:mm'}}
+                <ion-icon class="greenDot" name="ellipse"></ion-icon>
               </div>
-
-            <div class="ion-text-center sensorstatus">  {{item._lastChangedAt | date : 'd MMM, HH:mm'}}
-              <ion-icon class="greenDot" name="ellipse"></ion-icon>
-            </div>
-            <br/>
+            </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-row>
@@ -95,14 +65,7 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addLocation()">
-      <ion-icon name="add">
-      </ion-icon>
+      <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-    <!--<ion-fab-button>
-      <ion-icon name="notifications">
-      </ion-icon>
-      <ion-badge *ngIf="n" id="cart-badge" color="danger">{{ n}}</ion-badge>
-    </ion-fab-button>-->
   </ion-fab>
-
 </ion-content>
