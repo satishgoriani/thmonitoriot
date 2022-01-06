@@ -42,9 +42,11 @@ export class DashboardPage implements OnInit {
   }
 
   filterlist = [
+    /*
     {type: "All"},{type: "Temp-High-alert"},{type: "Temp-low-alert"},{type: "Storage-Empty"},
     {type: "Storage < 50% occupied"},{type: "Storage > 50% occupied"},{type: "Dairy Products"},
-    {type: "Frozen Foods"},{type: "Grains"},
+    {type: "Frozen Foods"},{type: "Grains"}*/
+    { type: "All" }, { type: "Temp-high" }, { type: "Temp-low" }, { type: "Humidity-high" },{ type: "Humidity-low" }
   ]
 
   constructor(

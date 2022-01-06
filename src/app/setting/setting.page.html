@@ -6,16 +6,64 @@
  <ion-col size="0" sizeMd="3"></ion-col>
  <ion-col size="12" sizeMd="6">
   <ion-item>
+    <ion-label>Change Password</ion-label>
+    <ion-checkbox id="chkpass" (click)="toggleText('changepwd')"></ion-checkbox>
+   </ion-item>
+  <span id="changepwd" style="display: none;">
+  <ion-item>
+    <ion-list class="Wid100" lines="none">
+    <ion-item>
+      <ion-label position="floating" color="medium">Old Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="medium">New Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="medium">Re-enter Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+    </ion-list>
+  </ion-item></span>
+  <ion-item>
+    <ion-label>Change Headers</ion-label>
+    <ion-checkbox id="chkhdr" (click)="toggleText('changehdr')"></ion-checkbox>
+  </ion-item>
+  <span id="changehdr" style="display: none;">
+  <ion-item>
+    <ion-list class="Wid100" lines="none">
+    <ion-item>
+      <ion-label color="medium">Location type</ion-label>
+      <ion-label>&nbsp; to &nbsp;</ion-label>
+      <ion-input placeholder="ex. Department"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="medium">Location</ion-label>
+      <ion-label>&nbsp; to &nbsp;</ion-label>
+      <ion-input placeholder="ex. Room"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox id="chkdefault"></ion-checkbox>&nbsp;
+      <ion-label>Restore default</ion-label>
+    </ion-item>
+    </ion-list>
+  </ion-item>
+  </span>
+  <ion-item>
     <ion-label position="floating">High Security PIN</ion-label>
-    <ion-input required=true type="number" placeholder="*****"></ion-input>
+    <ion-input type="number"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Select Theme</ion-label></ion-item>
+    <ion-label>Change Theme</ion-label>
+    <ion-checkbox id="chkthm" (click)="toggleText('changethm')"></ion-checkbox>
+  </ion-item>
+  <span id="changethm" style="display: none;">
   <ion-item>
-    <ion-list class="colorlist">
+    <ion-list class="colorlist" lines="none">
     <ion-radio-group *ngFor="let item of themeList;" [(ngModel)]="selectedTheme">
     <ion-item>
-      <ion-label>{{item.name}}</ion-label>
+      <ion-label color="medium">{{item.name}}</ion-label>
       <ion-radio slot="start" value="{{item.id}}"></ion-radio>
       <ion-label style="max-width:10px;background-color:{{item.colors[0]}}">&nbsp;</ion-label>
       <ion-label style="max-width:10px;background-color:{{item.colors[1]}}">&nbsp;</ion-label>
@@ -23,6 +71,7 @@
     </ion-radio-group>
   </ion-list>
   </ion-item>
+ </span>
 </ion-col>
 <ion-col size="0" sizeMd="3"></ion-col>
 </ion-row>

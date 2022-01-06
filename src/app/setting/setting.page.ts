@@ -14,6 +14,10 @@ export class SettingPage implements OnInit {
   public themeList;
   public selectedTheme;
 
+  showpasswords = false;
+  showheaders = false;
+  showthemes = false;
+
   constructor(
     private _router : Router,
     public alertService: AlertuiService,
@@ -38,6 +42,16 @@ export class SettingPage implements OnInit {
     this.themeList = Apptheme.getThemeList();
     this.selectedTheme = Apptheme.getCurrentTheme();
     console.log('************** Current thmee ' + this.selectedTheme);
+  }
+
+  toggleText(contentid) {
+    var moreText = document.getElementById(contentid);
+
+    if (moreText.style.display === "none") {
+      moreText.style.display = "inline";
+    } else {
+       moreText.style.display = "none";
+    }
   }
 
 
