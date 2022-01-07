@@ -41,20 +41,20 @@ export class LocationtypesPage implements OnInit {
   dialogheight;
 
   ngOnInit() {
-    this.dialogheight = Math.round(window.innerHeight * 0.4);
+    this.dialogheight = Math.round(window.innerHeight * 0.2);
   }
 
   async openForm(){
 
         let root = document.documentElement;
         root.style.setProperty('--crud-form-height', this.dialogheight + 'px');
-
+       // console.log('Modal height',this.dialogheight);
 
         const modal = await this.modalController.create({
           component: LocationtypedetailsPage,
           cssClass: 'crud-form-wrapper',
           swipeToClose: true,
-          backdropDismiss: true,
+          backdropDismiss: true
       });
       return await modal.present();
   }
@@ -74,8 +74,8 @@ export class LocationtypesPage implements OnInit {
     this.locationtypeobj = {} as Locationtype;
     this.locationtypeobj = <Locationtype> this.dataService.getClone(locationtype);
 
-    const headerstr = 'Delete Locationtype';
-    const messagestr = 'Do you want to delete locationtype: ' + this.locationtypeobj.name + '?';
+    const headerstr = 'Delete Location Type';
+    const messagestr = 'Do you want to delete Location Type: ' + this.locationtypeobj.name + '?';
 
     const isconfirmed = await this.alertService.confirmDelete(headerstr,messagestr);
     if (isconfirmed){
@@ -95,9 +95,9 @@ export class LocationtypesPage implements OnInit {
           const ret = await this.apiService.DeleteLocationtype(locationtypeData);
           //console.log('Inside try-->', ret);
           this.dataService.updateLocationtypeList(ret,Constants.DELETE);
-          this.alertService.displayToast('Locationtype deleted successfully',Constants.SUCCESS)
+          this.alertService.displayToast('Location Type deleted successfully',Constants.SUCCESS)
         }catch(err){
-          this.alertService.displayToast('Error deleting the locationtype, please try again!',Constants.FAIL);
+          this.alertService.displayToast('Error deleting the Location Type, please try again!',Constants.FAIL);
           return;
         }
     }else{

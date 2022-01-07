@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import { AppdataService } from '../appdata.service';
 import { Apptheme } from '../apptheme';
 import { I18n } from 'aws-amplify';
+import { Constants } from '../constants';
 
 @Component({
   selector: 'app-login',
@@ -29,8 +30,6 @@ export class LoginPage implements OnInit {
 
 }
 
-
-
   ngOnInit(){
     this.email = 'max@gmail.com';
     this.userpass = 'Max1234$';
@@ -38,12 +37,10 @@ export class LoginPage implements OnInit {
     console.log('SEtting language to french');
     I18n.setLanguage('fr');
     console.log ('Let me see ' + I18n.get("HELLO "));
-
   }
 
   ionViewDidEnter(){
     this.dataService.isloggedin = false;
-
   }
 
   hideShowPassword() {
@@ -58,12 +55,12 @@ export class LoginPage implements OnInit {
    */
   async login(){
     if(!this.email || this.email.trim().length == 0 ){
-      this.alertService.showError('Please provide valid username!');
+      this.alertService.displayToast('Username cannot be blank!', Constants.WARNING);
       return;
     }
 
     if(!this.userpass || this.userpass.trim().length == 0 ){
-      this.alertService.showError('Psasword must be atleast 6 characters!');
+      this.alertService.displayToast('Password cannot be blank!', Constants.WARNING);
       return;
     }
 
@@ -85,16 +82,16 @@ export class LoginPage implements OnInit {
 
                   this._router.navigate(['/dashboard']);
               }else{
-                  this.alertService.showError('Error initializing data, please try again!');
+                  this.alertService.displayToast('Error initializing data, please try again!', Constants.FAIL);
               }
             }else{
-              this.alertService.showError('Invalid credentials, please try again!');
+              this.alertService.displayToast('Invalid credentials, please try again', Constants.WARNING);
             }
           }else{
-            this.alertService.showError('Login failed, please try again!');
+            this.alertService.displayToast('Login failed, please try again!', Constants.FAIL);
          }
     }catch(err){
-      this.alertService.showError('Error, please try again!');
+      this.alertService.displayToast('Error, please try again!', Constants.FAIL);
     }
     this.isprocessing = false;
 

@@ -44,7 +44,7 @@ export class LocationtypedetailsPage implements OnInit {
   checkDuplicate(){
     for(var locationtype of this.dataService.locationtypelist){
       if(locationtype.id != this.locationtypeobj.id && locationtype.name.trim().toLowerCase() == this.locationtypeobj.name.trim().toLowerCase()){
-        this.alertService.displayToast('Locationtype name already exists',Constants.WARNING);
+        this.alertService.displayToast('Location Type already exists',Constants.WARNING);
         return false;
       }
     }
@@ -72,17 +72,17 @@ export class LocationtypedetailsPage implements OnInit {
 
       try{
         const ret = await this.apiService.UpdateLocationtype(locationtypeData);
-        
-        
+
+
         this.dataService.updateLocationtypeList(ret,Constants.EDIT);
-        this.alertService.displayToast('Locationtype updated successfully',Constants.SUCCESS);
+        this.alertService.displayToast('Location Type updated successfully',Constants.SUCCESS);
       }catch(err){
-        this.alertService.displayToast('Error updating locationtype, please try again!',Constants.FAIL);
+        this.alertService.displayToast('Error updating Location Type, please try again!',Constants.FAIL);
         return;
       }
       this.closeDialog();
     }else{
-      this.alertService.displayToast('Please enter locationtype name',Constants.WARNING);
+      this.alertService.displayToast('Please enter Location Type',Constants.WARNING);
     }
 
  }
@@ -100,14 +100,14 @@ export class LocationtypedetailsPage implements OnInit {
           try{
             const ret = await this.apiService.CreateLocationtype(locationtypeData);
             this.dataService.updateLocationtypeList(ret,Constants.CREATE);
-            this.alertService.displayToast('Locationtype added successfully',Constants.SUCCESS);
+            this.alertService.displayToast('Location type added successfully',Constants.SUCCESS);
           }catch(err){
-            this.alertService.displayToast('Error adding locationtype, please try again!', Constants.FAIL);
+            this.alertService.displayToast('Error adding Location type, please try again!', Constants.FAIL);
             return;
           }
           this.closeDialog();
      }else{
-       this.alertService.displayToast('Please enter locationtype name',Constants.WARNING);
+       this.alertService.displayToast('Please enter Location type',Constants.WARNING);
      }
 
   }

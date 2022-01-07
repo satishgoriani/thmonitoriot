@@ -52,14 +52,12 @@
   }
 }*/
 
-.crud-form-wrapper {
-    .modal-wrapper {
-        border-radius: 8px;
-        max-height: 90vh;
-        min-height: var(--crud-form-height);
-        height: 40vh;
-        width: 90%;
-    }
+.crud-form-wrapper{
+    border-radius: 8px;
+    height: var(--crud-form-height);
+    width: 90%;
+    top: 20%;
+    left: 5%;
 }
 
 /*Custom-Alert css */

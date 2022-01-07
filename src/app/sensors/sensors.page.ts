@@ -42,7 +42,7 @@ export class SensorsPage implements OnInit {
   dialogheight;
 
   ngOnInit() {
-    this.dialogheight = Math.round(window.innerHeight * 0.5);
+    this.dialogheight = Math.round(window.innerHeight * 0.3);
   }
 
   async openForm(){

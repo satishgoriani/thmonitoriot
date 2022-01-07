@@ -14,9 +14,14 @@ export class SettingPage implements OnInit {
   public themeList;
   public selectedTheme;
 
-  showpasswords = false;
-  showheaders = false;
-  showthemes = false;
+  chkpwd = false;
+  chkhdr = false;
+  chkthm = false;
+  chkdefault = false;
+
+  oldpass;
+  newpass;
+  repass;
 
   constructor(
     private _router : Router,
@@ -33,7 +38,30 @@ export class SettingPage implements OnInit {
     this._router.navigate(['/dashboard']);
   }
   save(){
-    Apptheme.setTheme(this.selectedTheme);
+    //Change password
+    if (this.chkpwd == true)
+    {
+      //console.log("in change password");
+      if(!this.oldpass || this.oldpass.trim().length == 0 ){
+        this.alertService.displayToast('Old Password cannot be blank!', Constants.WARNING)
+        return;
+      }else{
+
+      }
+    }
+
+    //Change headers
+    if(this.chkhdr == true)
+    {
+      console.log("in change headers");
+    }
+
+    //Change theme
+    if (this.chkthm == true)
+    {
+      Apptheme.setTheme(this.selectedTheme);
+    }
+
     this.alertService.displayToast('Settings saved successfully!', Constants.SUCCESS)
     this.close();
   }

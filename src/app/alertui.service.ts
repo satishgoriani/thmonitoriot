@@ -9,7 +9,7 @@ export class AlertuiService {
 
   constructor(public alertController : AlertController, public toastController : ToastController) { }
 
-
+/*
   public async showError(msg: string) {
     const toast = await this.toastController.create({
       message: msg,
@@ -17,7 +17,7 @@ export class AlertuiService {
       duration: 2000
     });
     toast.present();
-  }
+  }*/
 
   public async displayToast(msg: string, alerttype: number) {
     var stricon;
