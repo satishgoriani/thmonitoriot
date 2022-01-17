@@ -52,13 +52,14 @@
   }
 }*/
 
-.crud-form-wrapper{
-    border-radius: 8px;
-    height: var(--crud-form-height);
-    width: 90%;
-    top: 20%;
-    left: 5%;
+
+.crud-form-wrapper {
+    --border-radius: 8px;
+    --height: var(--crud-form-height);
+    --width: 90%;
+    --max-width: 500px;
 }
+
 
 /*Custom-Alert css */
 .my-custom-alert {
@@ -131,83 +132,12 @@
     --button-color: var(--ion-color-warning);
 }
 
-.aligncenter {
-    text-align: center !important;
-}
-.Wid100 {
-    width: 50%;
-}
-
-.Wid50 {
-    width: 50%;
-}
-
-.margintop {
-    margin-top: -10px;
-}
-
-
-/*
-.next-modal-btn {
-    --background: var(--ion-color-primary);
-    --color: var(--ion-color-primary-contrast);
-    margin-left: 0px;
-    margin-right: 25px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    height: 40px;
-    font-size: 1rem;
-    text-transform: none;
-    border-radius: 5px;
-}
-
-.back-modal-btn {
-    --background: var(--ion-color-cancel);
-    --color: var(--ion-color-cancel-contrast);
-    margin-left: 25px;
-    margin-right: 0px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    height: 40px;
-    text-transform: none;
-    font-size: 1rem;
-    border-radius: 5px;
-} */
-
 ion-header {
     background: var(--ion-color-primary);
 }
 
 ion-footer {
     background: var(--ion-color-primary-contrast);
-}
-
-.item-div {
-    margin-top: 15px;
-    padding-top: 10px;
-    ion-label {
-        padding-left: 30px;
-        //font-size: 1.2rem;
-        font-size: large;
-        font-weight: 500;
-    }
-    ion-item {
-        padding-left: 15px;
-        font-size: 1rem;
-        height: 40px;
-        margin-bottom: 12px;
-        margin-top: 0px;
-
-        ion-input {
-            font-weight: normal;
-            border-bottom: 1px solid var(--ion-color-light) !important;
-            --padding-bottom: 0px;
-        }
-    }
-}
-
-hr.new1 {
-    border-top: 0.5px solid var(--ion-color-medium);
 }
 
 ion-fab {
@@ -226,16 +156,16 @@ ion-fab {
     --background: var(--ion-color-contentbg);
     border: none !important;
 }
-
+/*
 .ThinBorder {
     border-style: solid !important;
     border-width: thin !important;
-}
+}*/
 
 .crudsearchbar {
     --border-radius: 8px;
-    //--box-shadow: 1px 1px 1px var(--ion-color-light);
-    --box-shadow: none;
+    --box-shadow: 1px 1px 1px var(--ion-color-light);
+    //--box-shadow: none;
     width: 100%;
     color: var(--ion-color-dark);
 }
@@ -243,13 +173,14 @@ ion-fab {
 .Wid100 {
     width: 100%;
 }
+.aligncenter {
+  text-align: center !important;
+}
+
 .leftAlign {
     text-align: left !important;
 }
 
-.centerAlign {
-    text-align: center !important;
-}
 .smallPad {
     padding: 10px !important;
 }

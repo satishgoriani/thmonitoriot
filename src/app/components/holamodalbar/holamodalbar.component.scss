@@ -5,32 +5,13 @@
 
 .toolBarTitle{
     //font-size:large;
-    font-size:large;
+    font-size:medium;
     margin-top: 10px !important;
-    padding-left: 30px !important;
+    padding-left: 20px !important;
 }
 
 .toolbar {
     height: 50px;
     --background: var(--ion-color-primary);
     color: var(--ion-color-primary-contrast);
-}
-
-
-.closeButton {
-    display: block;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    text-align: center;
-    background: var(--ion-color-secondary);
-    margin-right: 15px;
-    margin-top: 5px;
-    .cancel {
-        color: var(--ion-color-primary-contrast);
-        padding-top: 3px;
-        margin-bottom: -3px;
-        font-size: 24px;
-        font-weight: bold;
-    }
 }

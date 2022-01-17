@@ -41,7 +41,7 @@ export class LocationtypesPage implements OnInit {
   dialogheight;
 
   ngOnInit() {
-    this.dialogheight = Math.round(window.innerHeight * 0.2);
+    this.dialogheight = Math.round(window.innerHeight * 0.25);
   }
 
   async openForm(){

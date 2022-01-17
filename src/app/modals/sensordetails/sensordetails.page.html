@@ -3,13 +3,13 @@
 </ion-header>
 <ion-content>
   <ion-item>
-      <ion-label>Serial Number</ion-label>
-      <ion-input [(ngModel)]="sensorobj.serialnumber" type="text" placeholder="S001"></ion-input>
+      <ion-label position="floating">Serial Number</ion-label>
+      <ion-input [(ngModel)]="sensorobj.serialnumber" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Details/Remarks</ion-label>
-    <ion-input [(ngModel)]="sensorobj.remarks" type="text" placeholder="Fixed at the door"></ion-input>
+    <ion-label position="floating">Details/Remarks</ion-label>
+    <ion-textarea [(ngModel)]="sensorobj.remarks" type="text" autoGrow="true"></ion-textarea>
   </ion-item>
   <ion-item lines="none">
     <ion-label color="primary" class="ion-text-right" (click)="save()">SAVE</ion-label>
