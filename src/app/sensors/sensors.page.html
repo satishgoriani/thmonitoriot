@@ -6,7 +6,7 @@
   <ion-searchbar class="crudsearchbar" [(ngModel)]="strsearch"></ion-searchbar>
   <ion-row>
     <ion-col size="12" sizeMd="6" sizeLg="4" sizeXl="3" *ngFor="let item of dataService.sensorlist | filter:strsearch">
-    <ion-item lines="none">
+    <ion-item lines="none" class="itemlist">
       <ion-row class="Wid100">
         <!--
         <ion-col size="1" >

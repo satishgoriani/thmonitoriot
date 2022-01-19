@@ -14,14 +14,10 @@ export class SettingPage implements OnInit {
   public themeList;
   public selectedTheme;
 
-  chkpwd = false;
-  chkhdr = false;
-  chkthm = false;
+  showhdr = false;
+  showthm = false;
   chkdefault = false;
 
-  oldpass;
-  newpass;
-  repass;
 
   constructor(
     private _router : Router,
@@ -38,29 +34,8 @@ export class SettingPage implements OnInit {
     this._router.navigate(['/dashboard']);
   }
   save(){
-    //Change password
-    if (this.chkpwd == true)
-    {
-      //console.log("in change password");
-      if(!this.oldpass || this.oldpass.trim().length == 0 ){
-        this.alertService.displayToast('Old Password cannot be blank!', Constants.WARNING)
-        return;
-      }else{
 
-      }
-    }
-
-    //Change headers
-    if(this.chkhdr == true)
-    {
-      console.log("in change headers");
-    }
-
-    //Change theme
-    if (this.chkthm == true)
-    {
-      Apptheme.setTheme(this.selectedTheme);
-    }
+    Apptheme.setTheme(this.selectedTheme);
 
     this.alertService.displayToast('Settings saved successfully!', Constants.SUCCESS)
     this.close();
@@ -77,8 +52,16 @@ export class SettingPage implements OnInit {
 
     if (moreText.style.display === "none") {
       moreText.style.display = "inline";
+      if(contentid=='changehdr')
+        this.showhdr=true;
+      if(contentid=='changethm')
+        this.showthm=true;
     } else {
        moreText.style.display = "none";
+       if(contentid=='changehdr')
+        this.showhdr=false;
+       if(contentid=='changethm')
+        this.showthm=false;
     }
   }
 

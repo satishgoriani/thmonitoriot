@@ -6,29 +6,15 @@
  <ion-col size="0" sizeMd="3"></ion-col>
  <ion-col size="12" sizeMd="6">
   <ion-item>
-    <ion-label>Change Password</ion-label>
-    <ion-checkbox [(ngModel)]="chkpwd" (click)="toggleText('changepwd')"></ion-checkbox>
-   </ion-item>
-  <span id="changepwd" style="display: none;">
-  <ion-item>
-    <ion-list class="Wid100" lines="none">
-    <ion-item>
-      <ion-label position="floating" color="medium">Old Password</ion-label>
-      <ion-input type="password" [(ngModel)]="oldpass"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating" color="medium">New Password</ion-label>
-      <ion-input type="password" [(ngModel)]="newpass"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating" color="medium">Re-enter Password</ion-label>
-      <ion-input type="password" [(ngModel)]="repass"></ion-input>
-    </ion-item>
-    </ion-list>
-  </ion-item></span>
+    <ion-label position="floating">High Security PIN</ion-label>
+    <ion-input type="number"></ion-input>
+  </ion-item>
   <ion-item>
     <ion-label>Change Headers</ion-label>
-    <ion-checkbox [(ngModel)]="chkhdr" (click)="toggleText('changehdr')"></ion-checkbox>
+    <div>
+      <ion-icon *ngIf="showhdr==false" id="myBtn" name="chevron-down-outline" (click)="toggleText('changehdr')"></ion-icon>
+      <ion-icon *ngIf="showhdr==true" id="myBtn" name="chevron-up-outline" (click)="toggleText('changehdr')"></ion-icon>
+    </div>
   </ion-item>
   <span id="changehdr" style="display: none;">
   <ion-item>
@@ -45,18 +31,17 @@
     </ion-item>
     <ion-item>
       <ion-checkbox [(ngModel)]="chkdefault"></ion-checkbox>&nbsp;
-      <ion-label>Restore default</ion-label>
+      <ion-label color="medium">Restore default</ion-label>
     </ion-item>
     </ion-list>
   </ion-item>
   </span>
   <ion-item>
-    <ion-label position="floating">High Security PIN</ion-label>
-    <ion-input type="number"></ion-input>
-  </ion-item>
-  <ion-item>
     <ion-label>Change Theme</ion-label>
-    <ion-checkbox [(ngModel)]="chkthm" (click)="toggleText('changethm')"></ion-checkbox>
+    <div>
+      <ion-icon *ngIf="showthm==false" id="myBtn" name="chevron-down-outline" (click)="toggleText('changethm')"></ion-icon>
+      <ion-icon *ngIf="showthm==true" id="myBtn" name="chevron-up-outline" (click)="toggleText('changethm')"></ion-icon>
+    </div>
   </ion-item>
   <span id="changethm" style="display: none;">
   <ion-item>

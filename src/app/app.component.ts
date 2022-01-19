@@ -40,6 +40,11 @@ export class AppComponent {
         icon: "settings-sharp"
       },
       {
+        title: "Change Password",
+        url: "/changepassword",
+        icon: "person"
+      },
+      {
         title: "Logout",
         url: "/",
         icon: "log-out"
