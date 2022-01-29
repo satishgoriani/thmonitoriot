@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AppdataService } from '../appdata.service';
 import { LocationdetailsPage } from '../locationdetails/locationdetails.page';
 import { MenuController, ModalController } from '@ionic/angular';
-import { APIService, Locationtype, DeleteLocationtypeInput, Location } from 'src/app/API.service';
 import { Constants } from '../constants';
 import { AlertController } from '@ionic/angular';
 import { AlertuiService } from 'src/app/alertui.service';
@@ -56,8 +55,7 @@ export class DashboardPage implements OnInit {
     public alertController: AlertController,
     public alertService: AlertuiService,
     public datePipe : DatePipe,
-    public menuCtrl: MenuController,
-    private apiService: APIService
+    public menuCtrl: MenuController
   ) {
 
     if(!this.dataService.isloggedin){
@@ -72,17 +70,11 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.dialogheight = Math.round(window.innerHeight * .9);
     this.menuCtrl.enable(true);
-
-    this.apiService.OnUpdateLocationListener.subscribe({
-      next: function(location){
-        console.log('CHAMBER UPDATED *** ' + JSON.stringify(location));
-      }
-    });
+    console.log('Location type ' + this.dataService.dashboardlocationtypeid);
   }
 
 
   ionViewWillEnter(){
-    console.log('DASHBOARD INIT ** ENTER VIEW**');
     this.segmentChanged();
     this.startLocationPolling();
     this.menuCtrl.enable(true);
@@ -126,10 +118,10 @@ export class DashboardPage implements OnInit {
   }
 
   async segmentChanged() {
-
+  
     if(this.dataService.locationtypelist)
       this.defaultlocationtype = this.dataService.locationtypelist[0].id;
-
+  
     /*on dashboard page load first locationtype name value is set as active segment */
     if (!this.dataService.dashboardlocationtypeid) {
       this.dataService.dashboardlocationtypeid = this.defaultlocationtype;
@@ -142,12 +134,10 @@ export class DashboardPage implements OnInit {
 
     async startLocationPolling(){
       try{
-          console.log('|CHAMBER POLLING|');
-          const locations = await this.apiService.ListLocations();
-          if (locations && locations.items) {
-            for (var location of locations.items) {
+          const locations = await this.dataService.getLocations();
+          if (locations && locations.length > 0) {
+            for (var location of locations) {
               var curlocation = this.dataService.getLocationForId(location.id);
-              console.log('Temp ' + curlocation.currenttemp + ' NNN  New temp ' + location.currenttemp);
               if ( curlocation && location.currenttemp != curlocation.currenttemp) {
                   this.dataService.updateLocationList(location, Constants.EDIT);
                   this.segmentChanged();

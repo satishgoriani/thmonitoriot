@@ -1,6 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { APIService, Sensor,DeleteSensorInput } from 'src/app/API.service';
 import { AppdataService } from '../appdata.service';
 import { ResolveStart, Router } from '@angular/router';
 import { Constants } from '../constants';
@@ -8,6 +7,7 @@ import { Constants } from '../constants';
 import { AlertController } from '@ionic/angular';
 import { AlertuiService } from 'src/app/alertui.service';
 import { SensordetailsPage } from '../modals/sensordetails/sensordetails.page';
+import { Sensor } from '../domain/thmonitorschema';
 
 @Component({
   selector: 'app-sensors',
@@ -25,7 +25,7 @@ export class SensorsPage implements OnInit {
       public modalController: ModalController,
       public alertController: AlertController,
       public alertService : AlertuiService,
-      private apiService: APIService) {
+      ) {
 
       if(!this.dataService.isloggedin){
       this._router.navigate(['/']);
@@ -86,24 +86,15 @@ export class SensorsPage implements OnInit {
   }
 
   async deleteSensor(){
-    if(this.sensorobj.id && this.sensorobj.id.length > 0){
-        const sensorData = {} as DeleteSensorInput;
-        sensorData.id = this.sensorobj.id;
-        sensorData._version = this.sensorobj._version;
-        //console.log('Valid sensor id...');
-
-        try{
-          const ret = await this.apiService.DeleteSensor(sensorData);
-          //console.log('Inside try-->', ret);
-          this.dataService.updateSensorList(ret,Constants.DELETE);
-          this.alertService.displayToast('Sensor deleted successfully',Constants.SUCCESS)
-        }catch(err){
-          this.alertService.displayToast('Error deleting the sensor, please try again!',Constants.FAIL);
-          return;
-        }
-    }else{
-      console.log('Invalid sensor id...');
-    }
+      const ret = await this.dataService.deleteSensor(this.sensorobj);
+      if(!ret){
+        this.alertService.displayToast('Error deleting the sensor, please try again!',Constants.FAIL);
+        return;  
+      }
+      this.dataService.updateSensorList(ret,Constants.DELETE);
+      this.alertService.displayToast('Sensor deleted successfully',Constants.SUCCESS)
+    
+  
   }
 
   back(){

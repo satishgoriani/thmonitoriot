@@ -7,7 +7,7 @@
     <ion-item lines="none">
       <ion-label position="floating">Location type</ion-label>
       <ion-select mode="md" interface="popover" [(ngModel)]="dataService.dashboardlocationtypeid"
-        value="dataService.dashboardsectionid" (ionChange)="segmentChanged()">
+        (ionChange)="segmentChanged()">
         <ion-select-option *ngFor="let item of dataService.locationtypelist;" value="{{item.id}}">{{item.name}}
         </ion-select-option>
       </ion-select>

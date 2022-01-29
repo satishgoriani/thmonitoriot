@@ -49,7 +49,6 @@ export class Apptheme
         root.style.setProperty('--ion-color-secondary', theme.secondary);
         root.style.setProperty('--ion-color-primary-contrast', theme.primarycontrast);
         root.style.setProperty('--ion-color-secondary-contrast', theme.primarycontrast);
-
         localStorage.setItem("apptheme" , "" + themeid);
     }
 }

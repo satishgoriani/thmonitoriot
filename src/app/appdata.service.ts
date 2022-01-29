@@ -1,7 +1,9 @@
 import { findReadVarNames } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
-import { APIService, Location, Company, Sensor, Locationtype} from './API.service';
 import { Constants } from './constants';
+import { Company, Location, Locationtype, Sensor } from './domain/thmonitorschema';
+import { Dynamodbservice } from './services/dynamodbservice';
+import * as cloneDeep from 'lodash/cloneDeep';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +19,13 @@ export class AppdataService {
   crudobject: any;
   crudpurpose;
 
+  cognitoid; 
+
   dashboardlocationtypeid;
   dashboardlocationlist;
 
-  constructor(public apiService: APIService) { }
+
+  constructor(public dbService : Dynamodbservice) { }
 
   updateSensorList(newsensor: Sensor, crudoperation) {
     if (crudoperation == Constants.CREATE) {
@@ -71,14 +76,14 @@ export class AppdataService {
 
   getLocationtypeName(locationtypeId)
   {
-    if(locationtypeId === "0")
-      return "All";
-
+    
     for (let i = 0; i < this.locationtypelist.length; i++) {
       if (this.locationtypelist[i].id === locationtypeId) {
         return this.locationtypelist[i].name;
       }
     }
+
+    return "";
   }
 
   getLocationForId(locationid){
@@ -127,27 +132,34 @@ export class AppdataService {
   }
 
   async initLocationtypes() {
-    this.locationtypelist = [];
+      this.locationtypelist = await this.dbService.queryDB ("thmonitor_locationtype",null,
+                          "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
 
-    const locationtypes = await this.apiService.ListLocationtypes();
-    if (locationtypes && locationtypes.items) {
-      for (var locationtype of locationtypes.items) {
-        if (!locationtype._deleted) {
-          this.locationtypelist.push(locationtype);
-        }
+      if(this.locationtypelist == null) return false; 
+      this.locationtypelist.sort((a:Locationtype, b: Locationtype)=> (a.name)  < (b.name)  ? -1 : 1 );
+      
+      console.log('***Setting dashboard locaiton type ');
+      if(this.locationtypelist.length > 0){
+        this.dashboardlocationtypeid = this.locationtypelist[0].id;    
       }
-    }
+      console.log('***Setting dashboard locaiton type ' + this.dashboardlocationtypeid);
+      return true; 
 
-    this.locationtypelist.sort((a:Locationtype, b: Locationtype)=> (a.name)  < (b.name)  ? -1 : 1 );
+  }
+
+
+  async getLocations() {
+    return await this.dbService.queryDB ("thmonitor_locationtype",null,
+                        "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
+
+    
   }
 
   setSensorString(location : Location){
-    console.log('SENSORS **' + JSON.stringify(location.sensors));
     if(location.sensors && location.sensors.length > 0){
         var sensorstring = "";
         for(var sensor of location.sensors){
-
-            sensorstring = sensorstring + this.getSensorSerial(sensor) + ", ";
+          sensorstring = sensorstring + this.getSensorSerial(sensor) + ", ";
         }
 
         if(sensorstring.length > 2)
@@ -165,50 +177,99 @@ export class AppdataService {
   }
 
   async initLocations() {
-    this.locationlist = [];
+    
+    this.locationlist = await this.dbService.queryDB ("thmonitor_location",null,
+    "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
 
-    const locations = await this.apiService.ListLocations();
-    if (locations && locations.items) {
-      for (var location of locations.items) {
-        if (!location._deleted) {
+    if(this.locationlist == null) return false; 
+    this.locationlist.sort((a:Location, b: Location)=> (a.name)  < (b.name)  ? -1 : 1 );
+
+    for (var location of this.locationlist) {
           location.locationtypename = this.getLocationtypeName(location.locationtypeID);
           this.setSensorString(location);
-          this.locationlist.push(location);
-        }
-      }
     }
-  }
+
+    return true;
+ }
 
   async initSensors() {
-    this.sensorlist = [];
+    this.sensorlist = await this.dbService.queryDB ("thmonitor_sensor",null,
+                        "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
 
-    const sensors = await this.apiService.ListSensors();
-    if (sensors && sensors.items) {
-      for (var sensor of sensors.items) {
-        if (!sensor._deleted) {
-          this.sensorlist.push(sensor);
-        }
-      }
-    }
-
+      if(this.sensorlist == null) return false; 
+      return true; 
   }
 
   async initAppData(){
     try{
+      console.log('In init App data ...');
       await this.initLocationtypes();
+      console.log('Location types initialzied ...');
+      
       await this.initSensors();
+      console.log('Sensors initialized ...');
+      
       await this.initLocations();
+      console.log('Dat aInitiazlied ...');
       return true;
     } catch (err) {
+
       console.log('Error ' + JSON.stringify(err));
       return false;
     }
   }
 
   getClone(object) {
-    return JSON.parse(JSON.stringify(object));
+    //return JSON.parse(JSON.stringify(object));
+    return cloneDeep(object);
   }
 
   clearTimer(){
   }
+
+  /********* NEW DML FUNCTIONS */
+  /* Location type */
+  public async addLocationtype(locationtype : Locationtype) {
+    locationtype.id = "" + this.dbService.getTime();
+    return await this.dbService.putItem("thmonitor_locationtype",locationtype,true,false,"attribute_not_exists(id)",null);
+  }
+
+  public async editLocationtype(locationtype : Locationtype) {
+    return await this.dbService.editItem("thmonitor_locationtype",locationtype);
+  }
+
+  public async deleteLocationtype(locationtype : Locationtype) {
+    return await this.dbService.putItem("thmonitor_locationtype",locationtype,false,true,null,null);
+  }
+
+
+  /* Location */
+  public async addLocation(location : Location) {
+    location.id = "" +  this.dbService.getTime();
+    return await this.dbService.putItem("thmonitor_location",location,true,false,"attribute_not_exists(id)",null);
+  }
+
+  public async editLocation(location : Location) {
+    return await this.dbService.editItem("thmonitor_location",location);
+  }
+
+  public async deleteLocation(location : Location) {
+    return await this.dbService.putItem("thmonitor_location",location,false,true,null,null);
+  }
+
+
+  /* Sensor */
+  public async addSensor(sensor : Sensor) {
+    sensor.id = "" +  this.dbService.getTime();
+    return await this.dbService.putItem("thmonitor_sensor",sensor,true,false,"attribute_not_exists(id)",null);
+  }
+
+  public async editSensor(sensor : Sensor) {
+    return await this.dbService.editItem("thmonitor_sensor",sensor);
+  }
+
+  public async deleteSensor(sensor : Sensor) {
+    return await this.dbService.putItem("thmonitor_sensor",sensor,false,true,null,null);
+  }
+
 }

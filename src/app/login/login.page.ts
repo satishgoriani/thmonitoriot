@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { AlertuiService } from '../alertui.service';
-import { APIService, CompanyByEmailQuery } from '../API.service';
 import {Router} from '@angular/router';
 import { AppdataService } from '../appdata.service';
+import { Dynamodbservice } from '../services/dynamodbservice';
+
 import { Apptheme } from '../apptheme';
 import { I18n } from 'aws-amplify';
 import { Constants } from '../constants';
+import { Auth } from 'aws-amplify';
+import * as AWS  from 'aws-sdk';
+import { ThrowStmt } from '@angular/compiler/src/output/output_ast';
+import { Company } from '../domain/thmonitorschema';
+
 
 @Component({
   selector: 'app-login',
@@ -23,20 +29,23 @@ export class LoginPage implements OnInit {
 
   constructor(
     public alertService : AlertuiService,
-    public apiService : APIService,
     public dataService : AppdataService,
+    public dynamodbService : Dynamodbservice,
     private _router : Router
   ) {
 
 }
 
   ngOnInit(){
-    this.email = 'max@gmail.com';
-    this.userpass = 'Max1234$';
+    //this.email = 'max@gmail.com';
+    //this.userpass = 'Max1234$';
+    this.email = 'Nanavati';
+    this.userpass = 'Nanvati1235$';
+    
     Apptheme.initializeTheme();
-    console.log('SEtting language to french');
-    I18n.setLanguage('fr');
-    console.log ('Let me see ' + I18n.get("HELLO "));
+    //console.log('SEtting language to french');
+    //I18n.setLanguage('fr');
+    //console.log ('Let me see ' + I18n.get("HELLO "));
   }
 
   ionViewDidEnter(){
@@ -64,9 +73,40 @@ export class LoginPage implements OnInit {
       return;
     }
 
+    
     this.isprocessing = true;
     try{
-          const ret = await this.apiService.CompanyByEmail(this.email);
+          
+        
+        const user = await Auth.signIn(this.email, this.userpass);
+        const credentials = await Auth.currentCredentials();
+
+        var retstatus = await this.dynamodbService.initializeCredsAndService(credentials,this.email,true);
+        if(!retstatus) {
+          this.alertService.displayToast('Error, please try again!', Constants.FAIL);
+        }
+        
+        this.dataService.cognitoid = credentials.identityId;
+
+        const initdata = await this.dataService.initAppData();
+        if(initdata){
+            
+            //TODO ** Add params to cognito, Hardcoded for now
+            this.dataService.company = <Company>{};
+            this.dataService.company.id = credentials.identityId;
+            this.dataService.company.name = 'Nanavati';
+            //
+
+            this.dataService.isloggedin = true;
+            this.isprocessing = false;
+
+            this._router.navigate(['/dashboard']);
+        }else{
+            this.alertService.displayToast('Error initializing data, please try again!', Constants.FAIL);
+        }
+
+      
+        /*const ret = await this.apiService.CompanyByEmail(this.email);
           if(ret && ret.items && ret.items.length > 0){
             const company = ret.items[0];
             if(company.adminpass === this.userpass){
@@ -89,8 +129,9 @@ export class LoginPage implements OnInit {
             }
           }else{
             this.alertService.displayToast('Login failed, please try again!', Constants.FAIL);
-         }
+         }*/
     }catch(err){
+      console.log('Error signing in ' + err);
       this.alertService.displayToast('Error, please try again!', Constants.FAIL);
     }
     this.isprocessing = false;

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AlertuiService } from 'src/app/alertui.service';
-import { APIService, CreateSensorInput, Sensor, UpdateSensorInput } from 'src/app/API.service';
 import { AppdataService } from 'src/app/appdata.service';
 import { Constants } from 'src/app/constants';
+import { Sensor } from 'src/app/domain/thmonitorschema';
 
 @Component({
   selector: 'app-sensordetails',
@@ -21,7 +21,7 @@ export class SensordetailsPage implements OnInit {
             public alertService : AlertuiService,
             public dataService : AppdataService,
             public modalController: ModalController,
-            public apiService: APIService) {
+            ) {
 
               if(!this.dataService.isloggedin){
                 this._router.navigate(['/']);
@@ -32,6 +32,7 @@ export class SensordetailsPage implements OnInit {
     if(this.dataService.crudpurpose == Constants.CREATE){
       this.operation = 'Add';
       this.sensorobj = {} as Sensor;
+      this.sensorobj.userid = this.dataService.company.id;
       //this.sensorobj. = this.dataService.company.id;
 
     }else{
@@ -62,21 +63,14 @@ export class SensordetailsPage implements OnInit {
   async editSensor(){
     if(this.validateSensor()){
 
-      const sensorData = {} as UpdateSensorInput;
-      sensorData.id = this.sensorobj.id;
-      sensorData.companyID = this.sensorobj.companyID;
-      sensorData.remarks = this.sensorobj.remarks;
-      sensorData.serialnumber = this.sensorobj.serialnumber;
-      sensorData._version = this.sensorobj._version;
-
-      try{
-        const ret = await this.apiService.UpdateSensor(sensorData);
-        this.dataService.updateSensorList(ret,Constants.EDIT);
-        this.alertService.displayToast('Sensor updated successfully',Constants.SUCCESS);
-      }catch(err){
+      const ret = await this.dataService.editSensor(this.sensorobj);
+      if(!ret){
         this.alertService.displayToast('Error updating sensor, please try again!',Constants.FAIL);
         return;
       }
+      this.dataService.updateSensorList(ret,Constants.EDIT);
+      this.alertService.displayToast('Sensor updated successfully',Constants.SUCCESS);
+    
       this.closeDialog();
     }
 
@@ -101,20 +95,14 @@ export class SensordetailsPage implements OnInit {
   async addSensor(){
 
      if(this.validateSensor()){
-
-          const sensorData = {} as CreateSensorInput;
-          sensorData.companyID = this.sensorobj.companyID;
-          sensorData.serialnumber = this.sensorobj.serialnumber;
-          sensorData.remarks = this.sensorobj.remarks;
-
-          try{
-            const ret = await this.apiService.CreateSensor(sensorData);
-            this.dataService.updateSensorList(ret,Constants.CREATE);
-            this.alertService.displayToast('Sensor added successfully',Constants.SUCCESS);
-          }catch(err){
+          const ret = await this.dataService.addSensor(this.sensorobj);
+          if(!ret){
             this.alertService.displayToast('Error adding sensor, please try again!', Constants.FAIL);
             return;
           }
+          this.dataService.updateSensorList(ret,Constants.CREATE);
+          this.alertService.displayToast('Sensor added successfully',Constants.SUCCESS);
+          
           this.closeDialog();
      }
 

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AlertuiService } from 'src/app/alertui.service';
-import { APIService, CreateLocationtypeInput, Locationtype, UpdateLocationtypeInput } from 'src/app/API.service';
+//import { APIService, CreateLocationtypeInput, Locationtype, UpdateLocationtypeInput } from 'src/app/API.service';
 import { AppdataService } from 'src/app/appdata.service';
 import { Constants } from 'src/app/constants';
+import { Locationtype } from 'src/app/domain/thmonitorschema';
 
 @Component({
   selector: 'app-locationtypedetails',
@@ -21,7 +22,7 @@ export class LocationtypedetailsPage implements OnInit {
             public alertService : AlertuiService,
             public dataService : AppdataService,
             public modalController: ModalController,
-            public apiService: APIService) {
+            ) {
 
               if(!this.dataService.isloggedin){
                 this._router.navigate(['/']);
@@ -32,7 +33,7 @@ export class LocationtypedetailsPage implements OnInit {
     if(this.dataService.crudpurpose == Constants.CREATE){
       this.operation = 'Add';
       this.locationtypeobj = {} as Locationtype;
-      this.locationtypeobj.companyID = this.dataService.company.id;
+      this.locationtypeobj.userid = this.dataService.company.id;
 
     }else{
       this.operation = 'Edit';
@@ -63,23 +64,14 @@ export class LocationtypedetailsPage implements OnInit {
     if(this.locationtypeobj.name && this.locationtypeobj.name.length > 0){
 
       if(!this.checkDuplicate()) return;
-
-      const locationtypeData = {} as UpdateLocationtypeInput;
-      locationtypeData.id = this.locationtypeobj.id;
-      locationtypeData.companyID = this.locationtypeobj.companyID;
-      locationtypeData.name = this.locationtypeobj.name;
-      locationtypeData._version = this.locationtypeobj._version;
-
-      try{
-        const ret = await this.apiService.UpdateLocationtype(locationtypeData);
-
-
-        this.dataService.updateLocationtypeList(ret,Constants.EDIT);
-        this.alertService.displayToast('Location Type updated successfully',Constants.SUCCESS);
-      }catch(err){
+      const ret = await this.dataService.editLocationtype(this.locationtypeobj);
+      if(!ret){
         this.alertService.displayToast('Error updating Location Type, please try again!',Constants.FAIL);
         return;
       }
+      this.dataService.updateLocationtypeList(ret,Constants.EDIT);
+      this.alertService.displayToast('Location Type updated successfully',Constants.SUCCESS);
+      
       this.closeDialog();
     }else{
       this.alertService.displayToast('Please enter Location Type',Constants.WARNING);
@@ -91,20 +83,15 @@ export class LocationtypedetailsPage implements OnInit {
      if(this.locationtypeobj.name && this.locationtypeobj.name.trim().length > 0){
 
           if(!this.checkDuplicate()) return;
-
-          const locationtypeData = {} as CreateLocationtypeInput;
-          locationtypeData.companyID = this.locationtypeobj.companyID;
-          locationtypeData.name = this.locationtypeobj.name;
-
-
-          try{
-            const ret = await this.apiService.CreateLocationtype(locationtypeData);
-            this.dataService.updateLocationtypeList(ret,Constants.CREATE);
-            this.alertService.displayToast('Location type added successfully',Constants.SUCCESS);
-          }catch(err){
+          const ret = await this.dataService.addLocationtype(this.locationtypeobj);
+          if(!ret){
             this.alertService.displayToast('Error adding Location type, please try again!', Constants.FAIL);
             return;
           }
+          
+          this.dataService.updateLocationtypeList(ret,Constants.CREATE);
+          this.alertService.displayToast('Location type added successfully',Constants.SUCCESS);
+          
           this.closeDialog();
      }else{
        this.alertService.displayToast('Please enter Location type',Constants.WARNING);

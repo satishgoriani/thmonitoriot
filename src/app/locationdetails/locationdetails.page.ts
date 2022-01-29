@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { AlertuiService } from 'src/app/alertui.service';
 import { AppdataService } from 'src/app/appdata.service';
-import { APIService, CreateLocationInput, Location, UpdateLocationInput } from 'src/app/API.service';
 import { Constants } from 'src/app/constants';
+import { Location } from '../domain/thmonitorschema';
 
 @Component({
   selector: 'app-locationdetails',
@@ -22,7 +22,7 @@ export class LocationdetailsPage implements OnInit {
     public dataService: AppdataService,
     public modalController: ModalController,
     public toastController: ToastController,
-    public apiService: APIService,
+    
     public cdr: ChangeDetectorRef
   ) {
     if(!this.dataService.isloggedin){
@@ -41,6 +41,7 @@ export class LocationdetailsPage implements OnInit {
     if (this.dataService.crudpurpose == Constants.CREATE) {
       this.operation = 'Add';
       this.locationobj = {} as Location;
+      this.locationobj.userid = this.dataService.company.id;
     } else {
       this.operation = 'Edit';
       this.locationobj = <Location>this.dataService.crudobject;
@@ -60,26 +61,15 @@ export class LocationdetailsPage implements OnInit {
 
   async editLocation() {
     if (this.validateLocation()) {
-      const locationData = {} as UpdateLocationInput;
-      locationData.id = this.locationobj.id;
-      locationData.locationtypeID = this.locationobj.locationtypeID;
-      locationData.name = this.locationobj.name;
-      locationData.temperaturemin = this.locationobj.temperaturemin;
-      locationData.temperaturemax = this.locationobj.temperaturemax;
-      locationData.humiditymi = this.locationobj.humiditymi;
-      locationData.humiditymax = this.locationobj.humiditymax;
-      locationData.sensors = this.locationobj.sensors;
-      locationData._version = this.locationobj._version;
-
-      try {
-        const ret = await this.apiService.UpdateLocation(locationData);
-        this.dataService.updateLocationList(ret, Constants.EDIT);
-        this.alertService.displayToast('Location updated successfully', Constants.SUCCESS)
-      } catch (err) {
-        this.alertService.displayToast('Error updating Location, please try again!', Constants.FAIL);
-        return;
-      }
-
+      
+    const ret = await this.dataService.editLocation(this.locationobj);
+    if(!ret){
+      this.alertService.displayToast('Error updating Location, please try again!', Constants.FAIL);
+      return;  
+    }
+    this.dataService.updateLocationList(ret, Constants.EDIT);
+    this.alertService.displayToast('Location updated successfully', Constants.SUCCESS)
+  
       this.closeDialog();
     }
   }
@@ -116,20 +106,10 @@ export class LocationdetailsPage implements OnInit {
   async addLocation() {
 
     if (this.validateLocation()) {
-      const locationData = {} as CreateLocationInput;
-      locationData.locationtypeID = this.locationobj.locationtypeID;
-      locationData.name = this.locationobj.name;
-      locationData.temperaturemin = this.locationobj.temperaturemin;
-      locationData.temperaturemax = this.locationobj.temperaturemax;
-      locationData.humiditymi = this.locationobj.humiditymi;
-      locationData.humiditymax = this.locationobj.humiditymax;
-      locationData.sensors = this.locationobj.sensors;
-
       try {
-        const ret = await this.apiService.CreateLocation(locationData);
+        const ret = await this.dataService.addLocation(this.locationobj);
         this.dataService.updateLocationList(ret, Constants.CREATE);
         this.alertService.displayToast('Location added successfully', Constants.SUCCESS)
-
       } catch (err) {
         this.alertService.displayToast('Error adding Location, please try again!', Constants.FAIL);
         return;

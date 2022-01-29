@@ -1,12 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { APIService, Locationtype,DeleteLocationtypeInput } from 'src/app/API.service';
 import { AppdataService } from '../appdata.service';
 import { ResolveStart, Router } from '@angular/router';
 import { Constants } from '../constants';
 import { LocationtypedetailsPage } from '../modals/locationtypedetails/locationtypedetails.page';
 import { AlertController } from '@ionic/angular';
 import { AlertuiService } from 'src/app/alertui.service';
+import { Locationtype } from '../domain/thmonitorschema';
 
 @Component({
   selector: 'app-locationtypes',
@@ -24,7 +24,7 @@ export class LocationtypesPage implements OnInit {
       public modalController: ModalController,
       public alertController: AlertController,
       public alertService : AlertuiService,
-      private apiService: APIService) {
+      ) {
 
       if(!this.dataService.isloggedin){
       this._router.navigate(['/']);
@@ -85,24 +85,13 @@ export class LocationtypesPage implements OnInit {
   }
 
   async deleteLocationtype(){
-    if(this.locationtypeobj.id && this.locationtypeobj.id.length > 0){
-        const locationtypeData = {} as DeleteLocationtypeInput;
-        locationtypeData.id = this.locationtypeobj.id;
-        locationtypeData._version = this.locationtypeobj._version;
-        //console.log('Valid locationtype id...');
-
-        try{
-          const ret = await this.apiService.DeleteLocationtype(locationtypeData);
-          //console.log('Inside try-->', ret);
-          this.dataService.updateLocationtypeList(ret,Constants.DELETE);
-          this.alertService.displayToast('Location Type deleted successfully',Constants.SUCCESS)
-        }catch(err){
-          this.alertService.displayToast('Error deleting the Location Type, please try again!',Constants.FAIL);
-          return;
-        }
-    }else{
-      console.log('Invalid locationtype id...');
-    }
+      const ret = await this.dataService.deleteLocationtype(this.locationtypeobj);
+      if(!ret){
+        this.alertService.displayToast('Error deleting the Location Type, please try again!',Constants.FAIL);
+        return;
+      }
+      this.dataService.updateLocationtypeList(ret,Constants.DELETE);
+      this.alertService.displayToast('Location Type deleted successfully',Constants.SUCCESS);
   }
 
   back(){
