@@ -5,7 +5,7 @@ query GetLocation($id: ID!) {
     name
     temperaturemin
     temperaturemax
-    humiditymi
+    humiditymin
     humiditymax
     currenttemp
     currenthumidity
@@ -32,7 +32,7 @@ query ListLocations(
       name
       temperaturemin
       temperaturemax
-      humiditymi
+      humiditymin
       humiditymax
       currenttemp
       currenthumidity
@@ -68,7 +68,7 @@ query SyncLocations(
       name
       temperaturemin
       temperaturemax
-      humiditymi
+      humiditymin
       humiditymax
       currenttemp
       currenthumidity

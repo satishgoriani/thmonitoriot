@@ -12,6 +12,7 @@ import { Auth } from 'aws-amplify';
 import * as AWS  from 'aws-sdk';
 import { ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { Company } from '../domain/thmonitorschema';
+import { MenuController } from '@ionic/angular';
 
 
 @Component({
@@ -31,17 +32,18 @@ export class LoginPage implements OnInit {
     public alertService : AlertuiService,
     public dataService : AppdataService,
     public dynamodbService : Dynamodbservice,
-    private _router : Router
+    private _router : Router,
+    public menuCtrl: MenuController
   ) {
-
-}
+    this.menuCtrl.enable(false);
+  }
 
   ngOnInit(){
     //this.email = 'max@gmail.com';
     //this.userpass = 'Max1234$';
     this.email = 'Nanavati';
     this.userpass = 'Nanvati1235$';
-    
+
     Apptheme.initializeTheme();
     //console.log('SEtting language to french');
     //I18n.setLanguage('fr');
@@ -73,11 +75,11 @@ export class LoginPage implements OnInit {
       return;
     }
 
-    
+
     this.isprocessing = true;
     try{
-          
-        
+
+
         const user = await Auth.signIn(this.email, this.userpass);
         const credentials = await Auth.currentCredentials();
 
@@ -85,12 +87,12 @@ export class LoginPage implements OnInit {
         if(!retstatus) {
           this.alertService.displayToast('Error, please try again!', Constants.FAIL);
         }
-        
+
         this.dataService.cognitoid = credentials.identityId;
 
         const initdata = await this.dataService.initAppData();
         if(initdata){
-            
+
             //TODO ** Add params to cognito, Hardcoded for now
             this.dataService.company = <Company>{};
             this.dataService.company.id = credentials.identityId;
@@ -105,7 +107,7 @@ export class LoginPage implements OnInit {
             this.alertService.displayToast('Error initializing data, please try again!', Constants.FAIL);
         }
 
-      
+
         /*const ret = await this.apiService.CompanyByEmail(this.email);
           if(ret && ret.items && ret.items.length > 0){
             const company = ret.items[0];

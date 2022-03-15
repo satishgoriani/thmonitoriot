@@ -25,7 +25,7 @@ export declare class Location {
   readonly name?: string;
   readonly temperaturemin?: number;
   readonly temperaturemax?: number;
-  readonly humiditymi?: number;
+  readonly humiditymin?: number;
   readonly humiditymax?: number;
   readonly currenttemp?: number;
   readonly currenthumidity?: number;

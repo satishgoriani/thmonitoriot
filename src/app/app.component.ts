@@ -19,35 +19,46 @@ export class AppComponent {
     this.navigate =
     [
       {
-        title: "Company Set Up",
-        icon: "business",
-        children: [
-          {
-            title: "Location Types",
-            url: "/locationtypes",
-            icon: "business-outline"
-          },
-          {
-            title: "Sensors",
-            url: "/sensors",
-            icon: "thermometer-outline"
-          }
-        ]
+        title: "Dashboard",
+        url: "/dashboard",
+        icon: "grid-outline"
       },
+      {
+        title: "Reports & Graphs",
+        url: "/reports",
+        icon: "bar-chart-outline"
+      },
+      {
+        title: "Location Types",
+        url: "/locationtypes",
+        icon: "business-outline"
+      },
+      {
+        title: "Sensors",
+        url: "/sensors",
+        icon: "thermometer-outline"
+      },
+      {
+        title: "Users",
+        url: "/users",
+        icon: "people-outline"
+      },
+      {
+        title: "My profile",
+        url: "/profile",
+        icon: "person-circle-outline"
+      },
+      /*
       {
         title: "Settings",
         url: "/setting",
         icon: "settings-sharp"
-      },
+      },*/
+
       {
         title: "Change Password",
         url: "/changepassword",
-        icon: "person"
-      },
-      {
-        title: "Logout",
-        url: "/",
-        icon: "log-out"
+        icon: "key-outline"
       }
     ]
   }

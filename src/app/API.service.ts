@@ -29,7 +29,7 @@ export type CreateLocationInput = {
   name?: string | null;
   temperaturemin?: number | null;
   temperaturemax?: number | null;
-  humiditymi?: number | null;
+  humiditymin?: number | null;
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
@@ -45,7 +45,7 @@ export type ModelLocationConditionInput = {
   name?: ModelStringInput | null;
   temperaturemin?: ModelFloatInput | null;
   temperaturemax?: ModelFloatInput | null;
-  humiditymi?: ModelFloatInput | null;
+  humiditymin?: ModelFloatInput | null;
   humiditymax?: ModelFloatInput | null;
   currenttemp?: ModelFloatInput | null;
   currenthumidity?: ModelFloatInput | null;
@@ -132,7 +132,7 @@ export type Location = {
   name?: string | null;
   temperaturemin?: number | null;
   temperaturemax?: number | null;
-  humiditymi?: number | null;
+  humiditymin?: number | null;
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
@@ -153,7 +153,7 @@ export type UpdateLocationInput = {
   name?: string | null;
   temperaturemin?: number | null;
   temperaturemax?: number | null;
-  humiditymi?: number | null;
+  humiditymin?: number | null;
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
@@ -365,7 +365,7 @@ export type ModelLocationFilterInput = {
   name?: ModelStringInput | null;
   temperaturemin?: ModelFloatInput | null;
   temperaturemax?: ModelFloatInput | null;
-  humiditymi?: ModelFloatInput | null;
+  humiditymin?: ModelFloatInput | null;
   humiditymax?: ModelFloatInput | null;
   currenttemp?: ModelFloatInput | null;
   currenthumidity?: ModelFloatInput | null;
@@ -433,7 +433,7 @@ export type CreateLocationMutation = {
   name?: string | null;
   temperaturemin?: number | null;
   temperaturemax?: number | null;
-  humiditymi?: number | null;
+  humiditymin?: number | null;
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
@@ -455,7 +455,7 @@ export type UpdateLocationMutation = {
   name?: string | null;
   temperaturemin?: number | null;
   temperaturemax?: number | null;
-  humiditymi?: number | null;
+  humiditymin?: number | null;
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
@@ -477,7 +477,7 @@ export type DeleteLocationMutation = {
   name?: string | null;
   temperaturemin?: number | null;
   temperaturemax?: number | null;
-  humiditymi?: number | null;
+  humiditymin?: number | null;
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
@@ -697,7 +697,7 @@ export type GetLocationQuery = {
   name?: string | null;
   temperaturemin?: number | null;
   temperaturemax?: number | null;
-  humiditymi?: number | null;
+  humiditymin?: number | null;
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
@@ -721,7 +721,7 @@ export type ListLocationsQuery = {
     name?: string | null;
     temperaturemin?: number | null;
     temperaturemax?: number | null;
-    humiditymi?: number | null;
+    humiditymin?: number | null;
     humiditymax?: number | null;
     currenttemp?: number | null;
     currenthumidity?: number | null;
@@ -748,7 +748,7 @@ export type SyncLocationsQuery = {
     name?: string | null;
     temperaturemin?: number | null;
     temperaturemax?: number | null;
-    humiditymi?: number | null;
+    humiditymin?: number | null;
     humiditymax?: number | null;
     currenttemp?: number | null;
     currenthumidity?: number | null;
@@ -980,7 +980,7 @@ export type OnCreateLocationSubscription = {
   name?: string | null;
   temperaturemin?: number | null;
   temperaturemax?: number | null;
-  humiditymi?: number | null;
+  humiditymin?: number | null;
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
@@ -1002,7 +1002,7 @@ export type OnUpdateLocationSubscription = {
   name?: string | null;
   temperaturemin?: number | null;
   temperaturemax?: number | null;
-  humiditymi?: number | null;
+  humiditymin?: number | null;
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
@@ -1024,7 +1024,7 @@ export type OnDeleteLocationSubscription = {
   name?: string | null;
   temperaturemin?: number | null;
   temperaturemax?: number | null;
-  humiditymi?: number | null;
+  humiditymin?: number | null;
   humiditymax?: number | null;
   currenttemp?: number | null;
   currenthumidity?: number | null;
@@ -1250,7 +1250,7 @@ export class APIService {
           name
           temperaturemin
           temperaturemax
-          humiditymi
+          humiditymin
           humiditymax
           currenttemp
           currenthumidity
@@ -1288,7 +1288,7 @@ export class APIService {
           name
           temperaturemin
           temperaturemax
-          humiditymi
+          humiditymin
           humiditymax
           currenttemp
           currenthumidity
@@ -1326,7 +1326,7 @@ export class APIService {
           name
           temperaturemin
           temperaturemax
-          humiditymi
+          humiditymin
           humiditymax
           currenttemp
           currenthumidity
@@ -1700,7 +1700,7 @@ export class APIService {
           name
           temperaturemin
           temperaturemax
-          humiditymi
+          humiditymin
           humiditymax
           currenttemp
           currenthumidity
@@ -1738,7 +1738,7 @@ export class APIService {
             name
             temperaturemin
             temperaturemax
-            humiditymi
+            humiditymin
             humiditymax
             currenttemp
             currenthumidity
@@ -1787,7 +1787,7 @@ export class APIService {
             name
             temperaturemin
             temperaturemax
-            humiditymi
+            humiditymin
             humiditymax
             currenttemp
             currenthumidity
@@ -2239,7 +2239,7 @@ export class APIService {
           name
           temperaturemin
           temperaturemax
-          humiditymi
+          humiditymin
           humiditymax
           currenttemp
           currenthumidity
@@ -2271,7 +2271,7 @@ export class APIService {
           name
           temperaturemin
           temperaturemax
-          humiditymi
+          humiditymin
           humiditymax
           currenttemp
           currenthumidity
@@ -2303,7 +2303,7 @@ export class APIService {
           name
           temperaturemin
           temperaturemax
-          humiditymi
+          humiditymin
           humiditymax
           currenttemp
           currenthumidity

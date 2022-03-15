@@ -5,7 +5,7 @@ subscription OnCreateLocation {
     name
     temperaturemin
     temperaturemax
-    humiditymi
+    humiditymin
     humiditymax
     currenttemp
     currenthumidity
@@ -27,7 +27,7 @@ subscription OnUpdateLocation {
     name
     temperaturemin
     temperaturemax
-    humiditymi
+    humiditymin
     humiditymax
     currenttemp
     currenthumidity
@@ -49,7 +49,7 @@ subscription OnDeleteLocation {
     name
     temperaturemin
     temperaturemax
-    humiditymi
+    humiditymin
     humiditymax
     currenttemp
     currenthumidity

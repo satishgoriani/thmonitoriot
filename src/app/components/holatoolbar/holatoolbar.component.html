@@ -1,22 +1,23 @@
 <ion-row class="toolbar">
-  <ion-col size="2" sizeMd="1">
+  <ion-col size="2" sizeMd="1" class="hide-lgmore">
     <ion-back-button *ngIf="showMenu != 'true'" class="toolbarBackButton" mode="md" defaultHref="/"></ion-back-button>
     <ion-menu-button *ngIf="showMenu == 'true'" class="toolbarMenuButton" ></ion-menu-button>
   </ion-col>
 
   <ion-col class="toolBarTitle">
+    <!--
     <ion-label *ngIf="showMenu != 'true'" class="MediumNormal">{{title}}</ion-label>
-    <ion-label *ngIf="showMenu == 'true'" class="LargeNormal">{{title}}</ion-label>
+    <ion-label *ngIf="showMenu == 'true'" class="LargeNormal">{{title}}</ion-label>-->
+    <ion-label class="SmallNormal">{{title}}</ion-label>
   </ion-col>
 
   <ion-col *ngIf="iconName && iconName.length > 0" size="2" sizeMd="1">
-    <ion-icon class="toolbarIcon" [name]="iconName"></ion-icon>
+    <ion-icon class="toolbarIcon" [name]="iconName" size="small"></ion-icon>
   </ion-col>
 
   <ion-col *ngIf="showMenu == 'true'" size="2" sizeMd="1">
-    <ion-fab-button class="not" size="small">
-      <ion-icon name="notifications" size="small"></ion-icon>
-      <!--<ion-badge *ngIf="n" id="cart-badge" color="danger">{{ n}}</ion-badge> -->
-    </ion-fab-button>
+   <ion-button class="not">
+      <ion-icon name="notifications" size="small" slot="icon-only"></ion-icon>
+  </ion-button>
   </ion-col>
 </ion-row>

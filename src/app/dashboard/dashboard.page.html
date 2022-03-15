@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border">
+<ion-header>
   <app-holatoolbar showMenu="true" title="{{dataService.company.name}}"></app-holatoolbar>
 </ion-header>
 <ion-row class="selectfilter">
@@ -46,8 +46,8 @@
                    <ion-label class="temp-item ion-text-center">Temperature</ion-label>
                   </ion-col>
                   <ion-col size="6" class="humidity-col  ion-text-center">
-                    <ion-badge *ngIf="item.currenthumidity && item.currenthumidity >= item.humiditymi &&  item.currenthumidity <=  item.humiditymax " class="humiditybadge normal">{{item.currenthumidity}} %</ion-badge>
-                    <ion-badge *ngIf="item.currenthumidity && item.currenthumidity < item.humiditymi" class="humiditybadge low">{{item.currenthumidity}} %</ion-badge>
+                    <ion-badge *ngIf="item.currenthumidity && item.currenthumidity >= item.humiditymin &&  item.currenthumidity <=  item.humiditymax " class="humiditybadge normal">{{item.currenthumidity}} %</ion-badge>
+                    <ion-badge *ngIf="item.currenthumidity && item.currenthumidity < item.humiditymin" class="humiditybadge low">{{item.currenthumidity}} %</ion-badge>
                     <ion-badge *ngIf="item.currenthumidity && item.currenthumidity > item.humiditymax" class="humiditybadge high">{{item.currenthumidity}} %</ion-badge>
                     <ion-label class="temp-item ion-text-center">Humidity</ion-label>
                   </ion-col>

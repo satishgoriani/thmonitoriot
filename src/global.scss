@@ -34,6 +34,13 @@
 * {
     font-family: "bahnschrift" !important;
 }
+
+@media (min-width: 992px) {
+  .hide-lgmore {
+    display: none;
+  }
+}
+
 /*
 @media (max-width: 768px) {
   .hide-mdless {

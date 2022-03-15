@@ -8,7 +8,7 @@ mutation CreateLocation(
     name
     temperaturemin
     temperaturemax
-    humiditymi
+    humiditymin
     humiditymax
     currenttemp
     currenthumidity
@@ -33,7 +33,7 @@ mutation UpdateLocation(
     name
     temperaturemin
     temperaturemax
-    humiditymi
+    humiditymin
     humiditymax
     currenttemp
     currenthumidity
@@ -58,7 +58,7 @@ mutation DeleteLocation(
     name
     temperaturemin
     temperaturemax
-    humiditymi
+    humiditymin
     humiditymax
     currenttemp
     currenthumidity

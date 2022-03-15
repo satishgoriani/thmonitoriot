@@ -1,39 +1,32 @@
 <ion-app>
-  <ion-menu side="start" menuId="first" contentId="content1">
-    <ion-header>
-      <ion-toolbar color="primary">
-      <ion-item class=" menu-itm" lines="none">
-          <ion-icon name="snow-sharp" slot="start"></ion-icon>
-          <ion-title class="menu-title SmallNormal">Temperature & Humidity<br>Monitoring System</ion-title>
-        </ion-item>
-      </ion-toolbar>
+  <ion-split-pane contentId="content1" class="splitpane">
+  <ion-menu side="start" menuId="first" contentId="content1" type="overlay">
+    <ion-header class="ion-no-border" >
+      <ion-toolbar>
+      <ion-item lines="none">
+        <ion-thumbnail slot="start" class="title-img"><ion-img src="../assets/images/loginimg.jpg"></ion-img></ion-thumbnail>
+        <ion-title class="menu-title SmallNormal" color="primary">Air Quality<br>Monitoring System</ion-title>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-chip slot="end" class="VSmallNormal"><ion-label color="secondary">Firstname Lastname</ion-label>
+        <ion-icon name="person" color="secondary" size="small"></ion-icon>
+      </ion-chip></ion-item></ion-toolbar>
     </ion-header>
     <ion-content>
       <div *ngFor="let pages of navigate">
-        <ion-menu-toggle auto-hide="true" *ngIf="pages.url">
-          <ion-item [routerLink]="pages.url" routerDirection="forward" routerLinkActive="active">
+        <ion-menu-toggle auto-hide="false" *ngIf="pages.url">
+          <ion-item [routerLink]="pages.url" routerDirection="forward" routerLinkActive="active" class="VSmallNormal">
             <ion-icon [name]="pages.icon" slot="start"></ion-icon>
             <ion-label>{{ pages.title}}</ion-label>
           </ion-item>
         </ion-menu-toggle>
-        <ion-item button *ngIf="pages.children?.length > 0" (click)="pages.open = !pages.open"
-          [class.active-parent]="pages.open" detail="false">
-          <ion-icon [name]="pages.icon" slot="start"></ion-icon>
-          <ion-icon slot="end" name="arrow-forward" *ngIf="!pages.open"></ion-icon>
-          <ion-icon slot="end" name="arrow-down" *ngIf="pages.open"></ion-icon>
-          <ion-label>{{ pages.title}}</ion-label>
-        </ion-item>
-        <ion-list *ngIf="pages.open">
-          <ion-menu-toggle class="submenu">
-            <ion-item *ngFor="let sub of pages.children" [routerLink]="sub.url" routerDirection="forward"
-              routerLinkActive="active">
-              <ion-icon [name]="sub.icon" slot="start"></ion-icon>
-              <ion-label>{{ sub.title}}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
       </div>
+      <ion-item [routerLink]="['/']" routerDirection="forward" class="VSmallNormal">
+        <ion-icon name="log-out" slot="start"></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-item>
     </ion-content>
   </ion-menu>
   <ion-router-outlet [animated]="false" id="content1"></ion-router-outlet>
+</ion-split-pane>
 </ion-app>

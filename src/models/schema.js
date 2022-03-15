@@ -31,8 +31,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "humiditymi": {
-                    "name": "humiditymi",
+                "humiditymin": {
+                    "name": "humiditymin",
                     "isArray": false,
                     "type": "Float",
                     "isRequired": false,

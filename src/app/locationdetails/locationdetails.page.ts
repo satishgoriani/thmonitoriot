@@ -22,7 +22,7 @@ export class LocationdetailsPage implements OnInit {
     public dataService: AppdataService,
     public modalController: ModalController,
     public toastController: ToastController,
-    
+
     public cdr: ChangeDetectorRef
   ) {
     if(!this.dataService.isloggedin){
@@ -61,15 +61,15 @@ export class LocationdetailsPage implements OnInit {
 
   async editLocation() {
     if (this.validateLocation()) {
-      
+
     const ret = await this.dataService.editLocation(this.locationobj);
     if(!ret){
       this.alertService.displayToast('Error updating Location, please try again!', Constants.FAIL);
-      return;  
+      return;
     }
     this.dataService.updateLocationList(ret, Constants.EDIT);
     this.alertService.displayToast('Location updated successfully', Constants.SUCCESS)
-  
+
       this.closeDialog();
     }
   }
@@ -90,7 +90,7 @@ export class LocationdetailsPage implements OnInit {
       return false;
     }
 
-    if (!this.locationobj.humiditymi || this.locationobj.humiditymi.toString().length == 0) {
+    if (!this.locationobj.humiditymin || this.locationobj.humiditymin.toString().length == 0) {
       this.alertService.displayToast('Please enter min humidity', Constants.WARNING);
       return false;
     }

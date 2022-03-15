@@ -37,11 +37,11 @@ const routes: Routes = [
   {
     path: 'setting',
     loadChildren: () => import('./setting/setting.module').then( m => m.SettingPageModule)
-  },  {
+  },
+  {
     path: 'changepassword',
     loadChildren: () => import('./changepassword/changepassword.module').then( m => m.ChangepasswordPageModule)
   }
-
 ];
 
 @NgModule({
