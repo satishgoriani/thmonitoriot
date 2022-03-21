@@ -40,7 +40,6 @@ export interface Location{
     name: string;       //Location Name
     userid: string;  //Cognito Id of logged in company user, this will be partion key
     id: string;    //Sort key
-
     locationtypeID: string;
     temperaturemin?: number | null;
     temperaturemax?: number | null;
@@ -79,7 +78,7 @@ export interface Location{
     sensors?: Array<string | null> | null;
     sensorsasstring?: string | null;
     priority?: string | null;
-    createdAt: number;          //Timestamp
+    createdAt: number;    //Timestamp
     updatedAt: number;   //Timestamp
     createdBy: string | null;
     updatedBy: string | null;
