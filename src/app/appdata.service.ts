@@ -19,7 +19,7 @@ export class AppdataService {
   crudobject: any;
   crudpurpose;
 
-  cognitoid; 
+  cognitoid;
 
   dashboardlocationtypeid;
   dashboardlocationlist;
@@ -76,7 +76,7 @@ export class AppdataService {
 
   getLocationtypeName(locationtypeId)
   {
-    
+
     for (let i = 0; i < this.locationtypelist.length; i++) {
       if (this.locationtypelist[i].id === locationtypeId) {
         return this.locationtypelist[i].name;
@@ -92,6 +92,14 @@ export class AppdataService {
     }
     return null;
   }
+
+  getLocationtypeForId(locationtypeid){
+    for(var locationtype of this.locationtypelist){
+      if(locationtype.id == locationtypeid) return locationtype;
+    }
+    return null;
+  }
+
 
   setDashboardLocationList(){
     this.dashboardlocationlist = [];
@@ -135,15 +143,15 @@ export class AppdataService {
       this.locationtypelist = await this.dbService.queryDB ("thmonitor_locationtype",null,
                           "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
 
-      if(this.locationtypelist == null) return false; 
+      if(this.locationtypelist == null) return false;
       this.locationtypelist.sort((a:Locationtype, b: Locationtype)=> (a.name)  < (b.name)  ? -1 : 1 );
-      
+
       console.log('***Setting dashboard locaiton type ');
       if(this.locationtypelist.length > 0){
-        this.dashboardlocationtypeid = this.locationtypelist[0].id;    
+        this.dashboardlocationtypeid = this.locationtypelist[0].id;
       }
       console.log('***Setting dashboard locaiton type ' + this.dashboardlocationtypeid);
-      return true; 
+      return true;
 
   }
 
@@ -152,7 +160,7 @@ export class AppdataService {
     return await this.dbService.queryDB ("thmonitor_locationtype",null,
                         "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
 
-    
+
   }
 
   setSensorString(location : Location){
@@ -177,11 +185,11 @@ export class AppdataService {
   }
 
   async initLocations() {
-    
+
     this.locationlist = await this.dbService.queryDB ("thmonitor_location",null,
     "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
 
-    if(this.locationlist == null) return false; 
+    if(this.locationlist == null) return false;
     this.locationlist.sort((a:Location, b: Location)=> (a.name)  < (b.name)  ? -1 : 1 );
 
     for (var location of this.locationlist) {
@@ -196,8 +204,8 @@ export class AppdataService {
     this.sensorlist = await this.dbService.queryDB ("thmonitor_sensor",null,
                         "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
 
-      if(this.sensorlist == null) return false; 
-      return true; 
+      if(this.sensorlist == null) return false;
+      return true;
   }
 
   async initAppData(){
@@ -205,10 +213,10 @@ export class AppdataService {
       console.log('In init App data ...');
       await this.initLocationtypes();
       console.log('Location types initialzied ...');
-      
+
       await this.initSensors();
       console.log('Sensors initialized ...');
-      
+
       await this.initLocations();
       console.log('Dat aInitiazlied ...');
       return true;

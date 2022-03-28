@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'locationtypedetails',
-    loadChildren: () => import('./modals/locationtypedetails/locationtypedetails.module').then(m => m.LocationtypedetailsPageModule)
+    loadChildren: () => import('./locationtypedetails/locationtypedetails.module').then(m => m.LocationtypedetailsPageModule)
   },
   {
     path: 'locations',

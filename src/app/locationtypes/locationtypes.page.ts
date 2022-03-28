@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { AppdataService } from '../appdata.service';
 import { ResolveStart, Router } from '@angular/router';
 import { Constants } from '../constants';
-import { LocationtypedetailsPage } from '../modals/locationtypedetails/locationtypedetails.page';
+import { LocationtypedetailsPage } from '../locationtypedetails/locationtypedetails.page';
 import { AlertController } from '@ionic/angular';
 import { AlertuiService } from 'src/app/alertui.service';
 import { Locationtype } from '../domain/thmonitorschema';
@@ -61,13 +61,15 @@ export class LocationtypesPage implements OnInit {
 
   async addLocationtype(){
       this.dataService.crudpurpose = Constants.CREATE;
-      this.openForm();
+      //this.openForm();
+      this._router.navigate(['/locationtypedetails']);
   }
 
   async editLocationtype(locationtype){
     this.dataService.crudpurpose = Constants.EDIT;
     this.dataService.crudobject = this.dataService.getClone(locationtype);
-    this.openForm();
+    //this.openForm();
+    this._router.navigate(['/locationtypedetails']);
   }
 
   async confirmDelete(locationtype){

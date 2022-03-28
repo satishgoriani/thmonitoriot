@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { LocationtypedetailsPageRoutingModule } from './locationtypedetails-routing.module';
 
 import { LocationtypedetailsPage } from './locationtypedetails.page';
-import { ShareComponentModule } from 'src/app/components/sharecomponents.module';
+import { ShareComponentModule } from '../components/sharecomponents.module';
 
 @NgModule({
   imports: [

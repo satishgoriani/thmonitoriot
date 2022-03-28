@@ -2,61 +2,204 @@
   <app-holatoolbar title="{{operation}} Location"></app-holatoolbar>
 </ion-header>
 <ion-content>
+<ion-item lines="none" class="note VSmallNormal">Location can be a room, corridor or any enclosed area.</ion-item>
+ <ion-card class="inputcard">
+  <ion-item class="SmallNormal" lines="none">
+    <ion-label color="secondary">Name</ion-label>
+    <ion-input [(ngModel)]="locationobj.name" placeholder="ex: Room205"></ion-input>
+  </ion-item>
+  </ion-card>
+
+  <ion-card class="inputcard">
   <ion-row>
-    <ion-col size="0" sizeMd="3"></ion-col>
-    <ion-col size="12" sizeMd="6">
+  <ion-col size="12" sizeMd="6" class="ion-no-padding">
+  <ion-item class="SmallNormal" lines="none">
+    <ion-label color="secondary" position="floating">Location Type</ion-label>
+    <ion-select mode="md" interface="popover" [(ngModel)]="locationobj.locationtypeID" (ionChange)="segmentChanged()">
+       <ion-select-option class="VSmallNormal" *ngFor="let item of dataService.locationtypelist;" value="{{item.id}}">{{item.name}}
+       </ion-select-option>
+    </ion-select>
+  </ion-item></ion-col>
+  <ion-col class="ion-no-padding">
+  <ion-item class="SmallNormal" lines="none">
+      <ion-label color="secondary">High priority</ion-label>
+      <ion-toggle [(ngModel)]="locationobj.highpriority" color="secondary"></ion-toggle>
+    </ion-item></ion-col></ion-row>
+  </ion-card>
 
-    <ion-item>
-      <ion-label position="floating">Location</ion-label>
-      <ion-input required=true placeholder="001" [(ngModel)]="locationobj.name"></ion-input>
-    </ion-item>
+  <ion-item lines="none" class="note VSmallNormal">Set permissible value range for all parameters to be monitored for this Location.</ion-item>
 
-    <ion-item>
-      <ion-label>Location Type</ion-label>
-      <ion-select mode="md" [(ngModel)]="locationobj.locationtypeID">
-        <ion-select-option *ngFor="let item of dataService.locationtypelist;" value="{{item.id}}">{{item.name}}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
+  <ion-row class="ion-justify-content-evenly">
+  <ion-card class="paracard">
+      <ion-item class="SmallNormal" lines="none" color="accent">
+        <ion-label>Temperature (°C)</ion-label>
+        <ion-avatar class="avatar"><img src="../../assets/icon/temp.png"></ion-avatar>
+      </ion-item>
+      <ion-item class="SmallNormal">
+            <ion-label>minimum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 20" [(ngModel)]="locationobj.temperaturemin"></ion-input>
+      </ion-item>
+      <ion-item class="SmallNormal" lines="none">
+            <ion-label>maximum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 25" [(ngModel)]="locationobj.temperaturemax"></ion-input>
+      </ion-item>
+  </ion-card>
 
-    <ion-item>
-      <ion-label  position="floating">Min Temperature (°C)</ion-label>
-      <ion-input required=true type="number" placeholder="2" [(ngModel)]="locationobj.temperaturemin"></ion-input>
-    </ion-item>
+  <ion-card class="paracard">
+      <ion-item class="SmallNormal" lines="none" color="accent">
+        <ion-label>Humidity (%)</ion-label>
+        <ion-avatar class="avatar"><img src="../../assets/icon/humidity.png"></ion-avatar>
+      </ion-item>
+      <ion-item class="SmallNormal">
+            <ion-label>minimum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 45" [(ngModel)]="locationobj.humiditymin"></ion-input>
+      </ion-item>
+      <ion-item class="SmallNormal" lines="none">
+            <ion-label>maximum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 60" [(ngModel)]="locationobj.humiditymax"></ion-input>
+      </ion-item>
+     </ion-card>
 
-    <ion-item>
-      <ion-label position="floating">Max Temperature (°C)</ion-label>
-      <ion-input required=true type="number" placeholder="10" [(ngModel)]="locationobj.temperaturemax"></ion-input>
-    </ion-item>
+     <ion-card class="paracard">
+      <ion-item class="SmallNormal" lines="none" color="accent">
+        <ion-label>CO2 Level (ppm)</ion-label>
+        <ion-avatar class="avatar"><img src="../../assets/icon/co2.png"></ion-avatar>
+      </ion-item>
+      <ion-item class="SmallNormal">
+            <ion-label>minimum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.co2levelmin"></ion-input>
+      </ion-item>
+      <ion-item class="SmallNormal" lines="none">
+            <ion-label>maximum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 5000" [(ngModel)]="locationobj.co2levelmax"></ion-input>
+      </ion-item>
+     </ion-card>
 
-    <ion-item>
-      <ion-label position="floating">Min Humidity (%)</ion-label>
-      <ion-input required=true type="number" [(ngModel)]="locationobj.humiditymin"></ion-input>
-    </ion-item>
+     <ion-card class="paracard">
+      <ion-item class="SmallNormal" lines="none" color="accent">
+        <ion-label>Barometric Pressure (kPa)</ion-label>
+        <ion-avatar class="avatar"><img src="../../assets/icon/pressure.png"></ion-avatar>
+      </ion-item>
+      <ion-item class="SmallNormal">
+            <ion-label>minimum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 100" [(ngModel)]="locationobj.barometricpressuremin"></ion-input>
+      </ion-item>
+      <ion-item class="SmallNormal" lines="none">
+            <ion-label>maximum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 103" [(ngModel)]="locationobj.barometricpressuremax"></ion-input>
+      </ion-item>
+     </ion-card>
 
-    <ion-item>
-      <ion-label position="floating">Max Humidity (%)</ion-label>
-      <ion-input required=true type="number" [(ngModel)]="locationobj.humiditymax"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Sensors</ion-label>
-       <ion-select mode="md" multiple="true" [(ngModel)]="locationobj.sensors" [value]="locationobj.sensors">
-        <ion-select-option *ngFor="let sensor of dataService.sensorlist" value="{{sensor.id}}">{{sensor.serialnumber}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-col>
-  <ion-col size="0" sizeMd="3"></ion-col>
- </ion-row>
-</ion-content>
-<ion-footer>
-    <ion-row>
-      <ion-col size="1" sizeMd="4"></ion-col>
-      <ion-col size="5" sizeMd="2">
-        <ion-button color="cancel" type="submit" expand="block" (click)="closeDialog()">Cancel</ion-button>
-      </ion-col>
-      <ion-col size="5" sizeMd="2">
-        <ion-button color="primary" type="submit" expand="block" (click)="save()">Save</ion-button>
-      </ion-col>
-      <ion-col size="1" sizeMd="4"></ion-col>
+     <ion-card class="paracard">
+      <ion-item class="SmallNormal" lines="none" color="accent">
+        <ion-label>PM 2.5 (μg/m3)</ion-label>
+        <ion-avatar class="avatar"><img src="../../assets/icon/pm25.png"></ion-avatar>
+      </ion-item>
+      <ion-item class="SmallNormal">
+            <ion-label>minimum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.pm2pt5levelmin"></ion-input>
+      </ion-item>
+      <ion-item class="SmallNormal" lines="none">
+            <ion-label>maximum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 12" [(ngModel)]="locationobj.pm2pt5levelmax"></ion-input>
+      </ion-item>
+     </ion-card>
+
+     <ion-card class="paracard">
+      <ion-item class="SmallNormal" lines="none" color="accent">
+        <ion-label>PM 10 (μg/m3)</ion-label>
+        <ion-avatar class="avatar"><img src="../../assets/icon/pm10.png"></ion-avatar>
+      </ion-item>
+      <ion-item class="SmallNormal">
+            <ion-label>minimum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.pm10levelmin"></ion-input>
+      </ion-item>
+      <ion-item class="SmallNormal" lines="none">
+            <ion-label>maximum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 54" [(ngModel)]="locationobj.pm10levelmax"></ion-input>
+      </ion-item>
+     </ion-card>
+
+     <ion-card class="paracard">
+      <ion-item class="SmallNormal" lines="none" color="accent">
+        <ion-label>TVOC (ppb)</ion-label>
+        <ion-avatar class="avatar"><img src="../../assets/icon/tvoc.png"></ion-avatar>
+      </ion-item>
+      <ion-item class="SmallNormal">
+            <ion-label>minimum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.tvoclevelmin"></ion-input>
+      </ion-item>
+      <ion-item class="SmallNormal" lines="none">
+            <ion-label>maximum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 500" [(ngModel)]="locationobj.tvoclevelmax"></ion-input>
+      </ion-item>
+     </ion-card>
+
+     <ion-card class="paracard">
+      <ion-item class="SmallNormal" lines="none" color="accent">
+        <ion-label>HCHO (ppm)</ion-label>
+        <ion-avatar class="avatar"><img src="../../assets/icon/hcho.png"></ion-avatar>
+      </ion-item>
+      <ion-item class="SmallNormal">
+            <ion-label>minimum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.hcholevelmin"></ion-input>
+      </ion-item>
+      <ion-item class="SmallNormal" lines="none">
+            <ion-label>maximum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 0.75" [(ngModel)]="locationobj.hcholevelmax"></ion-input>
+      </ion-item>
+     </ion-card>
+
+     <ion-card class="paracard">
+      <ion-item class="SmallNormal" lines="none" color="accent">
+        <ion-label>Ozone (ppb)</ion-label>
+        <ion-avatar class="avatar"><img src="../../assets/icon/o3.png"></ion-avatar>
+      </ion-item>
+      <ion-item class="SmallNormal">
+            <ion-label>minimum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.ozonelevelmin"></ion-input>
+      </ion-item>
+      <ion-item class="SmallNormal" lines="none">
+            <ion-label>maximum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 50" [(ngModel)]="locationobj.ozonelevelmax"></ion-input>
+      </ion-item>
+     </ion-card>
+
+     <ion-card class="paracard">
+      <ion-item class="SmallNormal" lines="none" color="accent">
+        <ion-label>Light (lux)</ion-label>
+        <ion-avatar class="avatar"><img src="../../assets/icon/lux.png"></ion-avatar>
+      </ion-item>
+      <ion-item class="SmallNormal">
+            <ion-label>minimum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.illuminationmin"></ion-input>
+      </ion-item>
+      <ion-item class="SmallNormal" lines="none">
+            <ion-label>maximum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 800" [(ngModel)]="locationobj.illuminationmax"></ion-input>
+      </ion-item>
+     </ion-card>
+
+     <ion-card class="paracard">
+      <ion-item class="SmallNormal" lines="none" color="accent">
+        <ion-label>Sound (dB)</ion-label>
+        <ion-avatar class="avatar"><img src="../../assets/icon/sound.png"></ion-avatar>
+      </ion-item>
+      <ion-item class="SmallNormal">
+            <ion-label>minimum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.soundmin"></ion-input>
+      </ion-item>
+      <ion-item class="SmallNormal" lines="none">
+            <ion-label>maximum</ion-label>
+            <ion-input required=true type="number" placeholder="ex: 70" [(ngModel)]="locationobj.soundmax"></ion-input>
+      </ion-item>
+    </ion-card>
     </ion-row>
-</ion-footer>
+    </ion-content>
+    <ion-footer>
+      <ion-row class="ion-justify-content-center">
+          <ion-button size="small" color="cancel" type="submit" (click)="closeDialog()">Cancel</ion-button>&nbsp;
+          <ion-button size="small" color="primary" type="submit" (click)="save()">&nbsp;&nbsp;Save&nbsp;&nbsp;</ion-button>
+      </ion-row>
+    </ion-footer>
+

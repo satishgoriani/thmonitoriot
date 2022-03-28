@@ -10,7 +10,7 @@ import { AppdataService } from './appdata.service';
 export class AppComponent {
   navigate : any;
 
-  constructor(private dataService : AppdataService, private _router : Router) {
+  constructor(public dataService : AppdataService, private _router : Router) {
     this.sideMenu();
 
   }
@@ -36,8 +36,9 @@ export class AppComponent {
       {
         title: "Sensors",
         url: "/sensors",
-        icon: "thermometer-outline"
+        icon: "hardware-chip-outline"
       },
+      /*
       {
         title: "Users",
         url: "/users",
@@ -47,17 +48,15 @@ export class AppComponent {
         title: "My profile",
         url: "/profile",
         icon: "person-circle-outline"
-      },
-      /*
+      },*/
       {
         title: "Settings",
-        url: "/setting",
+        url: "/settings",
         icon: "settings-sharp"
-      },*/
-
+      },
       {
         title: "Change Password",
-        url: "/changepassword",
+        url: "/changepwd",
         icon: "key-outline"
       }
     ]

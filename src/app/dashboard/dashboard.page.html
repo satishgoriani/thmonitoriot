@@ -1,5 +1,5 @@
 <ion-header>
-  <app-holatoolbar showMenu="true" title="{{dataService.company.name}}"></app-holatoolbar>
+  <app-holatoolbar showMenu="true" title="Dashboard - Locations"></app-holatoolbar>
 </ion-header>
 <ion-content class="ion-content-grey">
 <ion-item lines="none">
@@ -7,7 +7,7 @@
   <ion-col size="0"  sizeSm="6" sizeLg="8" class="ion-no-padding"></ion-col>
   <ion-col size="6" sizeSm="3" sizeLg="2" class="ion-no-padding">
     <ion-item lines="none">
-      <ion-label position="floating">Location type</ion-label>
+      <!--<ion-label position="floating">Location type</ion-label>-->
       <ion-select mode="md" interface="popover" [(ngModel)]="dataService.dashboardlocationtypeid"
         (ionChange)="segmentChanged()" class="VSmallBold">
         <ion-select-option class="VSmallNormal" *ngFor="let item of dataService.locationtypelist;" value="{{item.id}}">{{item.name}}
@@ -17,8 +17,8 @@
   </ion-col>
   <ion-col size="6" sizeSm="3" sizeLg="2" class="ion-no-padding">
     <ion-item lines="none">
-      <ion-label position="floating">Filter</ion-label>
-      <ion-select interface="popover" [(ngModel)]="defaultfilter" class="VSmallBold">
+     <!-- <ion-label position="floating">Filter</ion-label>-->
+      <ion-select interface="popover" [(ngModel)]="defaultfilter" class="VSmallBold" placeholder="Filter">
         <ion-select-option class="VSmallNormal" *ngFor="let item of filterlist;" value="{{item.type}}">{{item.type}}
         </ion-select-option>
       </ion-select>
@@ -37,8 +37,10 @@
       <ion-row>
         <ion-col size="6" sizeSm="4" sizeMd="3" sizeLg="2" class="ion-no-padding" *ngFor="let item of dataService.dashboardlocationlist">
           <ion-card (click)="viewLocation(item)">
-            <ion-card-content>
-              <ion-label class="head-lbl SmallBold"><span>{{item.name}}</span></ion-label>
+            <ion-card-content class="ion-no-padding">
+              <ion-chip>
+              <ion-label class="VSmallNormal ion-text-center">{{item.locationtypename}} - <span class="roomname">{{item.name}}</span></ion-label>
+              </ion-chip>
               <ion-row>
               <ion-col size="6" *ngIf="item.currenttemp">
                 <div class="parabox">
@@ -99,8 +101,8 @@
               <ion-col size="6"*ngIf="item.currentozonelevel">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/o3.png"></ion-img>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currentozonelevel >= item.ozonelevelmin) &&  (item.currentozonelevel <= item.ozonelevelmax)">{{item.currentozonelevel}} ppm</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currentozonelevel < item.ozonelevelmin) || (item.currentozonelevel > item.ozonelevelmax)" color="danger">{{item.currentozonelevel}} ppm</ion-label>
+                  <ion-label class="VSmallNormal" *ngIf="(item.currentozonelevel >= item.ozonelevelmin) &&  (item.currentozonelevel <= item.ozonelevelmax)">{{item.currentozonelevel}} ppb</ion-label>
+                  <ion-label class="VSmallNormal" *ngIf="(item.currentozonelevel < item.ozonelevelmin) || (item.currentozonelevel > item.ozonelevelmax)" color="danger">{{item.currentozonelevel}} ppb</ion-label>
               </div>
               </ion-col>
               <ion-col size="6"*ngIf="item.currentillumination">
@@ -119,7 +121,7 @@
               </ion-col>
 
               </ion-row>
-              <div class="ion-text-center sensorstatus">  {{item._lastChangedAt | date : 'd MMM, HH:mm'}}
+              <div class="sensorstatus">  {{item._lastChangedAt | date : 'd MMM, HH:mm'}}
                 <ion-icon class="greenDot" name="ellipse"></ion-icon>
               </div>
             </ion-card-content>

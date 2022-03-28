@@ -2,7 +2,6 @@ export interface Locationtype {
     name: string;
     userid: string;   //Cognito Id of logged in company user, this will be partion key
     id: string;
-
     temperaturemin?: number | null;
     temperaturemax?: number | null;
     humiditymin?: number | null;
@@ -25,7 +24,6 @@ export interface Locationtype {
     illuminationmax?: number | null;
     soundmin?: number | null;
     soundmax?: number | null;
-
     createdAt: number;   //Timestamp
     updatedAt: number;   //Timestamp
     createdBy: string | null;
@@ -77,7 +75,7 @@ export interface Location{
     locationtypename?: string | null;
     sensors?: Array<string | null> | null;
     sensorsasstring?: string | null;
-    priority?: string | null;
+    highpriority?: boolean | null;
     createdAt: number;    //Timestamp
     updatedAt: number;   //Timestamp
     createdBy: string | null;
@@ -94,9 +92,9 @@ export interface Sensor {
     remarks?: string | null;
     companyID?: string | null;
     locationID?: string | null;
+    locationname?:string | null;
     sensortype?: string;
     model?: string | null;
-    serialno?: string | null;
     createdAt: number;  //Timestamp
     updatedAt: number;  //Timestamp
     createdBy: string | null;

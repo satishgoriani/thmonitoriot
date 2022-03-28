@@ -45,7 +45,7 @@ export class DashboardPage implements OnInit {
     {type: "All"},{type: "Temp-High-alert"},{type: "Temp-low-alert"},{type: "Storage-Empty"},
     {type: "Storage < 50% occupied"},{type: "Storage > 50% occupied"},{type: "Dairy Products"},
     {type: "Frozen Foods"},{type: "Grains"}*/
-    { type: "All Locations" }, { type: "Temp-high" }, { type: "Temp-low" }, { type: "Humidity-high" },{ type: "Humidity-low" }
+    { type: "All Location"},{ type: "Any Alert" },{ type: "Temperature alert"}, { type: "Humidity alert"},{ type: "CO2 alert"},{ type: "Barometer pressure alert"},{ type: "PM2.5 alert"},{ type: "PM10 alert"},{ type: "TVOC alert"},{ type: "HCHO alert"},{ type: "Light alert" },{ type: "Sound alert" }, { type: "No alert (All Okay)" }
   ]
 
   constructor(
@@ -118,10 +118,10 @@ export class DashboardPage implements OnInit {
   }
 
   async segmentChanged() {
-  
+
     if(this.dataService.locationtypelist)
       this.defaultlocationtype = this.dataService.locationtypelist[0].id;
-  
+
     /*on dashboard page load first locationtype name value is set as active segment */
     if (!this.dataService.dashboardlocationtypeid) {
       this.dataService.dashboardlocationtypeid = this.defaultlocationtype;

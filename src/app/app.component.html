@@ -7,10 +7,11 @@
         <ion-thumbnail slot="start" class="title-img"><ion-img src="../assets/images/loginimg.jpg"></ion-img></ion-thumbnail>
         <ion-title class="menu-title SmallNormal" color="primary">Air Quality<br>Monitoring System</ion-title>
       </ion-item>
-      <ion-item lines="none">
-        <ion-chip slot="end" class="VSmallNormal"><ion-label color="secondary">Firstname Lastname</ion-label>
+      <ion-item>
+        <ion-chip slot="end" class="VSmallNormal"><ion-label color="secondary">{{this.dataService.company.name}}</ion-label>
         <ion-icon name="person" color="secondary" size="small"></ion-icon>
-      </ion-chip></ion-item></ion-toolbar>
+      </ion-chip></ion-item>
+    </ion-toolbar>
     </ion-header>
     <ion-content>
       <div *ngFor="let pages of navigate">

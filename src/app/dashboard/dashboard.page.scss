@@ -15,8 +15,18 @@
 
 .parabox {
   //background-color: #f7f7f7;
-  border: solid 1px #ddd;
+  border-top: solid 1px #ddd;
   padding: 0%;
+  text-align: center;
+}
+
+.roomname{
+  color: var(--ion-color-secondary);
+}
+
+.sensorstatus{
+  font-size: .7rem;
+  margin-top:8px;
   text-align: center;
 }
 
@@ -27,7 +37,6 @@
   align-items: center;
   opacity: 0.25;
 }
-
 
 .tempbadge {
   font-size: small;
