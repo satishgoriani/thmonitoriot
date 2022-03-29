@@ -1,46 +1,40 @@
 <ion-content class="main-container">
   <ion-row>
-  <ion-col size="0" sizeMd="3"></ion-col>
-  <ion-col size="12" sizeMd="6">
-  <div class="ion-padding">
-    <ion-label class="label-sec ion-text-center SmallNormal" color="light">Temperature & Humidity Monitoring System</ion-label>
-  </div>
-  <div class="top-img"></div>
-  <div class="ion-padding form-container">
-    <div>
-      <ion-label class="VLargeBold">Welcome</ion-label>
-      <ion-label class="label-sec ion-padding-bottom SmallNormal" color="light">Please login to your Account</ion-label>
-    </div>
-    <ion-item class="item-login" lines="none" size="small">
-        <ion-label position="floating" color="medium">Username/Email</ion-label>
-        <ion-input [(ngModel)]="email"></ion-input>
-      </ion-item>
-
-      <ion-item class="item-login ion-justify-content-center" lines="none">
-        <ion-label position="floating" color="medium">Password</ion-label>
-        <ion-input [(ngModel)]="userpass" [type]="passwordType" clearOnEdit="false"></ion-input>
-        <ion-icon class="ion-padding-top" color="secondary" [name]="passwordIcon" slot="end" (click)='hideShowPassword()'>
-        </ion-icon>
-      </ion-item>
-
-      <ion-item class=" item-signin ion-no-padding VSmallNormal " lines="none">
-        <ion-checkbox class="checkbox-square ion-no-margin " size="small" mode="md" color="light"></ion-checkbox>
-        <ion-label class="ion-padding-start ion-no-margin" color="medium"> Stay signed in</ion-label>
-      </ion-item>
-      <ion-button [disabled]="isprocessing" color="secondary" type="submit" expand="block" (click)="login()">
-        Login
-      </ion-button>
-    <div class="Wid100 aligncenter">
-      <ion-spinner *ngIf="isprocessing" name="lines"></ion-spinner>
-    </div>
-    <ion-item lines="none">
-      <ion-button class="forget-pass" slot="end"  fill="clear" color="medium">Forgot password?</ion-button>
-    </ion-item>
-    </div>
-    <ion-item lines="none" class="ion-text-center VSmallNormal">
-      <ion-label color="light">© 2021 All rights reserved</ion-label>
-    </ion-item>
+  <ion-col size="12" sizeMd="6" offsetMd="3" sizeLg="4" offsetLg="4">
+  <ion-card>
+    <ion-card-content>
+        <ion-card-header class="ion-text-center">
+          <ion-card-title class="ion-padding-bottom MediumNormal">Air Quality Monitoring System</ion-card-title>
+          <img src="../../assets/icon/logo.png" />
+         <!-- <ion-card-subtitle>LOGIN</ion-card-subtitle>-->
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item class="SmallNormal">
+            <ion-label position="floating" color="medium">Username/Email</ion-label>
+            <ion-input [(ngModel)]="email"></ion-input>
+          </ion-item>
+          <ion-item class="SmallNormal">
+            <ion-label position="floating" color="medium">Password</ion-label>
+            <ion-input [(ngModel)]="userpass" [type]="passwordType" clearOnEdit="false"></ion-input>
+            <ion-icon class="ion-padding-top" color="secondary" [name]="passwordIcon" slot="end" (click)="hideShowPassword()">
+            </ion-icon>
+          </ion-item>
+          <ion-item class="VSmallNormal" lines="none">
+            <ion-checkbox size="small" mode="md" color="secondary"></ion-checkbox>
+            <ion-label class="ion-padding-start" color="medium"> Stay signed in</ion-label>
+          </ion-item>
+          <ion-button shape="round" [disabled]="isprocessing" color="secondary" type="submit" expand="block" (click)="login()">
+            Login
+          </ion-button>
+        <div class="Wid100 aligncenter">
+          <ion-spinner *ngIf="isprocessing" name="lines"></ion-spinner>
+        </div>
+        <ion-item lines="none">
+          <ion-button class="forget-pass" slot="end"  fill="clear" color="medium">Forgot password?</ion-button>
+        </ion-item>
+        </ion-card-content>
+    </ion-card-content>
+  </ion-card>
   </ion-col>
-  <ion-col size="0" sizeMd="3"></ion-col>
   </ion-row>
 </ion-content>

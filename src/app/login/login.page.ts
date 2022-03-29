@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
     private _router : Router,
     public menuCtrl: MenuController
   ) {
-    this.menuCtrl.enable(false);
+      this.menuCtrl.enable(false);
   }
 
   ngOnInit(){

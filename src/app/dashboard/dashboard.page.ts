@@ -45,7 +45,7 @@ export class DashboardPage implements OnInit {
     {type: "All"},{type: "Temp-High-alert"},{type: "Temp-low-alert"},{type: "Storage-Empty"},
     {type: "Storage < 50% occupied"},{type: "Storage > 50% occupied"},{type: "Dairy Products"},
     {type: "Frozen Foods"},{type: "Grains"}*/
-    { type: "All Location"},{ type: "Any Alert" },{ type: "Temperature alert"}, { type: "Humidity alert"},{ type: "CO2 alert"},{ type: "Barometer pressure alert"},{ type: "PM2.5 alert"},{ type: "PM10 alert"},{ type: "TVOC alert"},{ type: "HCHO alert"},{ type: "Light alert" },{ type: "Sound alert" }, { type: "No alert (All Okay)" }
+    { type: "All Locations"},{ type: "Any Alert" },{ type: "Temperature alert"}, { type: "Humidity alert"},{ type: "CO2 alert"},{ type: "Barometer pressure alert"},{ type: "PM2.5 alert"},{ type: "PM10 alert"},{ type: "TVOC alert"},{ type: "HCHO alert"},{ type: "Light alert" },{ type: "Sound alert" }, { type: "No alert (All Okay)" }
   ]
 
   constructor(
@@ -64,7 +64,6 @@ export class DashboardPage implements OnInit {
 
     this.curdatetime = new Date().getTime();
     this.defaultfilter = this.filterlist[0].type;
-
   }
 
   ngOnInit() {
