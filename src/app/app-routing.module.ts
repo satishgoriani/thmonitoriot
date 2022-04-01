@@ -28,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'sensordetails',
-    loadChildren: () => import('./modals/sensordetails/sensordetails.module').then( m => m.SensordetailsPageModule)
+    loadChildren: () => import('./sensordetails/sensordetails.module').then( m => m.SensordetailsPageModule)
   },
   {
     path: 'sensors',

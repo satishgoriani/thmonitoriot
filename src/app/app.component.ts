@@ -56,7 +56,7 @@ export class AppComponent {
       },
       {
         title: "Change Password",
-        url: "/changepwd",
+        url: "/changepassword",
         icon: "key-outline"
       }
     ]

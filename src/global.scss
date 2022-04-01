@@ -195,6 +195,11 @@ ion-fab {
     --box-shadow: 1px 1px 1px var(--ion-color-light);
     //--box-shadow: none;
     width: 100%;
+
+    @media (min-width: 992px) {
+      width: 50%;
+      margin-left: 25%;
+    }
 }
 
 
@@ -202,6 +207,14 @@ ion-fab {
   //margin: 2px 5px 0px 5px;
   --border-radius: 5px;
 }
+
+.itemcard {
+  margin: 0%;
+  --border-radius: 5px;
+  box-shadow: none;
+  border: none;
+}
+
 
 .Wid100 {
     width: 100%;

@@ -6,7 +6,7 @@ import { Constants } from '../constants';
 //import { SensordetailsPage } from '../modals/sensordetails/sensordetails.page';
 import { AlertController } from '@ionic/angular';
 import { AlertuiService } from 'src/app/alertui.service';
-import { SensordetailsPage } from '../modals/sensordetails/sensordetails.page';
+import { SensordetailsPage } from '../sensordetails/sensordetails.page';
 import { Sensor } from '../domain/thmonitorschema';
 
 @Component({
@@ -62,7 +62,8 @@ export class SensorsPage implements OnInit {
 
   async addSensor(){
       this.dataService.crudpurpose = Constants.CREATE;
-      this.openForm();
+      //this.openForm();
+      this._router.navigate(['/sensordetails']);
   }
 
   async editSensor(sensor){
@@ -89,18 +90,11 @@ export class SensorsPage implements OnInit {
       const ret = await this.dataService.deleteSensor(this.sensorobj);
       if(!ret){
         this.alertService.displayToast('Error deleting the sensor, please try again!',Constants.FAIL);
-        return;  
+        return;
       }
       this.dataService.updateSensorList(ret,Constants.DELETE);
       this.alertService.displayToast('Sensor deleted successfully',Constants.SUCCESS)
-    
-  
-  }
 
-  back(){
-    this._router.navigate(['/'])
-  }
-  next(){
-      this._router.navigate(['/customers'])
+
   }
 }

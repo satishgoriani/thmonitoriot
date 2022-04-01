@@ -30,7 +30,7 @@ export class SensordetailsPage implements OnInit {
 
   ngOnInit() {
     if(this.dataService.crudpurpose == Constants.CREATE){
-      this.operation = 'Add';
+      this.operation = 'New';
       this.sensorobj = {} as Sensor;
       this.sensorobj.userid = this.dataService.company.id;
       //this.sensorobj. = this.dataService.company.id;
@@ -46,7 +46,7 @@ export class SensordetailsPage implements OnInit {
     for(var sensor of this.dataService.sensorlist){
       if(sensor.id != this.sensorobj.id && sensor.serialnumber.trim().toLowerCase() == this.sensorobj.serialnumber.trim().toLowerCase()){
         this.alertService.displayToast('Sensor serial number already exists',Constants.WARNING);
-        return false; 
+        return false;
       }
     }
     return true;
@@ -56,8 +56,9 @@ export class SensordetailsPage implements OnInit {
 
   }
 
-  closeDialog(){
-    this.modalController.dismiss();
+  close(){
+    //this.modalController.dismiss();
+    this._router.navigate(['/sensors']);
   }
 
   async editSensor(){
@@ -70,13 +71,13 @@ export class SensordetailsPage implements OnInit {
       }
       this.dataService.updateSensorList(ret,Constants.EDIT);
       this.alertService.displayToast('Sensor updated successfully',Constants.SUCCESS);
-    
-      this.closeDialog();
+
+      this.close();
     }
 
  }
 
- 
+
  validateSensor(){
   if(!this.sensorobj.serialnumber || this.sensorobj.serialnumber.trim().length == 0){
     this.alertService.displayToast('Please enter serial number',Constants.WARNING);
@@ -87,7 +88,7 @@ export class SensordetailsPage implements OnInit {
     this.alertService.displayToast('Please enter sensor details',Constants.WARNING);
     return false;
   }
-  
+
   return this.checkDuplicate();
 }
 
@@ -102,8 +103,8 @@ export class SensordetailsPage implements OnInit {
           }
           this.dataService.updateSensorList(ret,Constants.CREATE);
           this.alertService.displayToast('Sensor added successfully',Constants.SUCCESS);
-          
-          this.closeDialog();
+
+          this.close();
      }
 
   }
