@@ -17,6 +17,11 @@ export class LocationsPage implements OnInit {
 
   locationobj: Location;
   dialogheight;
+  statuscolor;
+  statusmsg;
+  statusimg;
+  tempcolor;
+  humiditycolor;
 
   constructor(
     private _router: Router,
@@ -36,12 +41,20 @@ export class LocationsPage implements OnInit {
     //console.log(JSON.stringify(this.locationobj));
     console.log('LOCATION INIT');
     this.locationobj = <Location>this.dataService.crudobject;
-    this.dialogheight = Math.round(window.innerHeight * 0.9);
+    //this.dialogheight = Math.round(window.innerHeight * 0.9);
+
+    this.statuscolor="success";
+    this.statusmsg="All Good";
+    this.tempcolor="primary";
+    this.humiditycolor="accent";
+    this.statusimg="../../assets/icon/smile.png";
+    this.checkStatus();
   }
 
   ionViewWillEnter(){
-    console.log('CHAMBERS VIEW WILL ENTER ');
+    console.log('LOCATION VIEW WILL ENTER ');
     this.locationobj = <Location>this.dataService.crudobject;
+    this.checkStatus();
   }
 
   closeDialog(){
@@ -82,10 +95,104 @@ export class LocationsPage implements OnInit {
     this._router.navigate(['/locationdetails']);
   }
 
-  viewStorage() {
-      this._router.navigate(['/storage']);
-  }
   viewSensor() {
     this._router.navigate(['/sensors']);
   }
+
+  checkStatus(){
+    console.log("In check status..");
+
+    if(!this.checkTemp())
+      this.setAlert();
+
+    if(!this.checkHumidity())
+    {
+      this.setAlert();
+      return;
+    }
+
+    /* SATISH PLEASE CHECK
+    if(!this.locationobj.currentco2level || (this.locationobj.currentco2level < this.locationobj.co2levelmin) || (this.locationobj.currentco2level > this.locationobj.co2levelmax))
+    {
+      this.setAlert();
+      return;
+    }
+
+    if(!this.locationobj.currentbarometricpressure || (this.locationobj.currentbarometricpressure < locationobj.barometricpressuremin) || (this.locationobj.currentbarometricpressure > locationobj.barometricpressuremax))
+    {
+      this.setAlert();
+      return;
+    }
+
+    if(!this.locationobj.currentpm2pt5level || (this.locationobj.currentpm2pt5level < this.locationobj.pm2pt5levelmin) ||  (this.locationobj.currentpm2pt5level > this.locationobj.pm2pt5levelmax))
+    {
+      this.setAlert();
+      return;
+    }
+
+    if(!this.locationobj.currentpm10level || (this.locationobj.currentpm10level < this.locationobj.pm10levelmin) ||  (this.locationobj.currentpm10level > this.locationobj.pm10levelmax))
+    {
+      this.setAlert();
+      return;
+    }
+
+    if(!this.locationobj.currenttvoclevel || (this.locationobj.currenttvoclevel < this.locationobj.tvoclevelmin) ||  (this.locationobj.currenttvoclevel > this.locationobj.tvoclevelmax))
+    {
+      this.setAlert();
+      return;
+    }
+
+    if(!this.locationobj.currenthcholevel || (this.locationobj.currenthcholevel < this.locationobj.hcholevelmin) ||  (this.locationobj.currenthcholevel > this.locationobj.hcholevelmax))
+    {
+      this.setAlert();
+      return;
+    }
+
+    if(!this.locationobj.currentozonelevel || (this.locationobj.currentozonelevel < this.locationobj.ozonelevelmin) ||  (this.locationobj.currentozonelevel > this.locationobj.illuminationmax))
+    {
+      this.setAlert();
+      return;
+    }
+
+    if(!this.locationobj.currentillumination || (this.locationobj.currentillumination < this.locationobj.illuminationmin) ||  (this.locationobj.currentillumination > this.locationobj.illuminationmax))
+    {
+      this.setAlert();
+      return;
+    }
+
+    if(!this.locationobj.currentsoundlevel || (this.locationobj.currentsoundlevel < this.locationobj.soundlevelmin) ||  (this.locationobj.currentsoundlevel > this.locationobj.soundlevelmax))
+    {
+      this.setAlert();
+      return;
+    } */
+
+  }
+
+  checkTemp(){
+    if(!this.locationobj.currenttemp || (this.locationobj.currenttemp < this.locationobj.temperaturemin) ||  (this.locationobj.currenttemp >  this.locationobj.temperaturemax))
+    {
+      this.tempcolor="danger";
+      return false;
+    }
+    else
+      return true;
+  }
+
+  checkHumidity(){
+    if(!this.locationobj.currenthumidity || (this.locationobj.currenthumidity < this.locationobj.humiditymin) ||  (this.locationobj.currenthumidity >  this.locationobj.humiditymax))
+    {
+      this.humiditycolor="danger";
+      return false;
+    }
+    else
+      return true;
+  }
+
+  setAlert(){
+    this.statuscolor="warning";
+    this.statusmsg="Alert!";
+    this.statusimg="../../assets/icon/sadsmile.png";
+  }
+
+
 }

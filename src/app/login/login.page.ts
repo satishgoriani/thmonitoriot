@@ -35,14 +35,16 @@ export class LoginPage implements OnInit {
     private _router : Router,
     public menuCtrl: MenuController
   ) {
-      this.menuCtrl.enable(false);
+      //this.menuCtrl.enable(false);
   }
 
   ngOnInit(){
     //this.email = 'max@gmail.com';
     //this.userpass = 'Max1234$';
+    this.menuCtrl.enable(false);
     this.email = 'Nanavati';
     this.userpass = 'Nanvati1235$';
+
 
     Apptheme.initializeTheme();
     //console.log('SEtting language to french');
@@ -51,6 +53,7 @@ export class LoginPage implements OnInit {
   }
 
   ionViewDidEnter(){
+    this.menuCtrl.enable(false);
     this.dataService.isloggedin = false;
   }
 
