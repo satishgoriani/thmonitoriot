@@ -12,12 +12,13 @@
       <ion-icon slot="end" color="danger" size="small" name="trash-outline" (click)="confirmDelete(item)"></ion-icon>
     </ion-item>
     <ion-item lines="none" class="VSmallNormal">
-      <ion-row class="Wid100">
-        <ion-col class="ion-no-padding">
-          <ion-row><ion-label color="light">Details:</ion-label>&nbsp;{{item.remarks}}</ion-row>
-          <ion-row><ion-label color="light">Location:</ion-label>&nbsp;{{item.locationname}}</ion-row>
-        </ion-col>
-      </ion-row>
+      <ion-label>
+        <p><span class="fieldname">Type:</span>&nbsp;Dummy data</p>
+        <p><span class="fieldname">Model:</span>&nbsp;Dummy data</p>
+        <p><span class="fieldname">Location:</span>&nbsp;{{item.locationname}}</p>
+        <p><span class="fieldname">Last Read:</span>&nbsp;date and time</p>
+        <p><span class="fieldname">Details:</span>&nbsp;{{item.remarks}}</p>
+      </ion-label>
     </ion-item>
     </ion-card>
     </ion-col>

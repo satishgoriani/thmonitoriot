@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
     this.userpass = 'Nanvati1235$';
 
 
-    Apptheme.initializeTheme();
+   // Apptheme.initializeTheme();
     //console.log('SEtting language to french');
     //I18n.setLanguage('fr');
     //console.log ('Let me see ' + I18n.get("HELLO "));

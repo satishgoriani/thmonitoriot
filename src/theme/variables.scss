@@ -20,12 +20,20 @@
   --ion-color-tertiary-shade: #d3787a;
   --ion-color-tertiary-tint: #f29497;
 
+  /*
   --ion-color-success: #2dd36f;
   --ion-color-success-rgb: 45,211,111;
   --ion-color-success-contrast: #ffffff;
   --ion-color-success-contrast-rgb: 255,255,255;
   --ion-color-success-shade: #28ba62;
-  --ion-color-success-tint: #42d77d;
+  --ion-color-success-tint: #42d77d;*/
+
+  --ion-color-success: #70AD44;
+	--ion-color-success-rgb: 112,173,68;
+	--ion-color-success-contrast: #FFFFFF;
+	--ion-color-success-contrast-rgb: 0,0,0;
+	--ion-color-success-shade: #63983c;
+	--ion-color-success-tint: #7eb557;
 
   --ion-color-warning: #ffc409;
   --ion-color-warning-rgb: 255,196,9;
@@ -76,12 +84,21 @@
   --ion-color-progress-shade: #598caf;
   --ion-color-progress-tint: #74a9cd;
 
+  --ion-color-accent: #BBDAFC;
+	--ion-color-accent-rgb: 187,218,252;
+	--ion-color-accent-contrast: #000000;
+	--ion-color-accent-contrast-rgb: 0,0,0;
+	--ion-color-accent-shade: #a5c0de;
+	--ion-color-accent-tint: #c2defc;
+
+
+/*
   --ion-color-accent: #D2E4F0;;
   --ion-color-accent-rgb: 210,228,240;
   --ion-color-accent-contrast: #156FAE;
   --ion-color-accent-contrast-rgb: 21,111,174;
   --ion-color-accent-shade: #b9c9d3;
-  --ion-color-accent-tint: #d7e7f2;
+  --ion-color-accent-tint: #d7e7f2;*/
 
   --ion-background-color:#FFFFFF;
   --ion-color-contentbg:#eeedeb;

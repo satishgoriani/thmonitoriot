@@ -43,11 +43,6 @@ export class LocationsPage implements OnInit {
     this.locationobj = <Location>this.dataService.crudobject;
     //this.dialogheight = Math.round(window.innerHeight * 0.9);
 
-    this.statuscolor="success";
-    this.statusmsg="All Good";
-    this.tempcolor="primary";
-    this.humiditycolor="accent";
-    this.statusimg="../../assets/icon/smile.png";
     this.checkStatus();
   }
 
@@ -101,6 +96,12 @@ export class LocationsPage implements OnInit {
 
   checkStatus(){
     console.log("In check status..");
+    this.statuscolor="success";
+    this.statusmsg="All Good";
+    this.tempcolor="primary";
+    this.humiditycolor="accent";
+    this.statusimg="../../assets/icon/smile.png";
+
 
     if(!this.checkTemp())
       this.setAlert();
