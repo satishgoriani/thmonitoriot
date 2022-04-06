@@ -93,7 +93,8 @@ export interface Sensor {
     companyID?: string | null;
     locationID?: string | null;
     locationname?:string | null;
-    sensortype?: string;
+    sensortypeID?: string | null;
+    sensortypename?: string | null;
     model?: string | null;
     createdAt: number;  //Timestamp
     updatedAt: number;  //Timestamp
@@ -126,3 +127,9 @@ export interface Company {
     id: string;
     name: string;
 }
+
+export interface Sensortype {
+  id: string;
+  name: string;
+}
+

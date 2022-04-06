@@ -192,7 +192,7 @@ export class LocationsPage implements OnInit {
   setAlert(){
     this.statuscolor="warning";
     this.statusmsg="Alert!";
-    this.statusimg="../../assets/icon/sadsmile.png";
+    this.statusimg="../../assets/icon/sad.png";
   }
 
 
