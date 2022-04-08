@@ -15,8 +15,12 @@ export class SettingPage implements OnInit {
   //public themeList;
   //public selectedTheme;
 
+  emailnot;
+  whatsappnot;
   stremail;
   strphone;
+  emailpattern;
+  phonepattern;
 
   constructor(
     private _router : Router,
@@ -27,6 +31,10 @@ export class SettingPage implements OnInit {
     if(!this.dataService.isloggedin){
       this._router.navigate(['/']);
     }
+
+    this.emailpattern = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$");
+    this.phonepattern = new RegExp("^[0-9]{10}$");
+
   }
 
 
@@ -36,12 +44,12 @@ export class SettingPage implements OnInit {
   save(){
 
     //Apptheme.setTheme(this.selectedTheme);
-    if(!this.validateEmail())
+    if(this.emailnot && !this.validatePattern(this.stremail,this.emailpattern))
     {
       this.alertService.displayToast('Please enter valid email(s)',Constants.WARNING);
       return;
     }
-    if(!this.validatePhone())
+    if(this.whatsappnot && !this.validatePattern(this.strphone,this.phonepattern))
     {
       this.alertService.displayToast('Please enter valid phone no(s)',Constants.WARNING);
       return;
@@ -58,58 +66,24 @@ export class SettingPage implements OnInit {
     console.log('************** Current thmee ' + this.selectedTheme);*/
   }
 
-  validateEmail()
+  validatePattern(inputstr,patternstr)
   {
      try{
-       const emailarray = this.stremail.split(",");
-       for(var email of emailarray)
+       const strarray = inputstr.split(",");
+       for(var str of strarray)
        {
-        email = email.trim();
-        if(this.checkEmail(email) == false)
-          return false;
+        str = str.trim();
+        try {
+          let valid = patternstr.test(str);
+          if(!valid)
+            return false;
+        } catch (TypeError) {
+            return false;
+        }
        }
      }catch(err){
         return false;
      }
      return true;
-  }
-
-  checkEmail(emailString)
-  {
-    try {
-      let pattern = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$");
-      let valid = pattern.test(emailString);
-      return valid;
-    } catch (TypeError) {
-      return false;
-    }
-  }
-
-  validatePhone()
-  {
-     try{
-       const phonearray = this.strphone.split(",");
-       for(var phone of phonearray)
-       {
-        phone = phone.trim();
-        console.log(phone);
-        if(this.checkPhone(phone) == false)
-          return false;
-       }
-     }catch(err){
-        return false;
-     }
-     return true;
-  }
-
-  checkPhone(phoneString)
-  {
-    try {
-      let pattern = new RegExp("^[0-9]{10}$");
-      let valid = pattern.test(phoneString);
-      return valid;
-    } catch (TypeError) {
-      return false;
-    }
   }
 }

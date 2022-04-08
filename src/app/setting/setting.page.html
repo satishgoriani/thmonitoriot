@@ -13,29 +13,29 @@
     </ion-item>
     <ion-list slot="content">
       <ion-item lines="none" class="SmallNormal">
-        <ion-icon name="mail-unread-outline" slot="start"></ion-icon>
+        <ion-icon name="mail-unread-outline" slot="start" color="tertiary"></ion-icon>
         <ion-label>Email</ion-label>
-        <ion-toggle color="secondary"></ion-toggle>
+        <ion-toggle color="secondary" [(ngModel)]="emailnot"></ion-toggle>
       </ion-item>
       <ion-card class="inputcard">
       <ion-item class="VSmallNormal">
         <ion-label position="stacked">Enter email ids seperated by comma</ion-label>
-        <ion-input placeholder="example@gmail.com" [(ngModel)]="stremail"></ion-input>
+        <ion-input placeholder="example@gmail.com" [(ngModel)]="stremail" disabled="{{!emailnot}}"></ion-input>
       </ion-item>
       </ion-card>
       <ion-item lines="none" class="SmallNormal">
-        <ion-icon name="logo-whatsapp" slot="start"></ion-icon>
+        <ion-icon name="logo-whatsapp" slot="start" color="success"></ion-icon>
         <ion-label>WhatsApp</ion-label>
-        <ion-toggle color="secondary"></ion-toggle>
+        <ion-toggle color="secondary" [(ngModel)]="whatsappnot"></ion-toggle>
       </ion-item>
       <ion-card class="inputcard">
         <ion-item class="VSmallNormal">
           <ion-label position="stacked">Enter phone nos seperated by comma</ion-label>
-          <ion-input placeholder="98xxxxxxxx" [(ngModel)]="strphone"></ion-input>
+          <ion-input placeholder="98xxxxxxxx" [(ngModel)]="strphone" disabled="{{!whatsappnot}}"></ion-input>
         </ion-item>
         </ion-card>
       <ion-item lines="none" class="SmallNormal">
-        <ion-icon name="phone-portrait-outline" slot="start"></ion-icon>
+        <ion-icon name="phone-portrait-outline" slot="start" color="primary"></ion-icon>
         <ion-label>In App</ion-label>
         <ion-toggle color="secondary" checked></ion-toggle>
       </ion-item>
