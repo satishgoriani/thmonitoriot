@@ -69,7 +69,8 @@ export class SensorsPage implements OnInit {
   async editSensor(sensor){
     this.dataService.crudpurpose = Constants.EDIT;
     this.dataService.crudobject = this.dataService.getClone(sensor);
-    this.openForm();
+    //this.openForm();
+    this._router.navigate(['/sensordetails']);
   }
 
   async confirmDelete(sensor){

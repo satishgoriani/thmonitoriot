@@ -79,13 +79,13 @@
   border: solid 1.5px;
   border-color: #ddd;
   border-radius: 5px;
-  color: var(--ion-color-medium);
+ // color: var(--ion-color-medium);
 }
 
 .avatar
 {
   background-color:#FFFFFF;
-  --border-radius: 10px;
+  --border-radius: 5px;
 }
 
 .crud-form-wrapper {
@@ -170,6 +170,12 @@
 ion-header {
     background: var(--ion-color-primary);
 }
+
+ion-footer{
+  height: 40px;;
+}
+
+
 
 
 ion-fab {

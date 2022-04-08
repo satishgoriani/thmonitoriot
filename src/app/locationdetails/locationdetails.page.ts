@@ -54,7 +54,7 @@ export class LocationdetailsPage implements OnInit {
   }
 
 
-  closeDialog() {
+  close() {
     //this.modalController.dismiss();
     this._router.navigate(['/dashboard']);
   }
@@ -156,7 +156,7 @@ export class LocationdetailsPage implements OnInit {
     this.dataService.updateLocationList(ret, Constants.EDIT);
     this.alertService.displayToast('Location updated successfully', Constants.SUCCESS)
 
-      this.closeDialog();
+      this.close();
     }
   }
 
@@ -236,7 +236,7 @@ export class LocationdetailsPage implements OnInit {
         return;
       }
 
-      this.closeDialog();
+      this.close();
     }
   }
 

@@ -3,73 +3,53 @@
 </ion-header>
 <ion-content>
 <ion-row>
- <ion-col size="0" sizeMd="3"></ion-col>
- <ion-col size="12" sizeMd="6">
-  <ion-item>
-    <ion-label position="floating">High Security PIN</ion-label>
-    <ion-input type="number"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Change Headers</ion-label>
-    <div>
-      <ion-icon *ngIf="showhdr==false" id="myBtn" name="chevron-down-outline" (click)="toggleText('changehdr')"></ion-icon>
-      <ion-icon *ngIf="showhdr==true" id="myBtn" name="chevron-up-outline" (click)="toggleText('changehdr')"></ion-icon>
-    </div>
-  </ion-item>
-  <span id="changehdr" style="display: none;">
-  <ion-item>
-    <ion-list class="Wid100" lines="none">
-    <ion-item>
-      <ion-label color="medium">Location type</ion-label>
-      <ion-label>&nbsp; to &nbsp;</ion-label>
-      <ion-input placeholder="ex. Department"></ion-input>
+ <ion-col size="12" sizeMd="6" offsetMd="3">
+
+ <ion-card>
+  <ion-accordion-group value="notifications">
+  <ion-accordion value="notifications">
+    <ion-item slot="header" class="SmallNormal" color="accent">
+      <ion-label>Notification Settings</ion-label>
     </ion-item>
-    <ion-item>
-      <ion-label color="medium">Location</ion-label>
-      <ion-label>&nbsp; to &nbsp;</ion-label>
-      <ion-input placeholder="ex. Room"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-checkbox [(ngModel)]="chkdefault"></ion-checkbox>&nbsp;
-      <ion-label color="medium">Restore default</ion-label>
-    </ion-item>
+    <ion-list slot="content">
+      <ion-item lines="none" class="SmallNormal">
+        <ion-icon name="mail-unread-outline" slot="start"></ion-icon>
+        <ion-label>Email</ion-label>
+        <ion-toggle color="secondary"></ion-toggle>
+      </ion-item>
+      <ion-card class="inputcard">
+      <ion-item class="VSmallNormal">
+        <ion-label position="stacked">Enter email ids seperated by comma</ion-label>
+        <ion-input placeholder="example@gmail.com" [(ngModel)]="stremail"></ion-input>
+      </ion-item>
+      </ion-card>
+      <ion-item lines="none" class="SmallNormal">
+        <ion-icon name="logo-whatsapp" slot="start"></ion-icon>
+        <ion-label>WhatsApp</ion-label>
+        <ion-toggle color="secondary"></ion-toggle>
+      </ion-item>
+      <ion-card class="inputcard">
+        <ion-item class="VSmallNormal">
+          <ion-label position="stacked">Enter phone nos seperated by comma</ion-label>
+          <ion-input placeholder="98xxxxxxxx" [(ngModel)]="strphone"></ion-input>
+        </ion-item>
+        </ion-card>
+      <ion-item lines="none" class="SmallNormal">
+        <ion-icon name="phone-portrait-outline" slot="start"></ion-icon>
+        <ion-label>In App</ion-label>
+        <ion-toggle color="secondary" checked></ion-toggle>
+      </ion-item>
     </ion-list>
-  </ion-item>
-  </span>
-  <ion-item>
-    <ion-label>Change Theme</ion-label>
-    <div>
-      <ion-icon *ngIf="showthm==false" id="myBtn" name="chevron-down-outline" (click)="toggleText('changethm')"></ion-icon>
-      <ion-icon *ngIf="showthm==true" id="myBtn" name="chevron-up-outline" (click)="toggleText('changethm')"></ion-icon>
-    </div>
-  </ion-item>
-  <span id="changethm" style="display: none;">
-  <ion-item>
-    <ion-list class="colorlist" lines="none">
-    <ion-radio-group *ngFor="let item of themeList;" [(ngModel)]="selectedTheme">
-    <ion-item>
-      <ion-label color="medium">{{item.name}}</ion-label>
-      <ion-radio slot="start" value="{{item.id}}"></ion-radio>
-      <ion-label style="max-width:10px;background-color:{{item.colors[0]}}">&nbsp;</ion-label>
-      <ion-label style="max-width:10px;background-color:{{item.colors[1]}}">&nbsp;</ion-label>
-    </ion-item>
-    </ion-radio-group>
-  </ion-list>
-  </ion-item>
- </span>
+  </ion-accordion>
+ </ion-accordion-group>
+</ion-card>
+
 </ion-col>
-<ion-col size="0" sizeMd="3"></ion-col>
 </ion-row>
 </ion-content>
-<ion-footer>
-  <ion-row>
-    <ion-col size="1" sizeMd="4"></ion-col>
-    <ion-col size="5" sizeMd="2">
-      <ion-button color="cancel" type="submit" expand="block" (click)="close()">Cancel</ion-button>
-    </ion-col>
-    <ion-col size="5" sizeMd="2">
-      <ion-button color="primary" type="submit" expand="block" (click)="save()">Save</ion-button>
-    </ion-col>
-    <ion-col size="1" sizeMd="4"></ion-col>
+<ion-footer class="ion-no-border">
+  <ion-row class="ion-justify-content-center">
+      <ion-button size="small" color="cancel" type="submit" (click)="close()">Cancel</ion-button>&nbsp;
+      <ion-button size="small" color="primary" type="submit" (click)="save()">&nbsp;&nbsp;Save&nbsp;&nbsp;</ion-button>
   </ion-row>
 </ion-footer>

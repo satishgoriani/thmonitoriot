@@ -1,7 +1,7 @@
 import { findReadVarNames } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { Constants } from './constants';
-import { Company, Location, Locationtype, Sensor } from './domain/thmonitorschema';
+import { Company, Location, Locationtype, Sensor,Sensortype } from './domain/thmonitorschema';
 import { Dynamodbservice } from './services/dynamodbservice';
 import * as cloneDeep from 'lodash/cloneDeep';
 
@@ -12,6 +12,7 @@ export class AppdataService {
 
   locationtypelist: Locationtype[];
   locationlist: Location[];
+  sensortypelist: Sensortype[];
   sensorlist : Sensor[];
 
   company: Company; //Currently logged in company
@@ -82,9 +83,20 @@ export class AppdataService {
         return this.locationtypelist[i].name;
       }
     }
-
     return "";
   }
+
+  getLocationName(locationId)
+  {
+
+    for (let i = 0; i < this.locationlist.length; i++) {
+      if (this.locationlist[i].id === locationId) {
+        return this.locationlist[i].name;
+      }
+    }
+    return "";
+  }
+
 
   getLocationForId(locationid){
     for(var location of this.locationlist){
@@ -204,9 +216,24 @@ export class AppdataService {
     this.sensorlist = await this.dbService.queryDB ("thmonitor_sensor",null,
                         "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
 
-      if(this.sensorlist == null) return false;
-      return true;
+    /*
+    for (var sensor of this.sensorlist)
+      sensor.locationname = this.getLocationName(sensor.locationID);
+    */
+
+    if(this.sensorlist == null) return false;
+    return true;
   }
+
+  /*
+  async initSensortypes() {
+    this.sensortypelist = await this.dbService.queryDB ("thmonitor_sensortype",null,
+                        "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
+
+      if(this.sensortypelist == null) return false;
+      return true;
+  }*/
+
 
   async initAppData(){
     try{

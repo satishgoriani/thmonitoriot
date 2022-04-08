@@ -13,10 +13,10 @@
     </ion-item>
     <ion-item lines="none" class="VSmallNormal">
       <ion-label>
-        <ion-text><p><span class="fieldname">Type:</span>&nbsp;XYZ-ABC</p></ion-text>
-        <ion-text><p><span class="fieldname">Model:</span>&nbsp;Dummy data</p></ion-text>
+        <ion-text><p><span class="fieldname">Type:</span>&nbsp;{{item.sensortypename}}</p></ion-text>
+        <ion-text><p><span class="fieldname">Model:</span>&nbsp;{{item.model}}</p></ion-text>
         <ion-text><p><span class="fieldname">Location:</span>&nbsp;{{item.locationname}}</p></ion-text>
-        <ion-text><p><span class="fieldname">Last Read:</span>&nbsp;date and time</p></ion-text>
+        <ion-text><p><span class="fieldname">Last Read:</span>&nbsp; {{item._lastChangedAt | date : 'd MMM, HH:mm'}}</p></ion-text>
         <ion-text><p><span class="fieldname">Details:</span>&nbsp;{{item.remarks}}</p></ion-text>
       </ion-label>
     </ion-item>
@@ -28,7 +28,7 @@
   <div style="min-height: 80px !important;">&nbsp;</div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button  (click)="addSensor()"  >
+    <ion-fab-button (click)="addSensor()"  >
       <ion-icon name="add">
       </ion-icon>
     </ion-fab-button>

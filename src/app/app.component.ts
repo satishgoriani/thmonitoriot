@@ -51,7 +51,7 @@ export class AppComponent {
       },*/
       {
         title: "Settings",
-        url: "/settings",
+        url: "/setting",
         icon: "settings-sharp"
       },
       {

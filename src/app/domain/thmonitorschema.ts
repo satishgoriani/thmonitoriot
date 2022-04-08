@@ -122,7 +122,6 @@ export interface User {
   _lastChangedAt: number; //Timestamp
 };
 
-
 export interface Company {
     id: string;
     name: string;

@@ -9,13 +9,31 @@
       <ion-input [(ngModel)]="sensorobj.serialnumber" type="text"></ion-input>
   </ion-item>
   <ion-item class="SmallNormal">
+    <ion-label position="floating">Sensor Type</ion-label>
+    <ion-select mode="md" interface="popover" [(ngModel)]="sensorobj.sensortypeID">
+       <ion-select-option class="VSmallNormal" *ngFor="let item of dataService.sensortypelist;" value="{{item.id}}">{{item.name}}
+       </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item class="SmallNormal">
+    <ion-label position="floating" color="medium">Model</ion-label>
+    <ion-input [(ngModel)]="sensorobj.model" type="text"></ion-input>
+  </ion-item>
+  <ion-item class="SmallNormal">
+    <ion-label position="floating">Location</ion-label>
+    <ion-select mode="md" interface="popover" [(ngModel)]="sensorobj.locationID">
+       <ion-select-option class="VSmallNormal" *ngFor="let item of dataService.locationlist;" value="{{item.id}}">{{item.locationtypename}} - {{item.name}}
+       </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item class="SmallNormal">
     <ion-label position="floating" color="medium">Details/Remarks</ion-label>
-    <ion-textarea [(ngModel)]="sensorobj.remarks" type="text" autoGrow="true"></ion-textarea>
+    <ion-input [(ngModel)]="sensorobj.remarks" type="text"></ion-input>
   </ion-item>
   </ion-col>
 </ion-row>
 </ion-content>
-<ion-footer>
+<ion-footer class="ion-no-border">
   <ion-row class="ion-justify-content-center">
       <ion-button size="small" color="cancel" type="submit" (click)="close()">Cancel</ion-button>&nbsp;
       <ion-button size="small" color="primary" type="submit" (click)="save()">&nbsp;&nbsp;Save&nbsp;&nbsp;</ion-button>

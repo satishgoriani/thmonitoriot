@@ -5,3 +5,15 @@
   //overflow-y:scroll;
  // overflow-x:clip;
 }
+.inputcard
+{
+  box-shadow: none;
+  border: solid 1px;
+  border-color: var(--ion-color-secondary);
+  border-radius: 5px;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 0%;
+ // color: var(--ion-color-medium);
+}
