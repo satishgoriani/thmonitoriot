@@ -26,7 +26,8 @@
 }
 
 ion-menu ion-content ion-item.active{
-  --background: rgba(var(--ion-color-primary-rgb), 0.14);
+ // --background: rgba(var(--ion-color-primary-rgb), 0.14);
+ --background: var(--ion-color-accent2);
 }
 
 ion-menu ion-item.selected ion-icon {

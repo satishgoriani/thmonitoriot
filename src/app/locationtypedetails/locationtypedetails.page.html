@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border">
+<ion-header>
   <app-holatoolbar title="{{operation}} Location Type"></app-holatoolbar>
 </ion-header>
 <ion-content>
@@ -15,7 +15,7 @@
 
 <ion-row class="ion-justify-content-evenly">
   <ion-card class="inputcard">
-  <ion-item class="SmallNormal" lines="none" color="tertiary">
+  <ion-item class="SmallNormal header" lines="none">
     <ion-label>Temperature (°C)</ion-label>
     <ion-avatar class="avatar"><img src="../../assets/icon/temp.png"></ion-avatar>
   </ion-item>
@@ -30,7 +30,7 @@
  </ion-card>
 
  <ion-card class="inputcard">
-  <ion-item class="SmallNormal" lines="none" color="tertiary">
+  <ion-item class="SmallNormal header" lines="none">
     <ion-label>Humidity (%)</ion-label>
     <ion-avatar class="avatar"><img src="../../assets/icon/humidity.png"></ion-avatar>
   </ion-item>
@@ -45,7 +45,7 @@
  </ion-card>
 
  <ion-card class="inputcard">
-  <ion-item class="SmallNormal" lines="none" color="tertiary">
+  <ion-item class="SmallNormal header" lines="none">
     <ion-label>CO2 Level (ppm)</ion-label>
     <ion-avatar class="avatar"><img src="../../assets/icon/co2.png"></ion-avatar>
   </ion-item>
@@ -60,7 +60,7 @@
  </ion-card>
 
  <ion-card class="inputcard">
-  <ion-item class="SmallNormal" lines="none" color="tertiary">
+  <ion-item class="SmallNormal header" lines="none">
     <ion-label>Barometric Pressure (kPa)</ion-label>
     <ion-avatar class="avatar"><img src="../../assets/icon/pressure.png"></ion-avatar>
   </ion-item>
@@ -75,7 +75,7 @@
  </ion-card>
 
  <ion-card class="inputcard">
-  <ion-item class="SmallNormal" lines="none" color="tertiary">
+  <ion-item class="SmallNormal header" lines="none">
     <ion-label>PM 2.5 (μg/m3)</ion-label>
     <ion-avatar class="avatar"><img src="../../assets/icon/pm25.png"></ion-avatar>
   </ion-item>
@@ -90,7 +90,7 @@
  </ion-card>
 
  <ion-card class="inputcard">
-  <ion-item class="SmallNormal" lines="none" color="tertiary">
+  <ion-item class="SmallNormal header" lines="none">
     <ion-label>PM 10 (μg/m3)</ion-label>
     <ion-avatar class="avatar"><img src="../../assets/icon/pm10.png"></ion-avatar>
   </ion-item>
@@ -105,7 +105,7 @@
  </ion-card>
 
  <ion-card class="inputcard">
-  <ion-item class="SmallNormal" lines="none" color="tertiary">
+  <ion-item class="SmallNormal header" lines="none">
     <ion-label>TVOC (ppb)</ion-label>
     <ion-avatar class="avatar"><img src="../../assets/icon/tvoc.png"></ion-avatar>
   </ion-item>
@@ -120,7 +120,7 @@
  </ion-card>
 
  <ion-card class="inputcard">
-  <ion-item class="SmallNormal" lines="none" color="tertiary">
+  <ion-item class="SmallNormal header" lines="none">
     <ion-label>HCHO (ppm)</ion-label>
     <ion-avatar class="avatar"><img src="../../assets/icon/hcho.png"></ion-avatar>
   </ion-item>
@@ -135,7 +135,7 @@
  </ion-card>
 
  <ion-card class="inputcard">
-  <ion-item class="SmallNormal" lines="none" color="tertiary">
+  <ion-item class="SmallNormal header" lines="none">
     <ion-label>Ozone (ppb)</ion-label>
     <ion-avatar class="avatar"><img src="../../assets/icon/o3.png"></ion-avatar>
   </ion-item>
@@ -150,7 +150,7 @@
  </ion-card>
 
  <ion-card class="inputcard">
-  <ion-item class="SmallNormal" lines="none" color="tertiary">
+  <ion-item class="SmallNormal header" lines="none">
     <ion-label>Light (lux)</ion-label>
     <ion-avatar class="avatar"><img src="../../assets/icon/lux.png"></ion-avatar>
   </ion-item>
@@ -165,7 +165,7 @@
  </ion-card>
 
  <ion-card class="inputcard">
-  <ion-item class="SmallNormal" lines="none" color="tertiary">
+  <ion-item class="SmallNormal header" lines="none">
     <ion-label>Sound (dB)</ion-label>
     <ion-avatar class="avatar"><img src="../../assets/icon/sound.png"></ion-avatar>
   </ion-item>
@@ -182,7 +182,7 @@
 </ion-content>
 <ion-footer class="ion-no-border">
   <ion-row class="ion-justify-content-center">
-      <ion-button size="small" color="cancel" type="submit" (click)="closeDialog()">Cancel</ion-button>&nbsp;
+      <ion-button size="small" color="cancel" type="submit" (click)="close()">Cancel</ion-button>&nbsp;
       <ion-button size="small" color="primary" type="submit" (click)="save()">&nbsp;&nbsp;Save&nbsp;&nbsp;</ion-button>
   </ion-row>
 </ion-footer>

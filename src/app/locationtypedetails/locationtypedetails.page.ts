@@ -56,7 +56,7 @@ export class LocationtypedetailsPage implements OnInit {
 
   }
 
-  closeDialog(){
+  close(){
     //this.modalController.dismiss();
     this._router.navigate(['/locationtypes']);
   }
@@ -73,7 +73,7 @@ export class LocationtypedetailsPage implements OnInit {
       this.dataService.updateLocationtypeList(ret,Constants.EDIT);
       this.alertService.displayToast('Location Type updated successfully',Constants.SUCCESS);
 
-      this.closeDialog();
+      this.close();
     }else{
       this.alertService.displayToast('Please enter Location Type name',Constants.WARNING);
     }
@@ -94,7 +94,7 @@ export class LocationtypedetailsPage implements OnInit {
           this.dataService.updateLocationtypeList(ret,Constants.CREATE);
           this.alertService.displayToast('Location type added successfully',Constants.SUCCESS);
 
-          this.closeDialog();
+          this.close();
      }else{
       //console.log('in empty name...');
        this.alertService.displayToast('Please enter Location type name',Constants.WARNING);
