@@ -1,0 +1,18 @@
+.myicon{
+  background-color: var(--ion-color-tertiary-tint);
+  border-radius: 50%;
+  padding:1%;
+}
+
+.clear{
+   --box-shadow: none;
+}
+
+.unread{
+  --background: var(--ion-color-accent-tint);
+}
+
+.VSmallNormal {
+  font-size: 0.8rem;
+  font-weight: normal;
+}

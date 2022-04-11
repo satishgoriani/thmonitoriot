@@ -52,7 +52,12 @@ export class AppComponent {
       {
         title: "Settings",
         url: "/setting",
-        icon: "settings-sharp"
+        icon: "settings-outline"
+      },
+      {
+        title: "Notifications",
+        url: "/notifications",
+        icon: "notifications-outline"
       },
       {
         title: "Change Password",
