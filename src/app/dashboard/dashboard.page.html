@@ -35,88 +35,88 @@
   <div *ngIf="dataService.locationlist && dataService.locationlist.length > 0">
     <ion-grid class="ion-no-padding">
       <ion-row>
-        <ion-col size="6" sizeSm="4" sizeMd="3" sizeLg="2" class="ion-no-padding" *ngFor="let item of dataService.dashboardlocationlist">
+        <ion-col size="12" sizeSm="6" sizeLg="4" class="ion-no-padding" *ngFor="let item of dataService.dashboardlocationlist">
           <ion-card (click)="viewLocation(item)">
-            <ion-card-content class="ion-no-padding">
+            <ion-card-content class="ion-no-padding ion-text-center">
               <ion-chip>
               <ion-label class="VSmallNormal ion-text-center">{{item.locationtypename}} - <span class="roomname">{{item.name}}</span></ion-label>
               </ion-chip>
               <ion-row>
-              <ion-col size="6" *ngIf="item.currenttemp">
+              <ion-col size="3" *ngIf="item.currenttemp">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/temp.png"></ion-img>
                   <ion-label class="VSmallNormal" *ngIf="(item.currenttemp >= item.temperaturemin) &&  (item.currenttemp <=  item.temperaturemax)">{{item.currenttemp ? item.currenttemp : 5}}°C</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currenttemp < item.temperaturemin) || (item.currenttemp > item.temperaturemax)" color="danger">{{item.currenttemp ? item.currenttemp : 5}}°C</ion-label>
+                  <ion-label class="VSmallBold" *ngIf="(item.currenttemp < item.temperaturemin) || (item.currenttemp > item.temperaturemax)" color="danger">{{item.currenttemp ? item.currenttemp : 5}}°C</ion-label>
                 </div>
               </ion-col>
-              <ion-col size="6" *ngIf="item.currenthumidity">
+              <ion-col size="3" *ngIf="item.currenthumidity">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/humidity.png"></ion-img>
                   <ion-label class="VSmallNormal" *ngIf="(item.currenthumidity >= item.humiditymin) &&  (item.currenthumidity <= item.humiditymax)">{{item.currenthumidity}} %</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currenthumidity < item.humiditymin) || item.currenthumidity > item.humiditymax" color="danger">{{item.currenthumidity}} %</ion-label>
+                  <ion-label class="VSmallBold" *ngIf="(item.currenthumidity < item.humiditymin) || item.currenthumidity > item.humiditymax" color="danger">{{item.currenthumidity}} %</ion-label>
                 </div>
               </ion-col>
-              <ion-col size="6"*ngIf="item.currentco2level">
+              <ion-col size="3"*ngIf="item.currentco2level">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/co2.png"></ion-img>
                   <ion-label class="VSmallNormal" *ngIf="(item.currentco2level >= item.co2levelmin) &&  (item.currentco2level <= item.co2levelmax)">{{item.currentco2level}} ppm</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currentco2level < item.co2levelmin) || (item.currentco2level > item.co2levelmax)" color="danger">{{item.currentco2level}} ppm</ion-label>
+                  <ion-label class="VSmallBold" *ngIf="(item.currentco2level < item.co2levelmin) || (item.currentco2level > item.co2levelmax)" color="danger">{{item.currentco2level}} ppm</ion-label>
               </div>
               </ion-col>
-              <ion-col size="6"*ngIf="item.currentbarometricpressure">
+              <ion-col size="3"*ngIf="item.currentbarometricpressure">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/pressure.png"></ion-img>
                   <ion-label class="VSmallNormal" *ngIf="(item.currentbarometricpressure >= item.barometricpressuremin) &&  (item.currentbarometricpressure <= item.barometricpressuremax)">{{item.currentbarometricpressure}} kPa</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currentbarometricpressure < item.barometricpressuremin) || (item.currentbarometricpressure > item.barometricpressuremax)" color="danger">{{item.currentbarometricpressure}} kPa</ion-label>
+                  <ion-label class="VSmallBold" *ngIf="(item.currentbarometricpressure < item.barometricpressuremin) || (item.currentbarometricpressure > item.barometricpressuremax)" color="danger">{{item.currentbarometricpressure}} kPa</ion-label>
               </div>
               </ion-col>
-              <ion-col size="6"*ngIf="item.currentpm2pt5level">
+              <ion-col size="3"*ngIf="item.currentpm2pt5level">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/pm25.png"></ion-img>
                   <ion-label class="VSmallNormal" *ngIf="(item.currentpm2pt5level >= item.pm2pt5levelmin) &&  (item.currentpm2pt5level <= item.pm2pt5levelmax)">{{item.currentpm2pt5level}} μg/m3</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currentpm2pt5level < item.pm2pt5levelmin) || (item.currentpm2pt5level > item.pm2pt5levelmax)" color="danger">{{item.currentpm2pt5level}} μg/m3</ion-label>
+                  <ion-label class="VSmallBold" *ngIf="(item.currentpm2pt5level < item.pm2pt5levelmin) || (item.currentpm2pt5level > item.pm2pt5levelmax)" color="danger">{{item.currentpm2pt5level}} μg/m3</ion-label>
               </div>
               </ion-col>
-              <ion-col size="6"*ngIf="item.currentpm10level">
+              <ion-col size="3"*ngIf="item.currentpm10level">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/pm10.png"></ion-img>
                   <ion-label class="VSmallNormal" *ngIf="(item.currentpm10level >= item.pm10levelmin) &&  (item.currentpm10level <= item.pm10levelmax)">{{item.currentpm10level}} μg/m3</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currentpm10level < item.pm10levelmin) || (item.currentpm10level > item.pm10levelmax)" color="danger">{{item.currentpm10level}} μg/m3</ion-label>
+                  <ion-label class="VSmallBold" *ngIf="(item.currentpm10level < item.pm10levelmin) || (item.currentpm10level > item.pm10levelmax)" color="danger">{{item.currentpm10level}} μg/m3</ion-label>
               </div>
               </ion-col>
-              <ion-col size="6"*ngIf="item.currenttvoclevel">
+              <ion-col size="3"*ngIf="item.currenttvoclevel">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/tvoc.png"></ion-img>
                   <ion-label class="VSmallNormal" *ngIf="(item.currenttvoclevel >= item.tvoclevelmin) &&  (item.currenttvoclevel <= item.tvoclevelmax)">{{item.currenttvoclevel}} ppb</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currenttvoclevel < item.tvoclevelmin) || (item.currenttvoclevel > item.tvoclevelmax)" color="danger">{{item.currenttvoclevel}} ppb</ion-label>
+                  <ion-label class="VSmallBold" *ngIf="(item.currenttvoclevel < item.tvoclevelmin) || (item.currenttvoclevel > item.tvoclevelmax)" color="danger">{{item.currenttvoclevel}} ppb</ion-label>
               </div>
               </ion-col>
-              <ion-col size="6"*ngIf="item.currenthcholevel">
+              <ion-col size="3"*ngIf="item.currenthcholevel">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/hcho.png"></ion-img>
                   <ion-label class="VSmallNormal" *ngIf="(item.currenthcholevel >= item.hcholevelmin) &&  (item.currenthcholevel <= item.hcholevelmax)">{{item.currenthcholevel}} ppm</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currenthcholevel < item.hcholevelmin) || (item.currenthcholevel > item.hcholevelmax)" color="danger">{{item.currenthcholevel}} ppm</ion-label>
+                  <ion-label class="VSmallBold" *ngIf="(item.currenthcholevel < item.hcholevelmin) || (item.currenthcholevel > item.hcholevelmax)" color="danger">{{item.currenthcholevel}} ppm</ion-label>
               </div>
               </ion-col>
-              <ion-col size="6"*ngIf="item.currentozonelevel">
+              <ion-col size="3"*ngIf="item.currentozonelevel">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/o3.png"></ion-img>
                   <ion-label class="VSmallNormal" *ngIf="(item.currentozonelevel >= item.ozonelevelmin) &&  (item.currentozonelevel <= item.ozonelevelmax)">{{item.currentozonelevel}} ppb</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currentozonelevel < item.ozonelevelmin) || (item.currentozonelevel > item.ozonelevelmax)" color="danger">{{item.currentozonelevel}} ppb</ion-label>
+                  <ion-label class="VSmallBold" *ngIf="(item.currentozonelevel < item.ozonelevelmin) || (item.currentozonelevel > item.ozonelevelmax)" color="danger">{{item.currentozonelevel}} ppb</ion-label>
               </div>
               </ion-col>
-              <ion-col size="6"*ngIf="item.currentillumination">
+              <ion-col size="3"*ngIf="item.currentillumination">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/lux.png"></ion-img>
                   <ion-label class="VSmallNormal" *ngIf="(item.currentillumination >= item.illuminationmin) &&  (item.currentillumination <= item.illuminationmax)">{{item.currentillumination}} lux</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currentillumination < item.illuminationmin) || (item.currentillumination > item.illuminationmax)" color="danger">{{item.currentillumination}} lux</ion-label>
+                  <ion-label class="VSmallBold" *ngIf="(item.currentillumination < item.illuminationmin) || (item.currentillumination > item.illuminationmax)" color="danger">{{item.currentillumination}} lux</ion-label>
               </div>
               </ion-col>
-              <ion-col size="6"*ngIf="item.currentsound">
+              <ion-col size="3"*ngIf="item.currentsound">
                 <div class="parabox">
                   <ion-img class="myicon" src="../../assets/icon/sound.png"></ion-img>
                   <ion-label class="VSmallNormal" *ngIf="(item.currentsound >= item.soundmin) &&  (item.currentsound <= item.soundmax)">{{item.currentsound}} dB</ion-label>
-                  <ion-label class="VSmallNormal" *ngIf="(item.currentsound < item.soundmin) || (item.currentsound > item.soundmax)" color="danger">{{item.currentsound}} dB</ion-label>
+                  <ion-label class="VSmallBold" *ngIf="(item.currentsound < item.soundmin) || (item.currentsound > item.soundmax)" color="danger">{{item.currentsound}} dB</ion-label>
               </div>
               </ion-col>
 
