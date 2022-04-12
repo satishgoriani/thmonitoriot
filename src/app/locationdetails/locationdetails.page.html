@@ -5,7 +5,7 @@
 <ion-item lines="none" class="note VSmallNormal">Location can be a room, corridor or any enclosed area.</ion-item>
  <ion-card class="inputcard">
   <ion-item class="SmallNormal" lines="none">
-    <ion-label color="secondary">Name</ion-label>
+    <ion-label color="secondary">Name: </ion-label>
     <ion-input [(ngModel)]="locationobj.name" placeholder="ex: Room205"></ion-input>
   </ion-item>
   </ion-card>
@@ -14,7 +14,7 @@
   <ion-row>
   <ion-col size="12" sizeMd="6" class="ion-no-padding">
   <ion-item class="SmallNormal" lines="none">
-    <ion-label color="secondary" position="floating">Location Type</ion-label>
+    <ion-label color="secondary" position="floating">Location Type: </ion-label>
     <ion-select mode="md" interface="popover" [(ngModel)]="locationobj.locationtypeID" (ionChange)="segmentChanged()">
        <ion-select-option class="VSmallNormal" *ngFor="let item of dataService.locationtypelist;" value="{{item.id}}">{{item.name}}
        </ion-select-option>
@@ -22,7 +22,7 @@
   </ion-item></ion-col>
   <ion-col class="ion-no-padding">
   <ion-item class="SmallNormal" lines="none">
-      <ion-label color="secondary">High priority</ion-label>
+      <ion-label color="secondary">High priority: </ion-label>
       <ion-toggle [(ngModel)]="locationobj.highpriority" color="secondary"></ion-toggle>
     </ion-item></ion-col></ion-row>
   </ion-card>
@@ -36,11 +36,11 @@
         <ion-avatar class="avatar"><img src="../../assets/icon/temp.png"></ion-avatar>
       </ion-item>
       <ion-item class="SmallNormal">
-            <ion-label>minimum</ion-label>
+            <ion-label>minimum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 20" [(ngModel)]="locationobj.temperaturemin"></ion-input>
       </ion-item>
       <ion-item class="SmallNormal" lines="none">
-            <ion-label>maximum</ion-label>
+            <ion-label>maximum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 25" [(ngModel)]="locationobj.temperaturemax"></ion-input>
       </ion-item>
   </ion-card>
@@ -51,11 +51,11 @@
         <ion-avatar class="avatar"><img src="../../assets/icon/humidity.png"></ion-avatar>
       </ion-item>
       <ion-item class="SmallNormal">
-            <ion-label>minimum</ion-label>
+            <ion-label>minimum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 45" [(ngModel)]="locationobj.humiditymin"></ion-input>
       </ion-item>
       <ion-item class="SmallNormal" lines="none">
-            <ion-label>maximum</ion-label>
+            <ion-label>maximum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 60" [(ngModel)]="locationobj.humiditymax"></ion-input>
       </ion-item>
      </ion-card>
@@ -66,11 +66,11 @@
         <ion-avatar class="avatar"><img src="../../assets/icon/co2.png"></ion-avatar>
       </ion-item>
       <ion-item class="SmallNormal">
-            <ion-label>minimum</ion-label>
+            <ion-label>minimum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.co2levelmin"></ion-input>
       </ion-item>
       <ion-item class="SmallNormal" lines="none">
-            <ion-label>maximum</ion-label>
+            <ion-label>maximum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 5000" [(ngModel)]="locationobj.co2levelmax"></ion-input>
       </ion-item>
      </ion-card>
@@ -81,11 +81,11 @@
         <ion-avatar class="avatar"><img src="../../assets/icon/pressure.png"></ion-avatar>
       </ion-item>
       <ion-item class="SmallNormal">
-            <ion-label>minimum</ion-label>
+            <ion-label>minimum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 100" [(ngModel)]="locationobj.barometricpressuremin"></ion-input>
       </ion-item>
       <ion-item class="SmallNormal" lines="none">
-            <ion-label>maximum</ion-label>
+            <ion-label>maximum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 103" [(ngModel)]="locationobj.barometricpressuremax"></ion-input>
       </ion-item>
      </ion-card>
@@ -96,11 +96,11 @@
         <ion-avatar class="avatar"><img src="../../assets/icon/pm25.png"></ion-avatar>
       </ion-item>
       <ion-item class="SmallNormal">
-            <ion-label>minimum</ion-label>
+            <ion-label>minimum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.pm2pt5levelmin"></ion-input>
       </ion-item>
       <ion-item class="SmallNormal" lines="none">
-            <ion-label>maximum</ion-label>
+            <ion-label>maximum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 12" [(ngModel)]="locationobj.pm2pt5levelmax"></ion-input>
       </ion-item>
      </ion-card>
@@ -111,11 +111,11 @@
         <ion-avatar class="avatar"><img src="../../assets/icon/pm10.png"></ion-avatar>
       </ion-item>
       <ion-item class="SmallNormal">
-            <ion-label>minimum</ion-label>
+            <ion-label>minimum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.pm10levelmin"></ion-input>
       </ion-item>
       <ion-item class="SmallNormal" lines="none">
-            <ion-label>maximum</ion-label>
+            <ion-label>maximum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 54" [(ngModel)]="locationobj.pm10levelmax"></ion-input>
       </ion-item>
      </ion-card>
@@ -126,11 +126,11 @@
         <ion-avatar class="avatar"><img src="../../assets/icon/tvoc.png"></ion-avatar>
       </ion-item>
       <ion-item class="SmallNormal">
-            <ion-label>minimum</ion-label>
+            <ion-label>minimum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.tvoclevelmin"></ion-input>
       </ion-item>
       <ion-item class="SmallNormal" lines="none">
-            <ion-label>maximum</ion-label>
+            <ion-label>maximum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 500" [(ngModel)]="locationobj.tvoclevelmax"></ion-input>
       </ion-item>
      </ion-card>
@@ -141,11 +141,11 @@
         <ion-avatar class="avatar"><img src="../../assets/icon/hcho.png"></ion-avatar>
       </ion-item>
       <ion-item class="SmallNormal">
-            <ion-label>minimum</ion-label>
+            <ion-label>minimum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.hcholevelmin"></ion-input>
       </ion-item>
       <ion-item class="SmallNormal" lines="none">
-            <ion-label>maximum</ion-label>
+            <ion-label>maximum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 0.75" [(ngModel)]="locationobj.hcholevelmax"></ion-input>
       </ion-item>
      </ion-card>
@@ -156,11 +156,11 @@
         <ion-avatar class="avatar"><img src="../../assets/icon/o3.png"></ion-avatar>
       </ion-item>
       <ion-item class="SmallNormal">
-            <ion-label>minimum</ion-label>
+            <ion-label>minimum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.ozonelevelmin"></ion-input>
       </ion-item>
       <ion-item class="SmallNormal" lines="none">
-            <ion-label>maximum</ion-label>
+            <ion-label>maximum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 50" [(ngModel)]="locationobj.ozonelevelmax"></ion-input>
       </ion-item>
      </ion-card>
@@ -171,11 +171,11 @@
         <ion-avatar class="avatar"><img src="../../assets/icon/lux.png"></ion-avatar>
       </ion-item>
       <ion-item class="SmallNormal">
-            <ion-label>minimum</ion-label>
+            <ion-label>minimum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.illuminationmin"></ion-input>
       </ion-item>
       <ion-item class="SmallNormal" lines="none">
-            <ion-label>maximum</ion-label>
+            <ion-label>maximum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 800" [(ngModel)]="locationobj.illuminationmax"></ion-input>
       </ion-item>
      </ion-card>
@@ -186,11 +186,11 @@
         <ion-avatar class="avatar"><img src="../../assets/icon/sound.png"></ion-avatar>
       </ion-item>
       <ion-item class="SmallNormal">
-            <ion-label>minimum</ion-label>
+            <ion-label>minimum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 0" [(ngModel)]="locationobj.soundmin"></ion-input>
       </ion-item>
       <ion-item class="SmallNormal" lines="none">
-            <ion-label>maximum</ion-label>
+            <ion-label>maximum: </ion-label>
             <ion-input required=true type="number" placeholder="ex: 70" [(ngModel)]="locationobj.soundmax"></ion-input>
       </ion-item>
     </ion-card>
