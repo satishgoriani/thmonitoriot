@@ -89,6 +89,9 @@ export class SensordetailsPage implements OnInit {
     return false;
   }
 
+  this.sensorobj.locationname = this.dataService.getLocationName(this.sensorobj.locationID);
+  this.sensorobj.sensortypename = this.dataService.getSensortypeName(this.sensorobj.sensortypeID);
+    
   return this.checkDuplicate();
 }
 

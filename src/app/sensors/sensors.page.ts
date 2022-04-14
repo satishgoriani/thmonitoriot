@@ -67,6 +67,7 @@ export class SensorsPage implements OnInit {
   }
 
   async editSensor(sensor){
+    console.log('Sensor for edit ' + JSON.stringify(sensor));
     this.dataService.crudpurpose = Constants.EDIT;
     this.dataService.crudobject = this.dataService.getClone(sensor);
     //this.openForm();

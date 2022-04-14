@@ -98,6 +98,17 @@ export class AppdataService {
   }
 
 
+  getSensortypeName(typeid)
+  {
+
+    for (let i = 0; i < this.sensortypelist.length; i++) {
+      if (this.sensortypelist[i].id === typeid) {
+        return this.sensortypelist[i].name;
+      }
+    }
+    return "";
+  }
+
   getLocationForId(locationid){
     for(var location of this.locationlist){
       if(location.id == locationid) return location;
@@ -169,9 +180,8 @@ export class AppdataService {
 
 
   async getLocations() {
-    return await this.dbService.queryDB ("thmonitor_locationtype",null,
+    return await this.dbService.queryDB ("thmonitor_location",null,
                         "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
-
 
   }
 
@@ -216,23 +226,24 @@ export class AppdataService {
     this.sensorlist = await this.dbService.queryDB ("thmonitor_sensor",null,
                         "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
 
-    /*
-    for (var sensor of this.sensorlist)
+    
+    for (var sensor of this.sensorlist){
       sensor.locationname = this.getLocationName(sensor.locationID);
-    */
+      sensor.sensortypename = this.getSensortypeName(sensor.sensortypeID);
+    
+    }
 
     if(this.sensorlist == null) return false;
     return true;
   }
 
-  /*
+  
   async initSensortypes() {
-    this.sensortypelist = await this.dbService.queryDB ("thmonitor_sensortype",null,
+      this.sensortypelist = await this.dbService.queryDB ("thmonitor_sensortype",null,
                         "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
-
       if(this.sensortypelist == null) return false;
       return true;
-  }*/
+  }
 
 
   async initAppData(){
@@ -241,11 +252,17 @@ export class AppdataService {
       await this.initLocationtypes();
       console.log('Location types initialzied ...');
 
+      await this.initLocations();
+      console.log('Dat aInitiazlied ...');
+
+      await this.initSensortypes();
+      console.log('Sensor types initialized ...');
+
       await this.initSensors();
       console.log('Sensors initialized ...');
 
-      await this.initLocations();
-      console.log('Dat aInitiazlied ...');
+      
+      
       return true;
     } catch (err) {
 
@@ -306,5 +323,8 @@ export class AppdataService {
   public async deleteSensor(sensor : Sensor) {
     return await this.dbService.putItem("thmonitor_sensor",sensor,false,true,null,null);
   }
+
+
+
 
 }
