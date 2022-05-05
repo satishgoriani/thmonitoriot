@@ -155,7 +155,7 @@ export class LocationsPage implements OnInit {
       return;
     }
 
-    if(!this.locationobj.currentbarometricpressure || (this.locationobj.currentbarometricpressure < this.locationobj.barometricpressuremin) || (this.locationobj.currentbarometricpressure > locationobj.barometricpressuremax))
+    if(!this.locationobj.currentbarometricpressure || (this.locationobj.currentbarometricpressure < this.locationobj.barometricpressuremin) || (this.locationobj.currentbarometricpressure > this.locationobj.barometricpressuremax))
     {
       this.setAlert();
       return;
