@@ -3,10 +3,11 @@ import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { AlertuiService } from 'src/app/alertui.service';
 import { AppdataService } from 'src/app/appdata.service';
-import { APIService, Location } from 'src/app/API.service';
+import { APIService } from 'src/app/API.service';
 import { Constants } from 'src/app/constants';
 import { LocationdetailsPage } from '../locationdetails/locationdetails.page';
 import { SensorsPage } from '../sensors/sensors.page';
+import { Location } from '../domain/thmonitorschema';
 
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
@@ -148,14 +149,13 @@ export class LocationsPage implements OnInit {
       return;
     }
 
-    /* SATISH PLEASE CHECK
     if(!this.locationobj.currentco2level || (this.locationobj.currentco2level < this.locationobj.co2levelmin) || (this.locationobj.currentco2level > this.locationobj.co2levelmax))
     {
       this.setAlert();
       return;
     }
 
-    if(!this.locationobj.currentbarometricpressure || (this.locationobj.currentbarometricpressure < locationobj.barometricpressuremin) || (this.locationobj.currentbarometricpressure > locationobj.barometricpressuremax))
+    if(!this.locationobj.currentbarometricpressure || (this.locationobj.currentbarometricpressure < this.locationobj.barometricpressuremin) || (this.locationobj.currentbarometricpressure > locationobj.barometricpressuremax))
     {
       this.setAlert();
       return;
@@ -197,7 +197,7 @@ export class LocationsPage implements OnInit {
       return;
     }
 
-    if(!this.locationobj.currentsoundlevel || (this.locationobj.currentsoundlevel < this.locationobj.soundlevelmin) ||  (this.locationobj.currentsoundlevel > this.locationobj.soundlevelmax))
+    /*if(!this.locationobj.currentsoundlevel || (this.locationobj.currentsoundlevel < this.locationobj.soundlevelmin) ||  (this.locationobj.currentsoundlevel > this.locationobj.soundlevelmax))
     {
       this.setAlert();
       return;
