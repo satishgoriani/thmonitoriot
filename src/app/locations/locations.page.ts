@@ -197,11 +197,11 @@ export class LocationsPage implements OnInit {
       return;
     }
 
-    /*if(!this.locationobj.currentsoundlevel || (this.locationobj.currentsoundlevel < this.locationobj.soundlevelmin) ||  (this.locationobj.currentsoundlevel > this.locationobj.soundlevelmax))
+    if(!this.locationobj.currentsound || (this.locationobj.currentsound < this.locationobj.soundmin) ||  (this.locationobj.currentsound > this.locationobj.soundmax))
     {
       this.setAlert();
       return;
-    } */
+    }
 
   }
 
