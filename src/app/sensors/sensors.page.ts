@@ -67,10 +67,8 @@ export class SensorsPage implements OnInit {
   }
 
   async editSensor(sensor){
-    console.log('Sensor for edit ' + JSON.stringify(sensor));
     this.dataService.crudpurpose = Constants.EDIT;
     this.dataService.crudobject = this.dataService.getClone(sensor);
-    //this.openForm();
     this._router.navigate(['/sensordetails']);
   }
 
@@ -83,7 +81,6 @@ export class SensorsPage implements OnInit {
 
     const isconfirmed = await this.alertService.confirmDelete(headerstr,messagestr);
     if (isconfirmed){
-      //console.log('Deleting sensor...');
       this.deleteSensor();
     }
   }

@@ -29,6 +29,7 @@ export interface Locationtype {
     createdBy: string | null;
     updatedBy: string | null;
     objectversion: number;
+
     _deleted?: boolean | null;
     _lastChangedAt: number; //Timestamp
 }
@@ -131,4 +132,5 @@ export interface Sensortype {
   id: string;
   name: string;
 }
+
 

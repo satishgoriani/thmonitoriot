@@ -110,31 +110,6 @@ export class LoginPage implements OnInit {
             this.alertService.displayToast('Error initializing data, please try again!', Constants.FAIL);
         }
 
-
-        /*const ret = await this.apiService.CompanyByEmail(this.email);
-          if(ret && ret.items && ret.items.length > 0){
-            const company = ret.items[0];
-            if(company.adminpass === this.userpass){
-              console.log('COMPANY OBTAINED : ' + JSON.stringify(company));
-
-              //Initialize app data
-              const initdata = await this.dataService.initAppData();
-              if(initdata){
-
-                  this.dataService.company = company;
-                  this.dataService.isloggedin = true;
-                  this.isprocessing = false;
-
-                  this._router.navigate(['/dashboard']);
-              }else{
-                  this.alertService.displayToast('Error initializing data, please try again!', Constants.FAIL);
-              }
-            }else{
-              this.alertService.displayToast('Invalid credentials, please try again', Constants.WARNING);
-            }
-          }else{
-            this.alertService.displayToast('Login failed, please try again!', Constants.FAIL);
-         }*/
     }catch(err){
       console.log('Error signing in ' + err);
       this.alertService.displayToast('Error, please try again!', Constants.FAIL);

@@ -131,16 +131,17 @@ export class DashboardPage implements OnInit {
 
     refreshTimer;
 
+    
     async startLocationPolling(){
       try{
           const locations = await this.dataService.getLocations();
           if (locations && locations.length > 0) {
             for (var location of locations) {
-              var curlocation = this.dataService.getLocationForId(location.id);
-              if ( curlocation && location.currenttemp != curlocation.currenttemp) {
+              //var curlocation = this.dataService.getLocationForId(location.id);
+              //if ( curlocation && location.currenttemp != curlocation.currenttemp) {
                   this.dataService.updateLocationList(location, Constants.EDIT);
                   this.segmentChanged();
-              }
+              //}
             }
           }
 

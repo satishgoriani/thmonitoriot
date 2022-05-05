@@ -1,6 +1,5 @@
 export class Constants
 {
-
     //CRUD OPERATION TYPE
     public static  CREATE : Number = 1;
     public static  EDIT : Number = 2;
