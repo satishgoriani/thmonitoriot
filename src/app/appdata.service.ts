@@ -179,11 +179,19 @@ export class AppdataService {
   }
 
 
-  async getLocations() {
+  async  getLocations() {
     return await this.dbService.queryDB ("thmonitor_location",null,
                         "userid = :userid",  null,null,{":userid" : this.cognitoid},null,null,null,true,true);
 
   }
+
+
+  async  getSensorReadings(startloctimestamp, endloctimestamp) {
+    return await this.dbService.queryDB ("thmonitor_readings",null,
+                        "userid = :userid and locationtimestamp between :starttime and :endtime",  null,null,{":userid" : this.cognitoid, ":starttime" : startloctimestamp, ":endtime" : endloctimestamp},null,null,null,true,true);
+
+  }
+
 
   setSensorString(location : Location){
     if(location.sensors && location.sensors.length > 0){

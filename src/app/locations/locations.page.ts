@@ -10,6 +10,8 @@ import { SensorsPage } from '../sensors/sensors.page';
 import { Location } from '../domain/thmonitorschema';
 
 import { Chart, registerables } from 'chart.js';
+import { ThrowStmt } from '@angular/compiler/src/output/output_ast';
+import { formatDate } from '@angular/common';
 Chart.register(...registerables);
 
 
@@ -29,7 +31,7 @@ export class LocationsPage implements OnInit {
   humiditycolor;
 
 
-  bars: any;
+  bars: Chart;
   @ViewChild('barChart') barChart;
 
   constructor(
@@ -54,29 +56,94 @@ export class LocationsPage implements OnInit {
 
     this.checkStatus();
   }
+  selectedproperty;
+
+  timeseriesdata : any[];
 
   ngAfterViewInit() {
-    this.createBarChart();
+    this.selectedproperty = 'Temperature';
+    this.setData();
+    this.startPollingLocations();
   }
 
   ionViewWillEnter(){
-    console.log('LOCATION VIEW WILL ENTER ');
+    //console.log('LOCATION VIEW WILL ENTER ');
     this.locationobj = <Location>this.dataService.crudobject;
     this.checkStatus();
   }
 
-  createBarChart() {
-    console.log('in create bar chart');
+  dataObtained: boolean;
+  async setData(){
+      var curtime = new Date().getTime();
+      var starttime = curtime - (24*3600*1000);
+      var startloctimestamp = this.locationobj.id + "|" + starttime;
+      var endloctimestamp = this.locationobj.id + "|" + curtime;
+      
+      this.timeseriesdata = await this.dataService.getSensorReadings(startloctimestamp,endloctimestamp);
+      if(this.timeseriesdata.length > 0 ){
+        this.initChart();
+      }
+      this.dataObtained = true;
+      console.log('No of readings ' + this.timeseriesdata.length);
+  }
+
+  
+  getLabelsArray(){
+    var retarray = [];
+    for(var data of this.timeseriesdata){
+       var loctimestamp = data.locationtimestamp.substring(data.locationtimestamp.indexOf("|") + 1, data.locationtimestamp.length);
+       retarray.push(formatDate(loctimestamp, "dd HH:mm","en"));
+    }
+    return retarray;
+  }
+
+  getDatapoint(data : any){
+    switch(this.selectedproperty){
+      case "Temperature" : return data.decodedjson.temperature;
+      case "Humidity" : return data.decodedjson.humidity;
+      case "Co2" : return data.decodedjson.co2;
+      case "Pressure" : return data.decodedjson.pressure;
+      case "PM 2.5" : return data.decodedjson.pm2_5;
+      case "PM 10" : return data.decodedjson.pm10;
+      case "HCHO" : return data.decodedjson.hcho;
+      case "TVOC" : return data.decodedjson.tvoc;
+      case "Light Level" : return data.decodedjson.light_level;
+      
+      
+      
+      
+      
+      
+      default: return  data.decodedjson.temperature;
+    }
+  }
+
+  setChartForAttribute(attrib){
+    this.selectedproperty = attrib;
+    this.updateChart();
+
+  }
+
+  getDataArray(){
+    var retarray = [];
+    for(var data of this.timeseriesdata){
+       retarray.push(this.getDatapoint(data));
+    }
+    return retarray;
+  }
+
+  initChart(){
     this.bars = new Chart(this.barChart.nativeElement, {
-      type: 'bar',
+      type: 'line',
       data: {
-        labels: ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8'],
+        labels: this.getLabelsArray(),
         datasets: [{
-          label: 'Viewers in millions',
-          data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17],
+          label: this.selectedproperty,
+          data: this.getDataArray(),
           backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
           borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
-          borderWidth: 1
+          borderWidth: 2,
+          pointRadius: 0
         }]
       },
       options: {
@@ -87,6 +154,16 @@ export class LocationsPage implements OnInit {
         }
       }
     });
+
+  }
+
+  updateChart() {
+    this.bars.data.labels = this.getLabelsArray();
+    this.bars.data.datasets[0].data = this.getDataArray();
+    this.bars.data.datasets[0].label = this.selectedproperty;
+    
+    this.bars.update();
+    
   }
 
   closeDialog(){
@@ -129,6 +206,24 @@ export class LocationsPage implements OnInit {
 
   viewSensor() {
     this._router.navigate(['/sensors']);
+  }
+
+  refreshTimer;
+  async startPollingLocations(){
+    try{
+        console.log('|LOCATION POLLING POLLING|');
+        var key = {userid:this.dataService.cognitoid, id:this.locationobj.id};
+        var curlocation = <Location> await this.dataService.dbService.getItem("thmonitor_location", key);
+        if (curlocation) {
+          this.locationobj = curlocation;
+          this.dataService.updateLocationList(curlocation,Constants.EDIT);
+          this.checkStatus();
+        }
+
+    }catch(err){}
+
+    //if(this.dataService.isuserloggedin)
+    this.refreshTimer = setTimeout(()=>{this.startPollingLocations()},10000);
   }
 
   checkStatus(){
