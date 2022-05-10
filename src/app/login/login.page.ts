@@ -34,9 +34,7 @@ export class LoginPage implements OnInit {
     public dynamodbService : Dynamodbservice,
     private _router : Router,
     public menuCtrl: MenuController
-  ) {
-      //this.menuCtrl.enable(false);
-  }
+  ) { }
 
   ngOnInit(){
     //this.email = 'max@gmail.com';

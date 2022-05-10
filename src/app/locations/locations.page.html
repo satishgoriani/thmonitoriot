@@ -32,27 +32,29 @@
   <ion-col size="12" sizeMd="3">
     <ion-card class="cardrow1">
       <ion-item class="SmallNormal" color="accent" lines="none">
-        <ion-label>Sensor Details</ion-label>
+        <ion-label>Sensor</ion-label>
         <ion-icon name="hardware-chip-outline" slot="end"></ion-icon>
       </ion-item>
-      <ion-item lines="none" class="VSmallNormal">
+      <ion-item lines="none">
         <ion-label class="sensordetails">
           <!--<ion-text><p><span class="fieldname">Serial No:</span>&nbsp;XYZ-ABC</p></ion-text>
           <ion-text><p><span class="fieldname">Model:</span>&nbsp;Dummy data</p></ion-text>-->
-          <ion-text><p><span class="fieldname">Data as on:</span>&nbsp;<span style="font-size: large;">{{locationobj._lastChangedAt | date : 'd MMM, HH:mm'}}</span></p></ion-text>
+          <ion-text><p><span class="fieldname">Last Reading:</span>&nbsp;<span class="SmallBold">{{locationobj._lastChangedAt | date : 'd MMM, HH:mm'}}</span></p></ion-text>
         </ion-label>
       </ion-item>
     </ion-card>
   </ion-col>
   <ion-col size="12" sizeMd="9">
     <ion-card class="cardrow2">
-     <!-- <ion-img src="../../assets/images/graphsample.png"></ion-img>-->
-     <ion-card-header>
+      <ion-card-header>
       <ion-card-subtitle>Timeseries Trends For</ion-card-subtitle>
       <ion-card-title>{{selectedproperty}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <canvas #barChart></canvas>
+      <div class="Wid100 aligncenter">
+        <ion-spinner *ngIf="!dataObtained" name="lines"></ion-spinner>
+      </div>
+      <canvas #variationChart></canvas>
     </ion-card-content>
     </ion-card>
   </ion-col>
@@ -64,48 +66,48 @@
       </ion-item>
       <ion-item style="cursor: pointer;" (click)="setChartForAttribute('Co2')" class="VSmallNormal" lines="none">
           <ion-img class="myicon" src="../../assets/icon/co2.png"></ion-img>
-          <ion-label *ngIf="(locationobj.currentco2level >= locationobj.co2levelmin) &&  (locationobj.currentco2level <= locationobj.co2levelmax)">&nbsp;CO2 : {{locationobj.currentco2level}} ppm</ion-label>
-          <ion-label *ngIf="(locationobj.currentco2level < locationobj.co2levelmin) || (locationobj.currentco2level > locationobj.co2levelmax)" color="danger">&nbsp;CO2 : {{locationobj.currentco2level}} ppm</ion-label>
+          <ion-label *ngIf="(locationobj.currentco2level >= locationobj.co2levelmin) &&  (locationobj.currentco2level <= locationobj.co2levelmax)">CO2 : {{locationobj.currentco2level}} ppm</ion-label>
+          <ion-label *ngIf="(locationobj.currentco2level < locationobj.co2levelmin) || (locationobj.currentco2level > locationobj.co2levelmax)" color="danger">CO2 : {{locationobj.currentco2level}} ppm</ion-label>
       </ion-item>
       <ion-item style="cursor: pointer;" (click)="setChartForAttribute('Pressure')" class="VSmallNormal" lines="none">
         <ion-img  class="myicon" src="../../assets/icon/pressure.png"></ion-img>
-        <ion-label *ngIf="(locationobj.currentbarometricpressure >= locationobj.barometricpressuremin) &&  (locationobj.currentbarometricpressure <= locationobj.barometricpressuremax)">&nbsp;Barometric Pressure : {{locationobj.currentbarometricpressure}} kPa</ion-label>
-        <ion-label *ngIf="(locationobj.currentbarometricpressure < locationobj.barometricpressuremin) || (locationobj.currentbarometricpressure > locationobj.barometricpressuremax)" color="danger">&nbsp;Barometric Pressure : {{locationobj.currentbarometricpressure}} kPa</ion-label>
+        <ion-text *ngIf="(locationobj.currentbarometricpressure >= locationobj.barometricpressuremin) &&  (locationobj.currentbarometricpressure <= locationobj.barometricpressuremax)">Barometric Pressure : {{locationobj.currentbarometricpressure}} kPa</ion-text>
+        <ion-text *ngIf="(locationobj.currentbarometricpressure < locationobj.barometricpressuremin) || (locationobj.currentbarometricpressure > locationobj.barometricpressuremax)" color="danger">Barometric Pressure : {{locationobj.currentbarometricpressure}} kPa</ion-text>
       </ion-item>
       <ion-item style="cursor: pointer;" (click)="setChartForAttribute('PM 2.5')" class="VSmallNormal" lines="none">
           <ion-img class="myicon" src="../../assets/icon/pm25.png"></ion-img>
-          <ion-label *ngIf="(locationobj.currentpm2pt5level >= locationobj.pm2pt5levelmin) &&  (locationobj.currentpm2pt5level <= locationobj.pm2pt5levelmax)">&nbsp;PM2.5 : {{locationobj.currentpm2pt5level}} μg/m3</ion-label>
-          <ion-label *ngIf="(locationobj.currentpm2pt5level < locationobj.pm2pt5levelmin) || (locationobj.currentpm2pt5level > locationobj.pm2pt5levelmax)" color="danger">&nbsp;PM2.5 : {{locationobj.currentpm2pt5level}} μg/m3</ion-label>
+          <ion-label *ngIf="(locationobj.currentpm2pt5level >= locationobj.pm2pt5levelmin) &&  (locationobj.currentpm2pt5level <= locationobj.pm2pt5levelmax)">PM2.5 : {{locationobj.currentpm2pt5level}} μg/m3</ion-label>
+          <ion-label *ngIf="(locationobj.currentpm2pt5level < locationobj.pm2pt5levelmin) || (locationobj.currentpm2pt5level > locationobj.pm2pt5levelmax)" color="danger">PM2.5 : {{locationobj.currentpm2pt5level}} μg/m3</ion-label>
       </ion-item>
       <ion-item style="cursor: pointer;" (click)="setChartForAttribute('PM 10')" class="VSmallNormal" lines="none">
           <ion-img  class="myicon" src="../../assets/icon/pm10.png"></ion-img>
-          <ion-label *ngIf="(locationobj.currentpm10level >= locationobj.pm10levelmin) &&  (locationobj.currentpm10level <= locationobj.pm10levelmax)">&nbsp;PM10 : {{locationobj.currentpm10level}} μg/m3</ion-label>
-          <ion-label *ngIf="(locationobj.currentpm10level < locationobj.pm10levelmin) || (locationobj.currentpm10level > locationobj.pm10levelmax)" color="danger">&nbsp;PM10 : {{locationobj.currentpm10level}} μg/m3</ion-label>
+          <ion-label *ngIf="(locationobj.currentpm10level >= locationobj.pm10levelmin) &&  (locationobj.currentpm10level <= locationobj.pm10levelmax)">PM10 : {{locationobj.currentpm10level}} μg/m3</ion-label>
+          <ion-label *ngIf="(locationobj.currentpm10level < locationobj.pm10levelmin) || (locationobj.currentpm10level > locationobj.pm10levelmax)" color="danger">PM10 : {{locationobj.currentpm10level}} μg/m3</ion-label>
       </ion-item>
       <ion-item style="cursor: pointer;" (click)="setChartForAttribute('TVOC')" class="VSmallNormal" lines="none">
           <ion-img  class="myicon" src="../../assets/icon/tvoc.png"></ion-img>
-          <ion-label *ngIf="(locationobj.currenttvoclevel >= locationobj.tvoclevelmin) &&  (locationobj.currenttvoclevel <= locationobj.tvoclevelmax)">&nbsp;TVOC : {{locationobj.currenttvoclevel}} ppb</ion-label>
-          <ion-label *ngIf="(locationobj.currenttvoclevel < locationobj.tvoclevelmin) || (locationobj.currenttvoclevel > locationobj.tvoclevelmax)" color="danger">&nbsp;TVOC : {{locationobj.currenttvoclevel}} ppb</ion-label>
+          <ion-label *ngIf="(locationobj.currenttvoclevel >= locationobj.tvoclevelmin) &&  (locationobj.currenttvoclevel <= locationobj.tvoclevelmax)">TVOC : {{locationobj.currenttvoclevel}} ppb</ion-label>
+          <ion-label *ngIf="(locationobj.currenttvoclevel < locationobj.tvoclevelmin) || (locationobj.currenttvoclevel > locationobj.tvoclevelmax)" color="danger">TVOC : {{locationobj.currenttvoclevel}} ppb</ion-label>
       </ion-item>
       <ion-item style="cursor: pointer;" (click)="setChartForAttribute('HCHO')"  class="VSmallNormal" lines="none">
           <ion-img class="myicon" src="../../assets/icon/hcho.png"></ion-img>
-          <ion-label *ngIf="(locationobj.currenthcholevel >= locationobj.hcholevelmin) &&  (locationobj.currenthcholevel <= locationobj.hcholevelmax)">&nbsp;HCHO : {{locationobj.currenthcholevel}} ppm</ion-label>
-          <ion-label *ngIf="(locationobj.currenthcholevel < locationobj.hcholevelmin) || (locationobj.currenthcholevel > locationobj.hcholevelmax)" color="danger">&nbsp;HCHO : {{locationobj.currenthcholevel}} ppm</ion-label>
+          <ion-label *ngIf="(locationobj.currenthcholevel >= locationobj.hcholevelmin) &&  (locationobj.currenthcholevel <= locationobj.hcholevelmax)">HCHO : {{locationobj.currenthcholevel}} ppm</ion-label>
+          <ion-label *ngIf="(locationobj.currenthcholevel < locationobj.hcholevelmin) || (locationobj.currenthcholevel > locationobj.hcholevelmax)" color="danger">HCHO : {{locationobj.currenthcholevel}} ppm</ion-label>
       </ion-item>
      <!-- <ion-item class="VSmallNormal" lines="none">
           <ion-img class="myicon" src="../../assets/icon/o3.png"></ion-img>
-          <ion-label *ngIf="(locationobj.currentozonelevel >= locationobj.ozonelevelmin) &&  (locationobj.currentozonelevel <= locationobj.ozonelevelmax)">&nbsp;Ozone : {{locationobj.currentozonelevel}} ppb</ion-label>
-          <ion-label *ngIf="(locationobj.currentozonelevel < locationobj.ozonelevelmin) || (locationobj.currentozonelevel > locationobj.ozonelevelmax)" color="danger">&nbsp;Ozone : {{locationobj.currentozonelevel}} ppb</ion-label>
+          <ion-label *ngIf="(locationobj.currentozonelevel >= locationobj.ozonelevelmin) &&  (locationobj.currentozonelevel <= locationobj.ozonelevelmax)">Ozone : {{locationobj.currentozonelevel}} ppb</ion-label>
+          <ion-label *ngIf="(locationobj.currentozonelevel < locationobj.ozonelevelmin) || (locationobj.currentozonelevel > locationobj.ozonelevelmax)" color="danger">Ozone : {{locationobj.currentozonelevel}} ppb</ion-label>
       </ion-item>-->
       <ion-item  style="cursor: pointer;" (click)="setChartForAttribute('Light Level')" class="VSmallNormal" lines="none">
           <ion-img  class="myicon" src="../../assets/icon/lux.png"></ion-img>
-          <ion-label *ngIf="(locationobj.currentillumination >= locationobj.illuminationmin) &&  (locationobj.currentillumination <= locationobj.illuminationmax)">&nbsp;Light Level: {{locationobj.currentillumination}} </ion-label>
-          <ion-label *ngIf="(locationobj.currentillumination < locationobj.illuminationmin) || (locationobj.currentillumination > locationobj.illuminationmax)" color="danger">&nbsp;Light Level: {{locationobj.currentillumination}} </ion-label>
+          <ion-label *ngIf="(locationobj.currentillumination >= locationobj.illuminationmin) &&  (locationobj.currentillumination <= locationobj.illuminationmax)">Light Level: {{locationobj.currentillumination}} </ion-label>
+          <ion-label *ngIf="(locationobj.currentillumination < locationobj.illuminationmin) || (locationobj.currentillumination > locationobj.illuminationmax)" color="danger">Light Level: {{locationobj.currentillumination}} </ion-label>
       </ion-item>
       <!--<ion-item class="VSmallNormal" lines="none">
           <ion-img class="myicon" src="../../assets/icon/sound.png"></ion-img>
-          <ion-label *ngIf="(locationobj.currentsound >= locationobj.soundmin) &&  (locationobj.currentsound <= locationobj.soundmax)">&nbsp;Sound : {{locationobj.currentsound}} dB</ion-label>
-          <ion-label *ngIf="(locationobj.currentsound < locationobj.soundmin) || (locationobj.currentsound > locationobj.soundmax)" color="danger">&nbsp;Sound : {{locationobj.currentsound}} dB</ion-label>
+          <ion-label *ngIf="(locationobj.currentsound >= locationobj.soundmin) &&  (locationobj.currentsound <= locationobj.soundmax)">Sound : {{locationobj.currentsound}} dB</ion-label>
+          <ion-label *ngIf="(locationobj.currentsound < locationobj.soundmin) || (locationobj.currentsound > locationobj.soundmax)" color="danger">Sound : {{locationobj.currentsound}} dB</ion-label>
       </ion-item>-->
      </ion-card-content>
     </ion-card>

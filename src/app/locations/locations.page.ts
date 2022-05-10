@@ -30,9 +30,8 @@ export class LocationsPage implements OnInit {
   tempcolor;
   humiditycolor;
 
-
-  bars: Chart;
-  @ViewChild('barChart') barChart;
+  chart: Chart;
+  @ViewChild('variationChart') variationChart;
 
   constructor(
     private _router: Router,
@@ -78,16 +77,17 @@ export class LocationsPage implements OnInit {
       var starttime = curtime - (24*3600*1000);
       var startloctimestamp = this.locationobj.id + "|" + starttime;
       var endloctimestamp = this.locationobj.id + "|" + curtime;
-      
+
       this.timeseriesdata = await this.dataService.getSensorReadings(startloctimestamp,endloctimestamp);
+      this.dataObtained = true;
+
       if(this.timeseriesdata.length > 0 ){
         this.initChart();
       }
-      this.dataObtained = true;
       console.log('No of readings ' + this.timeseriesdata.length);
   }
 
-  
+
   getLabelsArray(){
     var retarray = [];
     for(var data of this.timeseriesdata){
@@ -108,12 +108,7 @@ export class LocationsPage implements OnInit {
       case "HCHO" : return data.decodedjson.hcho;
       case "TVOC" : return data.decodedjson.tvoc;
       case "Light Level" : return data.decodedjson.light_level;
-      
-      
-      
-      
-      
-      
+
       default: return  data.decodedjson.temperature;
     }
   }
@@ -133,15 +128,15 @@ export class LocationsPage implements OnInit {
   }
 
   initChart(){
-    this.bars = new Chart(this.barChart.nativeElement, {
+    this.chart = new Chart(this.variationChart.nativeElement, {
       type: 'line',
       data: {
-        labels: this.getLabelsArray(),
+        labels: this.getLabelsArray(), // array should have same number of elements as number of dataset
         datasets: [{
           label: this.selectedproperty,
           data: this.getDataArray(),
-          backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
-          borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
+          backgroundColor: 'rgb(38, 194, 129)',
+          borderColor: 'rgb(38, 194, 129)',
           borderWidth: 2,
           pointRadius: 0
         }]
@@ -158,12 +153,12 @@ export class LocationsPage implements OnInit {
   }
 
   updateChart() {
-    this.bars.data.labels = this.getLabelsArray();
-    this.bars.data.datasets[0].data = this.getDataArray();
-    this.bars.data.datasets[0].label = this.selectedproperty;
-    
-    this.bars.update();
-    
+    this.chart.data.labels = this.getLabelsArray();
+    this.chart.data.datasets[0].data = this.getDataArray();
+    this.chart.data.datasets[0].label = this.selectedproperty;
+
+    this.chart.update();
+
   }
 
   closeDialog(){
