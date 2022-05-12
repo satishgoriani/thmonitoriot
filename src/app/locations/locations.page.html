@@ -49,6 +49,17 @@
       <ion-card-header>
       <ion-card-subtitle>Timeseries Trends For</ion-card-subtitle>
       <ion-card-title>{{selectedproperty}}</ion-card-title>
+      <ion-segment value="default">
+        <ion-segment-button value="default" (click)="setChartForPeriod('24hrs')">
+          <ion-label>24 Hrs</ion-label>
+        </ion-segment-button>
+        <ion-segment-button (click)="setChartForPeriod('7days')">
+          <ion-label>7 Days</ion-label>
+        </ion-segment-button>
+        <ion-segment-button (click)="setChartForPeriod('30days')">
+          <ion-label>30 Days</ion-label>
+        </ion-segment-button>
+        </ion-segment>
     </ion-card-header>
     <ion-card-content>
       <div class="Wid100 aligncenter">

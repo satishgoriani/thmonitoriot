@@ -50,14 +50,14 @@ export class AppComponent {
         icon: "person-circle-outline"
       },*/
       {
+        title: "Alerts",
+        url: "/alerts",
+        icon: "notifications-outline"
+      },
+      {
         title: "Settings",
         url: "/setting",
         icon: "settings-outline"
-      },
-      {
-        title: "Notifications",
-        url: "/notifications",
-        icon: "notifications-outline"
       },
       {
         title: "Change Password",

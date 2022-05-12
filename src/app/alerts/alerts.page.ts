@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-notifications',
-  templateUrl: './notifications.page.html',
-  styleUrls: ['./notifications.page.scss'],
+  selector: 'app-alerts',
+  templateUrl: './alerts.page.html',
+  styleUrls: ['./alerts.page.scss'],
 })
-export class NotificationsPage implements OnInit {
+export class AlertsPage implements OnInit {
 
   constructor(
     private _router : Router,

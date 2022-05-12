@@ -12,6 +12,15 @@
    text-align: center;
  }
 
+ ion-segment-button{
+  --indicator-box-shadow: transparent !important;
+  --background:white;
+  --color:var(--ion-color-primary);
+  --background-checked: var(--ion-color-accent2)!important;
+  border-radius: .5rem !important;
+  padding: 2px;
+  margin-top: 5px;
+ }
 
 .cardrow1{
   margin: 7px !important;

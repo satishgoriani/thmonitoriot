@@ -33,6 +33,11 @@ export class LocationsPage implements OnInit {
   chart: Chart;
   @ViewChild('variationChart') variationChart;
 
+  selectedproperty;
+  timeseriesfetcheddata : any[];
+  timeseriesdata : any[];
+  dataObtained: boolean;
+
   constructor(
     private _router: Router,
     public alertService: AlertuiService,
@@ -55,9 +60,6 @@ export class LocationsPage implements OnInit {
 
     this.checkStatus();
   }
-  selectedproperty;
-
-  timeseriesdata : any[];
 
   ngAfterViewInit() {
     this.selectedproperty = 'Temperature';
@@ -71,20 +73,24 @@ export class LocationsPage implements OnInit {
     this.checkStatus();
   }
 
-  dataObtained: boolean;
   async setData(){
-      var curtime = new Date().getTime();
-      var starttime = curtime - (24*3600*1000);
-      var startloctimestamp = this.locationobj.id + "|" + starttime;
-      var endloctimestamp = this.locationobj.id + "|" + curtime;
+    this.dataObtained = false;
+    var curtime = new Date().getTime();
+    var starttime = curtime - (30*24*3600*1000);
 
-      this.timeseriesdata = await this.dataService.getSensorReadings(startloctimestamp,endloctimestamp);
-      this.dataObtained = true;
+    var startloctimestamp = this.locationobj.id + "|" + starttime;
+    var endloctimestamp = this.locationobj.id + "|" + curtime;
 
-      if(this.timeseriesdata.length > 0 ){
-        this.initChart();
-      }
-      console.log('No of readings ' + this.timeseriesdata.length);
+    this.timeseriesfetcheddata = await this.dataService.getSensorReadings(startloctimestamp,endloctimestamp);
+    this.timeseriesdata = this.timeseriesfetcheddata;
+    this.dataObtained = true;
+    console.log('No of readings ' + this.timeseriesdata.length);
+
+    if(this.timeseriesdata.length > 0 )
+    {
+      this.initChart();
+      this.setChartForPeriod("24hrs");
+    }
   }
 
 
@@ -92,7 +98,15 @@ export class LocationsPage implements OnInit {
     var retarray = [];
     for(var data of this.timeseriesdata){
        var loctimestamp = data.locationtimestamp.substring(data.locationtimestamp.indexOf("|") + 1, data.locationtimestamp.length);
-       retarray.push(formatDate(loctimestamp, "dd HH:mm","en"));
+       retarray.push(formatDate(loctimestamp, "MMM-dd HH:mm","en"));
+    }
+    return retarray;
+  }
+
+  getDataArray(){
+    var retarray = [];
+    for(var data of this.timeseriesdata){
+       retarray.push(this.getDatapoint(data));
     }
     return retarray;
   }
@@ -116,16 +130,33 @@ export class LocationsPage implements OnInit {
   setChartForAttribute(attrib){
     this.selectedproperty = attrib;
     this.updateChart();
-
   }
 
-  getDataArray(){
-    var retarray = [];
-    for(var data of this.timeseriesdata){
-       retarray.push(this.getDatapoint(data));
+  setChartForPeriod(period){
+    var curtime = new Date().getTime();
+    var starttime = curtime;
+    if(period == "30days")
+      this.timeseriesdata = this.timeseriesfetcheddata;
+    else{
+      if(period == "24hrs")
+        starttime = curtime - (24*3600*1000);
+
+      if(period == "7days")
+        starttime = curtime - (7*24*3600*1000);
+
+      var retarray = [];
+      for(var data of this.timeseriesfetcheddata){
+          var loctimestamp = data.locationtimestamp.substring(data.locationtimestamp.indexOf("|") + 1, data.locationtimestamp.length);
+          if(loctimestamp >= starttime)
+            retarray.push(data);
+      }
+      this.timeseriesdata = retarray;
     }
-    return retarray;
+
+    this.updateChart();
   }
+
+
 
   initChart(){
     this.chart = new Chart(this.variationChart.nativeElement, {
@@ -135,8 +166,8 @@ export class LocationsPage implements OnInit {
         datasets: [{
           label: this.selectedproperty,
           data: this.getDataArray(),
-          backgroundColor: 'rgb(38, 194, 129)',
-          borderColor: 'rgb(38, 194, 129)',
+          backgroundColor: 'rgb(242,157,14)',
+          borderColor: 'rgb(242,157,14)',
           borderWidth: 2,
           pointRadius: 0
         }]
