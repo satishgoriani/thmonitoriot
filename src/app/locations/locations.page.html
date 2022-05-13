@@ -75,51 +75,88 @@
       <ion-item lines="none" class="SmallNormal">
         <ion-label class="ion-text-center" color="primary">Air Quality</ion-label>
       </ion-item>
-      <ion-item style="cursor: pointer;" (click)="setChartForAttribute('Co2')" class="VSmallNormal" lines="none">
+      <ion-accordion-group>
+      <ion-accordion toggle-icon="">
+      <ion-item slot="header" (click)="setChartForAttribute('Co2')" class="VSmallNormal" lines="none">
           <ion-img class="myicon" src="../../assets/icon/co2.png"></ion-img>
           <ion-label *ngIf="(locationobj.currentco2level >= locationobj.co2levelmin) &&  (locationobj.currentco2level <= locationobj.co2levelmax)">CO2 : {{locationobj.currentco2level}} ppm</ion-label>
           <ion-label *ngIf="(locationobj.currentco2level < locationobj.co2levelmin) || (locationobj.currentco2level > locationobj.co2levelmax)" color="danger">CO2 : {{locationobj.currentco2level}} ppm</ion-label>
       </ion-item>
-      <ion-item style="cursor: pointer;" (click)="setChartForAttribute('Pressure')" class="VSmallNormal" lines="none">
+      <ion-item slot="content" class="info">
+          <ion-text>Since CO2 is exhaled by people at predictable levels, the content of Carbon Dioxide in the indoor air can be used as a significant indication of air quality. Acceptable CO2 levels are below 600ppm.</ion-text>
+      </ion-item>
+      </ion-accordion>
+      <ion-accordion toggle-icon="">
+      <ion-item slot="header" (click)="setChartForAttribute('Pressure')" class="VSmallNormal" lines="none">
         <ion-img  class="myicon" src="../../assets/icon/pressure.png"></ion-img>
         <ion-text *ngIf="(locationobj.currentbarometricpressure >= locationobj.barometricpressuremin) &&  (locationobj.currentbarometricpressure <= locationobj.barometricpressuremax)">Barometric Pressure : {{locationobj.currentbarometricpressure}} kPa</ion-text>
         <ion-text *ngIf="(locationobj.currentbarometricpressure < locationobj.barometricpressuremin) || (locationobj.currentbarometricpressure > locationobj.barometricpressuremax)" color="danger">Barometric Pressure : {{locationobj.currentbarometricpressure}} kPa</ion-text>
       </ion-item>
-      <ion-item style="cursor: pointer;" (click)="setChartForAttribute('PM 2.5')" class="VSmallNormal" lines="none">
+      <ion-item slot="content" class="info">
+        <ion-text>Barometric pressure is the measurement of air pressure in a given area. Pressure is usually around 1000hPa, and at sea level it rarely gets lower than 950hPa or higher than 1050 hPa.</ion-text>
+      </ion-item>
+    </ion-accordion>
+    <ion-accordion toggle-icon="">
+      <ion-item slot="header" (click)="setChartForAttribute('PM 2.5')" class="VSmallNormal" lines="none">
           <ion-img class="myicon" src="../../assets/icon/pm25.png"></ion-img>
           <ion-label *ngIf="(locationobj.currentpm2pt5level >= locationobj.pm2pt5levelmin) &&  (locationobj.currentpm2pt5level <= locationobj.pm2pt5levelmax)">PM2.5 : {{locationobj.currentpm2pt5level}} μg/m3</ion-label>
           <ion-label *ngIf="(locationobj.currentpm2pt5level < locationobj.pm2pt5levelmin) || (locationobj.currentpm2pt5level > locationobj.pm2pt5levelmax)" color="danger">PM2.5 : {{locationobj.currentpm2pt5level}} μg/m3</ion-label>
       </ion-item>
-      <ion-item style="cursor: pointer;" (click)="setChartForAttribute('PM 10')" class="VSmallNormal" lines="none">
+      <ion-item slot="content" class="info">
+        <ion-text>Fine Particulate matter (diameter 2.5 micron or less) is an air pollutant that is a concern for people's health when levels are higher than 35 μg/m3. PM2.5 at or below 12 μg/m3 is considered healthy.</ion-text>
+      </ion-item>
+    </ion-accordion>
+    <ion-accordion toggle-icon="">
+      <ion-item slot="header" (click)="setChartForAttribute('PM 10')" class="VSmallNormal" lines="none">
           <ion-img  class="myicon" src="../../assets/icon/pm10.png"></ion-img>
           <ion-label *ngIf="(locationobj.currentpm10level >= locationobj.pm10levelmin) &&  (locationobj.currentpm10level <= locationobj.pm10levelmax)">PM10 : {{locationobj.currentpm10level}} μg/m3</ion-label>
           <ion-label *ngIf="(locationobj.currentpm10level < locationobj.pm10levelmin) || (locationobj.currentpm10level > locationobj.pm10levelmax)" color="danger">PM10 : {{locationobj.currentpm10level}} μg/m3</ion-label>
       </ion-item>
-      <ion-item style="cursor: pointer;" (click)="setChartForAttribute('TVOC')" class="VSmallNormal" lines="none">
+      <ion-item slot="content" class="info">
+        <ion-text>Particulate matter (diameter 10 micron or less) are inhalable into the lungs and can induce adverse health effects. Examples of PM10 are dust from construction sites, waste burning, industrial sources, pollen and bacteria. PM10 concentrations below 54.0 µg/m³ are considered safe.</ion-text>
+      </ion-item>
+    </ion-accordion>
+    <ion-accordion toggle-icon="">
+      <ion-item slot="header" (click)="setChartForAttribute('TVOC')" class="VSmallNormal" lines="none">
           <ion-img  class="myicon" src="../../assets/icon/tvoc.png"></ion-img>
           <ion-label *ngIf="(locationobj.currenttvoclevel >= locationobj.tvoclevelmin) &&  (locationobj.currenttvoclevel <= locationobj.tvoclevelmax)">TVOC : {{locationobj.currenttvoclevel}} ppb</ion-label>
           <ion-label *ngIf="(locationobj.currenttvoclevel < locationobj.tvoclevelmin) || (locationobj.currenttvoclevel > locationobj.tvoclevelmax)" color="danger">TVOC : {{locationobj.currenttvoclevel}} ppb</ion-label>
       </ion-item>
-      <ion-item style="cursor: pointer;" (click)="setChartForAttribute('HCHO')"  class="VSmallNormal" lines="none">
+      <ion-item slot="content" class="info">
+        <ion-text>TVOC is a measure of the overall amount of Volatile Organic Compounds in a given space. VOCs such as Benzene, Formaldehyde, Methylene chloride etc come from everyday sources such as tobacco smoke, paints, disinfectants, pesticides, air fresheners etc. A concentration of less than 0.5 mg/m3 is considered acceptable.</ion-text>
+      </ion-item>
+    </ion-accordion>
+    <ion-accordion toggle-icon="">
+      <ion-item slot="header" (click)="setChartForAttribute('HCHO')"  class="VSmallNormal" lines="none">
           <ion-img class="myicon" src="../../assets/icon/hcho.png"></ion-img>
           <ion-label *ngIf="(locationobj.currenthcholevel >= locationobj.hcholevelmin) &&  (locationobj.currenthcholevel <= locationobj.hcholevelmax)">HCHO : {{locationobj.currenthcholevel}} ppm</ion-label>
           <ion-label *ngIf="(locationobj.currenthcholevel < locationobj.hcholevelmin) || (locationobj.currenthcholevel > locationobj.hcholevelmax)" color="danger">HCHO : {{locationobj.currenthcholevel}} ppm</ion-label>
       </ion-item>
+      <ion-item slot="content" class="info">
+        <ion-text>The indoor air of a closed area can be polluted by volatile organic compounds like Formaldehyde, or HCHO. Formaldehyde comes from sources like cleaning products, cooking, lighting candles or incense, smoking, air fresheners etc. Regular exposure or exposure for a longer period of time to Formaldehyde can lead to health issues. Safe limit is 8 mg/m3.</ion-text>
+      </ion-item>
+    </ion-accordion>
      <!-- <ion-item class="VSmallNormal" lines="none">
           <ion-img class="myicon" src="../../assets/icon/o3.png"></ion-img>
           <ion-label *ngIf="(locationobj.currentozonelevel >= locationobj.ozonelevelmin) &&  (locationobj.currentozonelevel <= locationobj.ozonelevelmax)">Ozone : {{locationobj.currentozonelevel}} ppb</ion-label>
           <ion-label *ngIf="(locationobj.currentozonelevel < locationobj.ozonelevelmin) || (locationobj.currentozonelevel > locationobj.ozonelevelmax)" color="danger">Ozone : {{locationobj.currentozonelevel}} ppb</ion-label>
       </ion-item>-->
-      <ion-item  style="cursor: pointer;" (click)="setChartForAttribute('Light Level')" class="VSmallNormal" lines="none">
+    <ion-accordion toggle-icon="">
+      <ion-item  slot="header" (click)="setChartForAttribute('Light Level')" class="VSmallNormal" lines="none">
           <ion-img  class="myicon" src="../../assets/icon/lux.png"></ion-img>
           <ion-label *ngIf="(locationobj.currentillumination >= locationobj.illuminationmin) &&  (locationobj.currentillumination <= locationobj.illuminationmax)">Light Level: {{locationobj.currentillumination}} </ion-label>
           <ion-label *ngIf="(locationobj.currentillumination < locationobj.illuminationmin) || (locationobj.currentillumination > locationobj.illuminationmax)" color="danger">Light Level: {{locationobj.currentillumination}} </ion-label>
       </ion-item>
+      <ion-item slot="content" class="info">
+        <ion-text>Light Level or Illuminance, is the amount of light measured in a plane surface.</ion-text>
+      </ion-item>
+    </ion-accordion>
       <!--<ion-item class="VSmallNormal" lines="none">
           <ion-img class="myicon" src="../../assets/icon/sound.png"></ion-img>
           <ion-label *ngIf="(locationobj.currentsound >= locationobj.soundmin) &&  (locationobj.currentsound <= locationobj.soundmax)">Sound : {{locationobj.currentsound}} dB</ion-label>
           <ion-label *ngIf="(locationobj.currentsound < locationobj.soundmin) || (locationobj.currentsound > locationobj.soundmax)" color="danger">Sound : {{locationobj.currentsound}} dB</ion-label>
       </ion-item>-->
+     </ion-accordion-group>
      </ion-card-content>
     </ion-card>
   </ion-col>

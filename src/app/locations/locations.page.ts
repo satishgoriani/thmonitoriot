@@ -34,6 +34,7 @@ export class LocationsPage implements OnInit {
   @ViewChild('variationChart') variationChart;
 
   selectedproperty;
+  unit;
   timeseriesfetcheddata : any[];
   timeseriesdata : any[];
   dataObtained: boolean;
@@ -63,6 +64,7 @@ export class LocationsPage implements OnInit {
 
   ngAfterViewInit() {
     this.selectedproperty = 'Temperature';
+    this.unit = ' (°Celcius)';
     this.setData();
     this.startPollingLocations();
   }
@@ -129,6 +131,34 @@ export class LocationsPage implements OnInit {
 
   setChartForAttribute(attrib){
     this.selectedproperty = attrib;
+    switch(this.selectedproperty){
+      case "Temperature" :
+        this.unit = ' (°Celcius)';
+        break;
+      case "Humidity" :
+        this.unit = ' (%)';
+        break;
+      case "Co2" :
+        this.unit = ' (ppm)';
+        break;
+      case "Pressure" :
+        this.unit = ' (kPa)';
+        break;
+      case "PM 2.5" :
+        this.unit = ' (μg/m3)';
+        break;
+      case "PM 10" :
+        this.unit = ' (μg/m3)';
+        break;
+      case "HCHO" :
+        this.unit = ' (ppm)';
+        break;
+      case "TVOC" :
+        this.unit = ' (ppb)';
+        break;
+      default:
+        this.unit = ' ';
+    }
     this.updateChart();
   }
 
@@ -164,7 +194,7 @@ export class LocationsPage implements OnInit {
       data: {
         labels: this.getLabelsArray(), // array should have same number of elements as number of dataset
         datasets: [{
-          label: this.selectedproperty,
+          label: this.selectedproperty + this.unit,
           data: this.getDataArray(),
           backgroundColor: 'rgb(242,157,14)',
           borderColor: 'rgb(242,157,14)',
@@ -173,11 +203,7 @@ export class LocationsPage implements OnInit {
         }]
       },
       options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
+        responsive: true
       }
     });
 
@@ -186,7 +212,7 @@ export class LocationsPage implements OnInit {
   updateChart() {
     this.chart.data.labels = this.getLabelsArray();
     this.chart.data.datasets[0].data = this.getDataArray();
-    this.chart.data.datasets[0].label = this.selectedproperty;
+    this.chart.data.datasets[0].label = this.selectedproperty + this.unit;
 
     this.chart.update();
 

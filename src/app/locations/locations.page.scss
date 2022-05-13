@@ -18,8 +18,15 @@
   --color:var(--ion-color-primary);
   --background-checked: var(--ion-color-accent2)!important;
   border-radius: .5rem !important;
-  padding: 2px;
+  padding: 0px;
   margin-top: 5px;
+ }
+
+ .info{
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary-contrast);
+  font-size: 0.8rem;
+  font-weight: normal;
  }
 
 .cardrow1{
